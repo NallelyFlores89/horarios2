@@ -1,0 +1,51 @@
+body { background: #fff; }
+.container { max-width: 1400px; box-shadow: 0px 2px 5px rgba(0,0,0,0.25); background: #fff; margin: 0 auto; padding:1% 0%;}
+.contentHorario{ width:100%;}
+p { color: #999; }
+h1{font-size:28px;	color:#FFF; }
+h2{font-size:23px; }
+h4.subhead { font-weight: lighter; color: #777; margin-bottom: 20px; }
+pre { -moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px; margin: 0; display: block; font: 11px Monaco, monospace !important; padding: 15px; background-color: #1C1C1C; overflow: auto; color: #D0D0D0; line-height: 125%; margin-bottom: 30px; }
+label.semana{text-align:left; font-size:13px;}
+body,p,h1,h2,h3,h4,label,a{	font-family:'Gafata', sans-serif;}
+.row.cabecera{	background: #4DB788;}
+.solicitarLabosBtn, .recursosLabosBtn, .horariosExtra{	font-size:17px;	color:#000;}
+.opciones{	background:#E6E6E6;	border: 1px solid #DDDDDD;}
+dl.tabs dd.active{	border-top:3px solid #4DB788;}
+dl.tabs.pill dd.active a{	background-color:#4DB788;}
+table th { background:#E6E6E6;}
+.izq{text-align:left;}
+.listacbi{color:#46433A;}
+.listacbs{color:#64B6B1;}
+.listacsh{color:#CE534D;}
+.listacompu{color:#0080FF;}
+.listabio{color:#04B45F;}
+.listaele{color:#8A2908;}
+.listapos{color:#D358F7;}
+.listacomple{color:#086A87;}
+.listaotro{color:#F78181;}
+
+#adminBtn{	margin-top:10px; float:right; font-family:'Gafata', sans-serif; color:#fff; font-size:13px;}
+#adminBtn:hover{text-decoration:underline}
+.footer{text-align:center;}
+a { color: #4DB788;}
+a:hover{color:#4DB788}
+ul.breadcrumbs li a, ul.breadcrumbs li span {  font-size: 1.4rem; font-weight:bold}
+.button { background: none repeat scroll 0 0 #4DB788; border: 1px solid #666666; color: #fff; font-family:'Gafata', sans-serif;  font-size: 14px;}
+.button:hover{background-color:#DDDDDD; color:#000;}
+.indica{font-weight: bold; font-size:16px;}
+.derecha{text-align:left;}
+
+.div-1{color:#46433A;}
+.div-2{color:#64B6B1;}
+.div-3{color:#CE534D;}
+.div-4{color:#0080FF;}
+.div-5{color:#04B45F;}
+.div-6{color:#8A2908;}
+.div-7{color:#D358F7;}
+.div-8{color:#086A87;}
+.div-9{color:#F78181;}
+
+dl.sub-nav dd a{
+	font-size:20px;
+}

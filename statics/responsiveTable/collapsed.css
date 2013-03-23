@@ -1,0 +1,16 @@
+h3 a {
+  background: url("sprite.png") 15px 13px no-repeat;
+  display: block;
+  padding: 10px;
+  padding-left: 32px;
+  margin: 0;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(128, 10, 85, 0.5);
+  font-size:20px;
+}
+
+h3.open a { background-position: 13px -25px;}
+
+#bloque1, #bloque2, #bloque3, #bloque4{
+	margin-top:2%;
+}

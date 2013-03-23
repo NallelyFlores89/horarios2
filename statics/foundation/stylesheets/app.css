@@ -1,0 +1,37 @@
+body { background: #fff; }
+.container { max-width: 740px; box-shadow: 0px 2px 5px rgba(0,0,0,0.25); background: #fff; margin: 0 auto; }
+p { color: #000; }
+p.instrucciones{ font-size:16px;}
+h1 { margin: 20px 0 0;}
+h1{font-size:28px;	color:#FFF;text-align:left }
+pre { -moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px; margin: 0; display: block; font: 11px Monaco, monospace !important; padding: 15px; background-color: #1C1C1C; overflow: auto; color: #D0D0D0; line-height: 125%; margin-bottom: 30px; }
+label{margin-top:11px; color:#000;}
+ul.recursosAdmin{ list-style-position:outside;}
+label.pregunta{font-size: 16px; text-align:center; margin-bottom:25px;}
+.error{	color:#47834B;}
+table th {font-size:12px;}
+.izq{text-align:left;}
+label.semana{text-align:center;	font-size:11px;}
+body,p,h1,h2,h3,h4,label,a{ font-family:'Gafata', sans-serif;}
+.button { background: none repeat scroll 0 0 #4DB788; border: 1px solid #666666; color: #fff; font-family:'Gafata', sans-serif;  font-size: 14px;}
+.footer{text-align:center;}
+a { color: #4DB788; font-weight:bold}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea {
+    font-family: 'Gafata', sans-serif;
+    font-size: 15px;
+    height: 32px;
+    margin: 0 0 12px;
+}
+#LogueoAdminBtn{margin-bottom:10px;}
+.row.cabecera{	background: #4DB788;}
+p { color: #999; }
+h2,h3 { text-align:center; }
+h2{font-size:23px; }
+h4.subhead { font-weight: lighter; color: #777; margin-bottom: 20px; }
+select {
+    font-family: 'Gafata', sans-serif;
+    font-size:15px;
+}
+.confirm{
+	color:#000;
+}
