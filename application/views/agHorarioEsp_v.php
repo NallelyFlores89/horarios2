@@ -2,27 +2,13 @@
 								<div class="row">
 									<div class="six columns">
 							                <label for="SemIDropdown">Semana de inicio</label>
-											<?php
-												$i=1;
-												foreach ($sem as $value) {
-													$weeks[$i]=$value['semana'];
-													$i++;
-												}											
-												echo form_dropdown('SemIDropdown', $weeks, set_value('SemIDropdown') );
-											?>
+											<?php echo form_dropdown('SemIDropdown', $Data['sem'], set_value('SemIDropdown') );	?>
 									</div>
 			
 									
 									<div class="six columns">
 							                <label for="SemFDropdown">Semana Final</label>
-											<?php
-												$i=1;
-												foreach ($sem as $value) {
-													$weeks[$i]=$value['semana'];
-													$i++;
-												}											
-												echo form_dropdown('SemFDropdown', $weeks, set_value('SemFDropdown') );
-											?>
+											<?php echo form_dropdown('SemFDropdown', $Data['sem'], set_value('SemFDropdown') ); ?>
 									</div>
 								</div><hr> <!--row -->	
 								
@@ -31,7 +17,7 @@
 									<div class="twelve columns">
 										<label for="dias">*Días</label>
 										<?php 
-											foreach ($dias as $value) {
+											foreach ($Data['dias'] as $value) {
 										?>
 												<div class="two columns">
 												<label><?= $value['nombredia'] ?></label>

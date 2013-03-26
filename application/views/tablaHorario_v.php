@@ -1,4 +1,4 @@
-<label class="indica">Laboratorios</label><br>
+	<label class="indica">Laboratorios</label><br>
 			<dl class="tabs five-up">
 				<?php foreach ($Data['laboratorios'] as $i=>$value) {
 						if($i==1){?>

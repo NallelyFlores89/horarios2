@@ -12,15 +12,15 @@
 	
 		function index($trim=1){           
 
-			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1);
-			$Data['datosCBS']=$this->Inicio_m->obtenListaUeasDiv(2); 
-			$Data['datosCSH']=$this->Inicio_m->obtenListaUeasDiv(3); 
-			$Data['datosCompu']=$this->Inicio_m->obtenListaUeasDiv(4); 
-			$Data['datosBio']=$this->Inicio_m->obtenListaUeasDiv(5); 
-			$Data['datosElec']=$this->Inicio_m->obtenListaUeasDiv(6); 
-			$Data['datosPCITI']=$this->Inicio_m->obtenListaUeasDiv(7);
-			$Data['datosCC']=$this->Inicio_m->obtenListaUeasDiv(8);
-			$Data['datosOtros']=$this->Inicio_m->obtenListaUeasDiv(9);
+			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);
+			$Data['datosCBS']=$this->Inicio_m->obtenListaUeasDiv(2, $trim); 
+			$Data['datosCSH']=$this->Inicio_m->obtenListaUeasDiv(3, $trim); 
+			$Data['datosCompu']=$this->Inicio_m->obtenListaUeasDiv(4, $trim); 
+			$Data['datosBio']=$this->Inicio_m->obtenListaUeasDiv(5, $trim); 
+			$Data['datosElec']=$this->Inicio_m->obtenListaUeasDiv(6, $trim); 
+			$Data['datosPCITI']=$this->Inicio_m->obtenListaUeasDiv(7, $trim);
+			$Data['datosCC']=$this->Inicio_m->obtenListaUeasDiv(8, $trim);
+			$Data['datosOtros']=$this->Inicio_m->obtenListaUeasDiv(9, $trim);
 			$Data['laboratorios']=$this->Inicio_m->ObtenLabos();
 
 			for ($sem=1; $sem <= 12 ; $sem++) { //Obteniendo datos para cargar las tablas del 105

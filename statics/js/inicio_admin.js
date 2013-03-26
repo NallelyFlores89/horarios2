@@ -6,7 +6,7 @@ $(document).ready(function(){
 	});
 		
 	$('.AgregarHorarioBtn').popupWindow({ 
-		windowURL:base+'index.php/agregar_horario_c', 
+		windowURL:base+'index.php/agregar_horario_c/index/'+trim, 
 		scrollbars:'1',
 		resizable:'0',
 		height:500,
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	}); 
 
 	$('.AgregarHorarioEspBtn').popupWindow({ 
-		windowURL:base+'index.php/agHorarioEsp_c', 
+		windowURL:base+'index.php/agHorarioEsp_c/index/'+trim, 
 		scrollbars:'1',
 		resizable:'0',
 		height:500,
@@ -28,5 +28,10 @@ $(document).ready(function(){
 		height:400,
 		width:770,
 	});
+	
+    $('#trimestre').change(function(){
+    	var dir = base+'index.php/inicio_admin_c/horarioxTrimestre/'+$('#trimestre').val()
+		location.href=dir
+   	});
 	 
 })

@@ -2,7 +2,7 @@
 							<div class="twelve columns">
 								<label for="dias">*Días</label>
 								<?php 
-									foreach ($dias as $value) {
+									foreach ($Data['dias'] as $value) {
 								?>
 										<div class="two columns">
 										<label><?= $value['nombredia'] ?></label>

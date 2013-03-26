@@ -21,6 +21,13 @@
 				}
 			});    		
     	</script>
+			
+		<?php  
+			$indice=1;
+			foreach ($Data['trim'] as $value) {
+				$trimestre[$value['idtrim']] = $value['trim'];
+			}	
+		?>
 		<div class="row">
 			<div class="twelve columns">
 				<br><br>
@@ -42,8 +49,14 @@
 						 	</div>
 						</div><hr>
 						<div class="row">
-							<label for="correoInput">Correo</label>
-				  			<input type="text" id="correoInput" name="correoInput" value="<?php echo set_value('correoInput'); ?>"/>
+							<div class="nine columns">
+								<label for="correoInput">Correo</label>
+				  				<input type="text" id="correoInput" name="correoInput" value="<?php echo set_value('correoInput'); ?>"/>
+				  			</div>
+				  			<div class="three columns">
+				  				<label>Trimestre</label>
+								<?php  echo form_dropdown('trimestre', $trimestre,$Data['trimActual'],'id="trimestre"'); ?>
+				  			</div>
 						</div><hr>
 							
 						<div class="row">
@@ -71,13 +84,13 @@
 							<div class="row">
 						        <div class="six columns">
 						           	<label for="divisionesDropdown">Sección</label>
-										<?php echo form_dropdown('divisionesDropdown', $listaDivisiones['divisiones'], set_value('divisionesDropdown'), 'id="divisionesDropdown"' ); ?>
+										<?php echo form_dropdown('divisionesDropdown', $Data['division'], set_value('divisionesDropdown'), 'id="divisionesDropdown"' ); ?>
 								</div>
 		
 				                <div class="six columns">
 					                <label for="laboratoriosDropdown">Laboratorio</label>
 										<?php 
-											foreach ($DataLabos as $value) {
+											foreach ($Data['labos'] as $value) {
 												$labos[$value['idlaboratorios']]=$value['nombrelaboratorios'];
 											}
 											echo form_dropdown('laboratoriosDropdown', $labos, set_value('laboratoriosDropdown'), 'id="laboratoriosDropdown"');
@@ -91,7 +104,7 @@
 						    	    <div class="six columns">
 							        	<label for="HoraIDropdown">Hora de inicio</label>
 											<?php 
-												foreach ($DataHorarios as $index => $value) {
+												foreach ($Data['hora'] as $index => $value) {
 													$time[$index]=substr($value,0,-6);							
 												}
 												
@@ -104,7 +117,7 @@
 									<div class="six columns">
 						                <label for="HoraFDropdown">Hora de Term</label>
 										<?php 
-											foreach ($DataHorarios as $index => $value) {
+											foreach ($Data['hora'] as $index => $value) {
 												$time[$index]=substr($value,0,-6);							
 											}
 											$time[27]='21:00';

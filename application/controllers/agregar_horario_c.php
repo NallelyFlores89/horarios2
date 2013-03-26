@@ -8,35 +8,37 @@
 			$this->load->helper(array('html', 'url'));
 			$this->load->model('Solicitar_laboratorio_m'); 
 			$this->load->model('Agregar_horario_m');
+			$this->load->model('Inicio_m');
 			$this->load->model('profesores_m'); 
 			$this->load->library('session');									
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		}
 		
-		function index(){         //Cargamos vista
+		function index($trim){         //Cargamos vista
 			
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/5');
 			}else{
 				$GrupoExiste=0;
 				
-				$DataDivision['datosDivision']=$this->Solicitar_laboratorio_m->ObtenListaDivisiones(); 
-				$dias=$this->Solicitar_laboratorio_m->ObtenDias();
-		
-				if($DataDivision['datosDivision'] > 0){
-					foreach ($DataDivision['datosDivision'] as $indice => $division) {
+				$Data['division']=$this->Solicitar_laboratorio_m->ObtenListaDivisiones(); 
+				$Data['dias']=$this->Solicitar_laboratorio_m->ObtenDias();
+				$Data['trimActual'] = $trim;
+				$Data['trim'] = $this->Inicio_m->ObtenTrim();				
+				$Data['labos']=$this->Agregar_horario_m->obtenLaboratorios();
+				$Data['hora']=$this->Solicitar_laboratorio_m->Obtenhorarios();
+				$Data['sem']=$this->Agregar_horario_m->obtenerSemana();
+				
+				if($Data['division'] > 0){
+					foreach ($Data['division'] as $indice => $division) {
 						$divisiones['divisiones'][$indice]=$division;
 					}
 				}else{
 					$mensaje='No hay datos';
 					$divisiones['divisiones'][1]=$mensaje;
 				}		
-				
-				$DataLabos=$this->Agregar_horario_m->obtenLaboratorios();
-				$DataHorarios['hora']=$this->Solicitar_laboratorio_m->Obtenhorarios();
-				$DataSem=$this->Agregar_horario_m->obtenerSemana();
-				
+							
 				/**Validación del formulario**/		
 				$this->form_validation->set_rules('correoInput', 'claveInput', '');					
 				$this->form_validation->set_rules('numInput', 'claveInput', '');					
@@ -46,7 +48,6 @@
 				$this->form_validation->set_rules('HoraFDropdown', 'HoraFDropdown', '');	
 				$this->form_validation->set_rules('divisionesDropdown', 'divisionesDropdown', '');	
 				$this->form_validation->set_rules('laboratoriosDropdown', 'laboratoriosDropdown', '');	
-
 								
 				$this->form_validation->set_rules('nombreInput', 'nombreInput', 'required');
 				$this->form_validation->set_rules('ueaInput', 'ueaInput', 'required');
@@ -58,13 +59,9 @@
 						
 				$datos=Array(  //Enviando datos a la vista
 						'listaDivisiones' => $divisiones,
-						'DataLabos' => $DataLabos,
-						'DataSem' => $DataSem,
-						'DataHorarios' => $DataHorarios['hora'],
-						'GrupoExiste' => $GrupoExiste,
-						'dias' => $dias
+						'Data' => $Data
 				);
-	
+					
 				if($this->form_validation->run()){
 					$datos['limpia']=1;
 	
@@ -111,6 +108,7 @@
 								foreach ($_POST['checkboxes'] as $dias) { //días
 									$datos_laboratorios_grupoT= Array(
 										'idgrupo'=>$idGrupo,
+										'trimestre_idtrimestre' => $trim
 									);
 									$this->db->where('idlaboratorios',$id_lab);
 									$this->db->where('semanas_idsemanas', $j);

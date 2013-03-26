@@ -9,22 +9,29 @@
 			$this->load->model('Solicitar_laboratorio_m'); 
 			$this->load->model('Agregar_horario_m');
 			$this->load->model('profesores_m');
+			$this->load->model('Inicio_m');
 									
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		}
 		
-		function index()	{           //Cargamos vista
+		function index($trim){           //Cargamos vista
 			
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/4');
 			}else{
 				$GrupoExiste=0;
 				
-				$DataDivision['datosDivision']=$this->Solicitar_laboratorio_m->ObtenListaDivisiones(); 
+				$Data['division']=$this->Solicitar_laboratorio_m->ObtenListaDivisiones(); 
+				$Data['dias']=$this->Solicitar_laboratorio_m->ObtenDias();
+				$Data['trimActual'] = $trim;
+				$Data['trim'] = $this->Inicio_m->ObtenTrim();				
+				$Data['labos']=$this->Agregar_horario_m->obtenLaboratorios();
+				$Data['hora']=$this->Solicitar_laboratorio_m->Obtenhorarios();
+				$Data['sem']=$this->Agregar_horario_m->obtenerSemana(); 
 		
-				if($DataDivision['datosDivision'] > 0){
-					foreach ($DataDivision['datosDivision'] as $indice => $division) {
+				if($Data['division'] > 0){
+					foreach ($Data['division'] as $indice => $division) {
 						$divisiones['divisiones'][$indice]=$division;
 					}
 				}else{
@@ -32,11 +39,6 @@
 					$divisiones['divisiones'][1]=$mensaje;
 				}		
 				
-				$DataLabos=$this->Agregar_horario_m->obtenLaboratorios();
-				$DataHorarios['hora']=$this->Solicitar_laboratorio_m->Obtenhorarios();
-				$DataSem=$this->Agregar_horario_m->obtenerSemana();
-				$dias=$this->Solicitar_laboratorio_m->ObtenDias();
-				$sem=$this->Solicitar_laboratorio_m->obtenerSemana();
 				
 				/**Validación del formulario**/		
 					
@@ -61,12 +63,7 @@
 								
 				$datos=Array(  //Enviando datos a la vista
 						'listaDivisiones' => $divisiones,
-						'DataLabos' => $DataLabos,
-						'DataSem' => $DataSem,
-						'DataHorarios' => $DataHorarios['hora'],
-						'GrupoExiste' => $GrupoExiste,
-						'dias' => $dias,
-						'sem' => $sem
+						'Data' => $Data,
 				);
 			
 				if($this->form_validation->run()){

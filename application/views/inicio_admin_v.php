@@ -18,11 +18,12 @@
 	<script src="<?=base_url(); ?>statics/js/jquery.popupWindow.js"></script>
     <script type="text/javascript">var base='<?= base_url(); ?>' </script> 
 	<script src="<?=base_url(); ?>statics/js/inicio_admin.js"></script>
+
 </head>
 
 <body>
 	<!-- container -->
-	
+	<script> var trim = <?= $trimActual ?></script>
 	<div class="container">
 		<div class="row">
 			<div class="twelve columns">
@@ -39,6 +40,19 @@
 			  <li><a href="<?=base_url()?>index.php/inicio_admin_c/do_logout">Salir</a></li>
 			</ul><br>
 			<br>		
-
+			
+			<?php  
+				$indice=1;
+				foreach ($trim as $value) {
+					$trimestre[$value['idtrim']] = $value['trim'];
+				}	
+			?>
+			<div class="row">
+				<div class="six columns"></div>
+				<div class="six columns">
+					<label>Trimestre</label>
+					<?php  echo form_dropdown('trimestre', $trimestre,$trimActual,'id="trimestre"'); ?>
+				</div>
+			</div><br><br>
 	    	<!--EL RESTO DE LA PÁGINA LO CARGA EL CONTROLADOR -->
 </html>

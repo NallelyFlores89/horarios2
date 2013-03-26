@@ -8,14 +8,16 @@
 		
 		}
 			
-		function obtenListaUeasDiv($idDivision){
+		function obtenListaUeasDiv($idDivision, $trim){
 			$this->db->select('nombreuea, grupo.siglas, nombredivision');
 			$this->db->from('uea');
 			$this->db->join('divisiones', 'uea.divisiones_iddivisiones=divisiones.iddivisiones');
 			$this->db->join('grupo', 'uea.iduea=grupo.uea_iduea');
+			$this->db->join('laboratorios_grupo', 'grupo.idgrupo=laboratorios_grupo.idgrupo');
 			$this->db->where('uea.divisiones_iddivisiones',$idDivision);
-
-			$listaUeasCBS=$this->db->get(); //Vacía el contenido de la consulta en la variable
+			$this->db->where('laboratorios_grupo.trimestre_idtrim',$trim);
+			$this->db->distinct();
+			$listaUeasCBS=$this->db->get(); 
 			if(($listaUeasCBS->num_rows())>0){
 				$indice=1;
 				foreach ($listaUeasCBS->result_array() as $value) {
@@ -120,7 +122,24 @@
 			}//fin del else
 			
 		} //fin Obtenhorarios
-						
+
+		function ObtenTrim(){
+			$this->db->select('idtrim, trim');
+			$lHorarios=$this->db->get('trimestre');
+
+			if(($lHorarios->num_rows())>0){
+				$indice=1;
+				foreach ($lHorarios->result_array() as $value) {
+					$arregloHorarios[$indice] = $value;
+					$indice++;
+				}
+				return ($arregloHorarios);
+			}else{
+				return 0;
+			}//fin del else
+			
+		} //fin Obtenhorarios		
+								
 	} //Fin de la clase
 
 ?>
