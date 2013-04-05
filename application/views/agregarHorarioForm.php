@@ -23,7 +23,6 @@
     	</script>
 			
 		<?php  
-			$indice=1;
 			foreach ($Data['trim'] as $value) {
 				$trimestre[$value['idtrim']] = $value['trim'];
 			}	

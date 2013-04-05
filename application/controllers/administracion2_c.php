@@ -76,7 +76,6 @@
 					}
 		
 					if(array_key_exists(3, $_POST)){
-						$this->form_validation->set_rules('nombre', 'nombre', 'required');
 						$this->form_validation->set_rules('usuario', 'usuario', 'callback_usuario_check');
 						$this->form_validation->set_rules('correo', 'correo', 'callback_correo_check');
 						$this->form_validation->set_rules('pass', 'pass', 'required');
@@ -86,7 +85,7 @@
 	
 						if($this->form_validation->run()){
 							
-							$this->administracion2_m->agregaAdmin($_POST['nombre'],$_POST['usuario'],$_POST['correo'], $_POST['pass']);
+							$this->administracion2_m->agregaAdmin($_POST['usuario'],$_POST['correo'], $_POST['pass']);
 							echo "<script>
 								alert('Administrador agregado')
 							</script>";

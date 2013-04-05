@@ -20,14 +20,27 @@
 </head>
 
 <body>
+    <?php  
+			foreach ($trim as $value) {
+				$trimestre[$value['idtrim']] = $value['trim'];
+			}	
+	?>
     <title>Grupos</title>
 	<div class="container">
 	<div class="row">
-	<h3>Grupos</h3><hr>
-	<div class="twelve columns>">
-		<label for="kwd_search">Buscar:</label>
-		<input type="text" id="kwd_search" value=""/>
-	</div>
+		<h3>Grupos</h3><hr>
+		<div class="twelve columns">
+			<div class="row">
+				<div class="three columns">
+					<label>Trimestre</label>
+					<?php  echo form_dropdown('trimestre', $trimestre,$trimAct,'id="trimestre"'); ?>
+				</div>
+				<div class="six columns>">
+					<label for="kwd_search">Búsqueda:</label>
+					<input type="text" id="kwd_search" value=""/>
+				</div>
+			</div>
+		</div>
 		<table id="my-table" class="responsive contentHorario">
 			<tr>
 				<th>Profesor</th><th>UEA</th><th>Siglas</th>
@@ -51,13 +64,13 @@
 							<td><a href="#" onclick="ventanaCambiaLabo('<?= $valor['idgrupo']?>',<?= $valor['idlaboratorios'] ?>)">Cambiar lab</a></td>
 							<td><a href="#" onclick="ventanaCambiaProfe('<?= $valor['idgrupo'] ?>','<?= $valor['idprofesores'] ?>')">Cambiar profesor</a></td>
 							<td><a href="#" onclick="ventanaEliminaGrupo('<?= $valor['idgrupo'] ?>')">Eliminar grupo</a></td>
-
+	
 							<?php echo "</tr>";
 						 }
 					}								 
 				?>
-		</table> <!--TERMINA LA TABLA -->
-	</div>
+			</table> <!--TERMINA LA TABLA -->
+		</div> <!--row-->
  	</div> <!--container-->
 </body>
 </html>

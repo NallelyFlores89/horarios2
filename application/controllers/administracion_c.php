@@ -7,18 +7,22 @@
 	        parent::__construct();
 			
 			$this->load->helper(array('html', 'url'));
+			$this->load->library('form_validation');
 	        $this->load->model('administracion_m'); // modelos
 			$this->load->model('profesores_m');
 			$this->load->model('solicitar_laboratorio_m');
 			$this->load->model('agregar_horario_m');
+			$this->load->model('inicio_m');
 			
 	   	}
 
-	    function index(){
+	    function index($trim){
 	    	if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/2');
 			}else{
-				$data['datosUPG']=$this->administracion_m->obtenListaUeaProfesorGrupo();
+				$data['trim'] = $this->inicio_m->ObtenTrim();
+				$data['trimAct'] = $trim;
+				$data['datosUPG']=$this->administracion_m->obtenListaUeaProfesorGrupo($trim);
 		        $this->load->view('grupos_v', $data);
 			}
 	    }
@@ -94,7 +98,7 @@
 			}
 		} //Fin función
 		
-		function cambia_labo($idgrupo, $idlab){
+		function cambia_labo($idgrupo, $idlab, $idtrim){
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/2');
 			}else{

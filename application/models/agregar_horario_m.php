@@ -7,6 +7,19 @@
 			$this->load->database();
 		
 		}
+		
+		function agregaHorario($idlab, $idgrupo, $sem, $dia, $hora, $trim){
+			$datos=Array(         //Insertando el grupo
+				'idlaboratorios' => $idlab,
+				'idgrupo' => $idgrupo,
+				'semanas_idsemanas' => $sem,
+				'dias_iddias' => $dia,
+				'horarios_idhorarios' => $hora,
+				'trimestre_idtrim' => $trim
+			);	
+			
+			$this->db->insert('laboratorios_grupo', $datos); //Inserta en la tabla grupo			
+		}
 			
 		function obtenerIdProfesor($nombre){
 			$this->db->select('idprofesores');
@@ -26,7 +39,6 @@
 			}//fin del else
 			
 		} //Fin de obtenRecursos105
-		
 		function obtenerIdUea($nombre){
 			$this->db->select('iduea');
 			$this->db->from('uea');
@@ -46,8 +58,6 @@
 			}//fin del else
 			
 		} //Fin obtenerIdUea
-
-		
 		function obtenerClaveUea($clave){
 			$this->db->select('clave');
 			$this->db->from('uea');
@@ -63,7 +73,7 @@
 				return($c[1]);
 			}else{
 				return(-1);
-			}//fin del else
+			}
 			
 		} //Fin obtenerIdUea
 				
@@ -86,7 +96,6 @@
 			}			
 			
 		}
-
 		function obtenerIdGrupo($grupo){
 			$this->db->select('idgrupo');
 			$this->db->where('grupo',$grupo);
@@ -104,8 +113,6 @@
 			}			
 			
 		}
-		
-		
 		function obtenerSemana(){
 			$this->db->select('semana');
 			$this->db->from('semanas');
@@ -124,22 +131,7 @@
 			}			
 			
 		}
-		
-		
-		function inserta_profesores($nombre, $num_emp, $correo){
-				
-			$datos=Array(
-				'nombre' => $nombre,
-				'numempleado' => $num_emp,
-				'correo' => $correo,
-			);		
-
-			$this->db->insert('profesores', $datos); //Insertan en la tabla profesores
-			
-		} //Fin insertaProfesor
-		
 		function obtenLaboratorios(){
-				
 			$this->db->select('idlaboratorios, nombrelaboratorios');
 			$this->db->from('laboratorios');
 
@@ -155,8 +147,7 @@
 			}else{
 				return(0);
 			}			
-		} //Fin obtenLaboratorios		
-		
+		} //Fin obtenLaboratorios
 		function inserta_uea($nombre, $clave, $iddivision){
 			$datos=Array(
 				'nombreuea' => $nombre,
@@ -167,7 +158,6 @@
 			$this->db->insert('uea', $datos); 
 			
 		}
-		
 		function inserta_grupo($grupo, $siglas, $iduea, $idprof){
 			$datos=Array(         //Insertando el grupo
 				'grupo' => $grupo,
@@ -178,7 +168,17 @@
 			
 			$this->db->insert('grupo', $datos); //Inserta en la tabla grupo
 		}
-		
+		function inserta_profesores($nombre, $num_emp, $correo){
+				
+			$datos=Array(
+				'nombre' => $nombre,
+				'numempleado' => $num_emp,
+				'correo' => $correo,
+			);		
+
+			$this->db->insert('profesores', $datos); //Insertan en la tabla profesores
+			
+		} //Fin insertaProfesor
 		function propon_profesor($options = array()){
 		    $this->db->select('nombre,idprofesores');
 		    $this->db->like('nombre', $options['keyword']);
@@ -216,8 +216,7 @@
 			else{
 				return -1;	
 			}
-	    }		
-
+	    }
 		function busca_clave($options = array()){
 		    $this->db->select('clave');
 		    $this->db->where('iduea', $options['keyword']);
@@ -240,7 +239,6 @@
 				return -1;	
 			}
 	    }
-
 		function busca_division($options = array()){
 		    $this->db->select('divisiones_iddivisiones');
 		    $this->db->where('iduea', $options['keyword']);

@@ -60,6 +60,11 @@ $(document).ready(function(){
 			$("#my-table tbody>tr").show();
 		}
 	});
+
+    $('#trimestre').change(function(){
+    	var dir = base+'index.php/administracion_c/index/'+$('#trimestre').val()
+		location.href=dir
+   	});	
 });
 
 $.extend($.expr[":"], 

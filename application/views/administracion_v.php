@@ -84,9 +84,6 @@
 				<fieldset class="nine columns">
 					<form method="post">
 						
-						<label for="nombre">Nombre</label>	
-						<input type="text" id="nombre" name="nombre" value="<?= set_value('nombre') ?>" required />
-						
 						<label for="usuario">Usuario</label>
 						<input type="text" id="usuario" name="usuario" value="<?= set_value('usuario') ?>" required />
 						<?php echo form_error('usuario'); ?>
@@ -112,7 +109,6 @@
 				<h2>Lista de administradores</h2>
 				<table class="responsive contentHorario">
 					<tr>
-						<th>Nombre</th>
 						<th>Usuario</th>
 						<th>Correo</th>
 						<th colspan="1">Acciones</th>
@@ -120,7 +116,6 @@
 					<?php
 						foreach ($usuarios as $value) { ?>
 							<tr id=''>
-								<td id=''><?= $value['nombre'] ?> </td>
 								<td id=''><?= $value['usuario'] ?> </td>
 								<td id=''><?= $value['correo'] ?> </td>
 								<td><a href="#" onclick="eliminaAdmin(<?= $value['idusuarioadmin'] ?>)">Eliminar</a></td>

@@ -11,7 +11,7 @@
 
 
 		function traeAdministradores(){
-			$this->db->select('idusuarioadmin,nombre, usuario, correo');
+			$this->db->select('idusuarioadmin, usuario, correo');
 			$this->db->from('usuarioadmin');
 			
 			$users=$this->db->get();
@@ -77,12 +77,11 @@
 			$this->db->update('usuarioadmin', $datos); 
 		}	
 		
-		function agregaAdmin($nombre, $usuario, $correo, $pass){
+		function agregaAdmin($usuario, $correo, $pass){
 			$datos = Array(
 				'usuario' => $usuario,
 				'pass' => $pass,
 				'correo' => $correo,
-				'nombre' => $nombre
 			);
 			
 			$this->db->insert('usuarioadmin',$datos);

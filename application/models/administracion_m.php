@@ -9,14 +9,14 @@
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');		
 		}
 
-		function obtenListaUeaProfesorGrupo(){
+		function obtenListaUeaProfesorGrupo($trim){
 			$this->db->select('grupo.idgrupo,grupo.siglas, profesores.idprofesores, divisiones.nombredivision, profesores.nombre, profesores.numempleado, profesores.correo, uea.nombreuea, uea.iduea, uea.divisiones_iddivisiones, uea.clave, grupo.grupo,idlaboratorios');
 			$this->db->from('grupo'); 
 			$this->db->join('profesores', 'grupo.profesores_idprofesores=profesores.idprofesores');
 			$this->db->join('uea','grupo.uea_iduea=uea.iduea');
 			$this->db->join('divisiones','divisiones_iddivisiones=divisiones.iddivisiones');
 			$this->db->join('laboratorios_grupo','grupo.idgrupo=laboratorios_grupo.idgrupo');
-							
+			$this->db->where('trimestre_idtrim', $trim);
 			$this->db->distinct(); //Para que no se repitan los datos
 			$this->db->order_by('profesores.nombre');
 			$listaUeaProfesorGrupo=$this->db->get();
@@ -289,14 +289,15 @@
 		function eliminaGrupo($idgrupo){ //Esta función elimina el grupo definitivamente 
 			//Primero, eliminamos el grupo de la tabla laboratorios_grupo
 			$datos=Array(
-				'idgrupo' => NULL );
-			$this->db->where('idgrupo', $idgrupo);
-			$this->db->update('laboratorios_grupo', $datos); 	
-			
+				'idgrupo' => $idgrupo);
+			$this->db->delete('laboratorios_grupo', $datos); 	
+
 			//Después eliminamos el grupo
 			$datos=Array( 'idgrupo' => $idgrupo	);
-			$this->db->delete('grupo', $datos); 				
+			$this->db->delete('grupo', $datos); 	
+			echo "grupo eliminado <br>";			
 		}
+
 
 		function eliminaUEA($iduea){ //Esta función elimina la UEA 
 			$this->db->select('idgrupo');

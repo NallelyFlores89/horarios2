@@ -24,6 +24,7 @@
 <body>
 	<!-- container -->
 	<script> var trim = <?= $trimActual ?></script>
+
 	<div class="container">
 		<div class="row">
 			<div class="twelve columns">
@@ -31,12 +32,12 @@
 			  <li><a id="InicioAdminBtn" href="<?=base_url()?>index.php/inicio_admin_c/">Inicio</a></li>
 			  <li><a id="AgregarHorarioBtn" class="AgregarHorarioBtn">Agregar Horario</a></li>
 			  <li><a id="AgregarHorarioEspBtn" class="AgregarHorarioEspBtn">Horario esp</a></li>
-			  <li><a id="vaciarHorariosBtn" class="vaciarHorariosBtn">Vaciar Horarios</a></li>
 			  <li><a id="IrRecursosAdminBtn" href="<?=base_url()?>index.php/recursos_admin_c">Recursos</a></li>
-			  <li><a id="AdministracionBtn" href="<?=base_url()?>index.php/administracion_c">Grupos</a></li>
+			  <li><a id="AdministracionBtn" href="<?=base_url()?>index.php/administracion_c/index/<?= $trimActual ?>">Grupos</a></li>
 			  <li><a id="AdministracionBtn" href="<?=base_url()?>index.php/ueas_c">UEA's</a></li>
 			  <li><a id="ProfesoresBtn" href="<?=base_url()?>index.php/profesores_c">Profesores</a></li>			  
 			  <li><a id="Administracion2Btn" href="<?=base_url()?>index.php/administracion2_c">Administración</a></li>
+			  <li><a id="Administracion2Btn" href="<?=base_url()?>index.php/trimestres_c">Trimestres</a></li>
 			  <li><a href="<?=base_url()?>index.php/inicio_admin_c/do_logout">Salir</a></li>
 			</ul><br>
 			<br>		

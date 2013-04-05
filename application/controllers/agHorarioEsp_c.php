@@ -106,35 +106,20 @@
 			
 					$idSemI=$_POST['SemIDropdown'];
 					$idSemF=$_POST['SemFDropdown'];
-					
-					echo "$iduea";
+					$idtrim = $_POST['trimestre'];					
 					//INSERTANDO EN LABORATORIO_GRUPO				
 					for ($j=$idSemI; $j <=$idSemF; $j++) { //Semanas
 						if($horaF==27){
 							for ($i=$horaI; $i <=26; $i++) {  //horas
 								foreach ($_POST['checkboxes'] as $dias) { //días
-									$datos_laboratorios_grupoT= Array(
-										'idgrupo'=>$idGrupo,
-									);
-									$this->db->where('idlaboratorios',$id_lab);
-									$this->db->where('semanas_idsemanas', $j);
-									$this->db->where('dias_iddias', $dias);
-									$this->db->where('horarios_idhorarios', $i);
-									$this->db->update('laboratorios_grupo', $datos_laboratorios_grupoT); //Insertando en la tabla de laboratorios_grupo
+									$this->Agregar_horario_m->agregaHorario($id_lab, $idGrupo, $j, $dias, $i, $idtrim);
 								}
 							}							
 							
 						}else{ 
 							for ($i=$horaI; $i <$horaF; $i++) {  //horas
 								foreach ($_POST['checkboxes'] as $dias) { //días
-									$datos_laboratorios_grupoT= Array(
-										'idgrupo'=>$idGrupo,
-									);
-									$this->db->where('idlaboratorios',$id_lab);
-									$this->db->where('semanas_idsemanas', $j);
-									$this->db->where('dias_iddias', $dias);
-									$this->db->where('horarios_idhorarios', $i);
-									$this->db->update('laboratorios_grupo', $datos_laboratorios_grupoT); //Insertando en la tabla de laboratorios_grupo
+									$this->Agregar_horario_m->agregaHorario($id_lab, $idGrupo, $j, $dias, $i, $idtrim);
 								}
 							}
 						}

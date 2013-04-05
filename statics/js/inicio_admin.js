@@ -21,14 +21,6 @@ $(document).ready(function(){
 		width:800,
 	});
 	
-	$('.vaciarHorariosBtn').popupWindow({ 
-		windowURL:base+'index.php/vaciar_confirm_c', 
-		scrollbars:'1',
-		resizable:'0',
-		height:400,
-		width:770,
-	});
-	
     $('#trimestre').change(function(){
     	var dir = base+'index.php/inicio_admin_c/horarioxTrimestre/'+$('#trimestre').val()
 		location.href=dir
