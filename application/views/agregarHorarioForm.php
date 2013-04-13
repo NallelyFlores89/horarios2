@@ -5,15 +5,13 @@
     		//"Agregar otro" del formulario 
 			$(document).ready(function(){
 				if(<?= $limpia?> == 1){
-					alert("horario agregado")
-					window.location.reload();
-					$('#nombreInput').val('')
-					$('#numInput').val('')
-					$('#grupoInput').val('')
-					$('#correoInput').val('')
-					$('#ueaInput').val('')
-					$('#claveInput').val('')
-					$('#siglasInput').val('')
+					$('#nombreInput, #numInput, #grupoInput, #correoInput, #ueaInput, #siglasInput').val('')
+					// $('#numInput').val('')
+					// $('#grupoInput').val('')
+					// $('#correoInput').val('')
+					// $('#ueaInput').val('')
+					// $('#claveInput').val('')
+					// $('#siglasInput').val('')
 					$('#divisionesDropdown').val(9)
 					$('#laboratoriosDropdown').val(1)
 					$('#HoraIDropdown').val(1)

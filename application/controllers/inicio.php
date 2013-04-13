@@ -9,9 +9,11 @@
 			$this->load->helper(array('html', 'url'));
 			$this->load->model('Inicio_m'); //Cargando mi modelo
 		}
-	
-		function index($trim=1){           
-
+		//Esta función carga la vista que todos los usuarios verán
+		//Recibe como parametro el id del trimestre a mostrar. Se debe modificar manualmente
+		function index($trim=1){
+			           
+			$trimestres['trimAct'] = $trim;
 			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);
 			$Data['datosCBS']=$this->Inicio_m->obtenListaUeasDiv(2, $trim); 
 			$Data['datosCSH']=$this->Inicio_m->obtenListaUeasDiv(3, $trim); 
@@ -92,18 +94,17 @@
 			);
 
 			$this->load->view('inicio');
-			$this->load->view('opciones_v');
+			$this->load->view('opciones_v', $trimestres);
 			$this->load->view('tablaHorario_v', $datos);
 			$this->load->view('opciones_v');
 			$this->load->view('listaUeas_v', $datos);
 			$this->load->view('footer');
 		}//Fin función
 		
-		function ueasProf(){
-			$datos['datosUPG']=$this->Inicio_m->obtenListaUeaProfesorGrupo();
+		function ueasProf($trim){
+			$datos['datosUPG']=$this->Inicio_m->obtenListaId($trim);
 			$this->load->view('ueasProf_v', $datos);
-			$this->load->view('footer');
-			
+			$this->load->view('footer');			
 		}
 		
 	

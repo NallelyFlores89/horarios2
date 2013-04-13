@@ -11,6 +11,7 @@
 		}
 		
 		//Esta función carga la vista principal	
+		//Recibe como parametro el id del trimestre a cargar por 'default' desde el inicio. Se debe modificar manualmente
 		function index($trim=1){
 			
 			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);

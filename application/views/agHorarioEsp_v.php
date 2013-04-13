@@ -32,6 +32,8 @@
 						
 						<div class="four columns"></div>						
 						<input type="submit" id="AgregarHorarioBtn" class="button normal four columns" value="Agregar" />
+						<input type="submit" id="AgregarHorarioBtn" class="button normal four columns" name="otro" value="Agregar otro" />
+
 						<div class="four columns"></div>						
 
 				</fieldset>

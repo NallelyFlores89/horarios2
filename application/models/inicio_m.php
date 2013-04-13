@@ -56,6 +56,31 @@
 			
 		} //fin obtenListaUeaProfesorGrupo
 
+		function obtenListaId($trim){
+			$this->db->select('uea.nombreuea, grupo.siglas, grupo.grupo, profesores.nombre, idlaboratorios');
+			$this->db->from('grupo');
+			$this->db->join('profesores', 'grupo.profesores_idprofesores=profesores.idprofesores');
+			$this->db->join('uea','grupo.uea_iduea=uea.iduea');
+			$this->db->join('laboratorios_grupo','grupo.idgrupo=laboratorios_grupo.idgrupo');
+			$this->db->where('laboratorios_grupo.trimestre_idtrim', $trim);
+			$this->db->distinct(); //Para que no se repitan los datos
+			
+
+			$listaUeaProfesorGrupo=$this->db->get(); //Vacía el contenido de la consulta en la variable
+			
+			if(($listaUeaProfesorGrupo->num_rows())>0){
+				$indice=1;
+				
+				foreach ($listaUeaProfesorGrupo->result_array() as $value) {
+					$arregloUPG[$indice] = $value;
+					$indice=$indice+1;
+				}
+				return ($arregloUPG);
+			}else{
+				return -1;
+			}//fin del else
+			
+		} //fin obtenListaUeaProfesorGrupo
 		
 		function ueas($labo,$sem, $dia, $trim){
 			$this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas,horarios_idhorarios,uea.divisiones_iddivisiones');

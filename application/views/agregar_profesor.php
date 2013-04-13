@@ -40,7 +40,7 @@
 						</div></div><hr>
 						<div class="twelve columns">
 							<label for="correoInput">Correo</label>
-				  			<input type="email" id="correoInput" name="correoInput" value="<?php echo set_value('correoInput'); ?>" required/>
+				  			<input type="email" id="correoInput" name="correoInput" value="<?php echo set_value('correoInput'); ?>"/>
 						</div><hr>
 						<div class="twelve column>">	
 							<div class="four columns"></div>						

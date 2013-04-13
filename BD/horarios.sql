@@ -48,9 +48,9 @@ DROP TABLE IF EXISTS `divisiones`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `divisiones` (
   `iddivisiones` int(11) NOT NULL AUTO_INCREMENT,
-  `nombredivision` varchar(10) NOT NULL,
+  `nombredivision` varchar(30) NOT NULL,
   PRIMARY KEY (`iddivisiones`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `divisiones` (
 
 LOCK TABLES `divisiones` WRITE;
 /*!40000 ALTER TABLE `divisiones` DISABLE KEYS */;
-INSERT INTO `divisiones` VALUES (1,'CBI'),(2,'CBS'),(3,'CSH');
+INSERT INTO `divisiones` VALUES (1,'CBI'),(2,'CBS'),(3,'CSH'),(4,'Computación'),(5,'Ing. Biomédica'),(6,'Ing. Electrónica'),(7,'PCITI'),(8,'Cursos complementarios'),(9,'Otro');
 /*!40000 ALTER TABLE `divisiones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,17 +71,20 @@ DROP TABLE IF EXISTS `grupo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `grupo` (
-  `idgrupo` int(11) NOT NULL,
+  `idgrupo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trim` int(11) NOT NULL,
   `grupo` varchar(10) NOT NULL,
   `siglas` varchar(10) NOT NULL,
   `uea_iduea` int(11) NOT NULL,
   `profesores_idprofesores` int(11) NOT NULL,
-  PRIMARY KEY (`idgrupo`),
+  PRIMARY KEY (`idgrupo`,`id_trim`),
   KEY `fk_grupo_uea1` (`uea_iduea`),
   KEY `fk_grupo_profesores1` (`profesores_idprofesores`),
-  CONSTRAINT `fk_grupo_uea1` FOREIGN KEY (`uea_iduea`) REFERENCES `uea` (`iduea`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_grupo_profesores1` FOREIGN KEY (`profesores_idprofesores`) REFERENCES `profesores` (`idprofesores`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_grupo_trimestre1` (`id_trim`),
+  CONSTRAINT `fk_grupo_profesores1` FOREIGN KEY (`profesores_idprofesores`) REFERENCES `profesores` (`idprofesores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_grupo_trimestre1` FOREIGN KEY (`id_trim`) REFERENCES `trimestre` (`idtrim`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_grupo_uea1` FOREIGN KEY (`uea_iduea`) REFERENCES `uea` (`iduea`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +93,6 @@ CREATE TABLE `grupo` (
 
 LOCK TABLES `grupo` WRITE;
 /*!40000 ALTER TABLE `grupo` DISABLE KEYS */;
-INSERT INTO `grupo` VALUES (1,'fg21','PA01',1,1),(2,'hyfd','PA02',1,1),(3,'gsas','PA03',1,2),(4,'gddd','M201',2,2),(5,'haas','M202',2,3),(6,'baxx','M301',3,4);
 /*!40000 ALTER TABLE `grupo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,10 +104,10 @@ DROP TABLE IF EXISTS `horarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `horarios` (
-  `idhorarios` int(11) NOT NULL,
+  `idhorarios` int(11) NOT NULL AUTO_INCREMENT,
   `hora` varchar(12) NOT NULL,
   PRIMARY KEY (`idhorarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +116,7 @@ CREATE TABLE `horarios` (
 
 LOCK TABLES `horarios` WRITE;
 /*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
-INSERT INTO `horarios` VALUES (1,'08:00'),(2,'08:30'),(3,'09:00'),(4,'09:30'),(5,'10:00'),(6,'10:30'),(7,'11:00'),(8,'11:30'),(9,'12:00'),(10,'12:30'),(11,'13:00'),(12,'13:30'),(13,'14:00'),(14,'14:30'),(15,'15:00'),(16,'15:30'),(17,'16:00'),(18,'16:30'),(19,'17:00'),(20,'17:30'),(21,'18:00'),(22,'18:30'),(23,'19:00'),(24,'19:30'),(25,'20:00'),(26,'20:30'),(27,'21:00');
+INSERT INTO `horarios` VALUES (1,'08:00-08:30'),(2,'08:30-09:00'),(3,'09:00-09:30'),(4,'09:30-10:00'),(5,'10:00-10:30'),(6,'10:30-11:00'),(7,'11:00-11:30'),(8,'11:30-12:00'),(9,'12:00-12:30'),(10,'12:30-13:00'),(11,'13:00-13:30'),(12,'13:30-14:00'),(13,'14:00-14:30'),(14,'14:30-15:00'),(15,'15:00-15:30'),(16,'15:30-16:00'),(17,'16:00-16:30'),(18,'16:30-17:00'),(19,'17:00-17:30'),(20,'17:30-18:00'),(21,'18:00-18:30'),(22,'18:30-19:00'),(23,'19:00-19:30'),(24,'19:30-20:00'),(25,'20:00-20:30'),(26,'20:30-21:00');
 /*!40000 ALTER TABLE `horarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,10 +128,10 @@ DROP TABLE IF EXISTS `laboratorios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `laboratorios` (
-  `idlaboratorios` int(11) NOT NULL,
+  `idlaboratorios` int(11) NOT NULL AUTO_INCREMENT,
   `nombrelaboratorios` varchar(20) NOT NULL,
   PRIMARY KEY (`idlaboratorios`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,12 +165,12 @@ CREATE TABLE `laboratorios_grupo` (
   KEY `fk_laboratorios_grupo_horarios1` (`horarios_idhorarios`),
   KEY `fk_laboratorios_grupo_semanas1` (`semanas_idsemanas`),
   KEY `fk_laboratorios_grupo_trimestre1` (`trimestre_idtrim`),
-  CONSTRAINT `fk_laboratorios_has_grupo_laboratorios1` FOREIGN KEY (`idlaboratorios`) REFERENCES `laboratorios` (`idlaboratorios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_laboratorios_has_grupo_grupo1` FOREIGN KEY (`idgrupo`) REFERENCES `grupo` (`idgrupo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_laboratorios_grupo_dias1` FOREIGN KEY (`dias_iddias`) REFERENCES `dias` (`iddias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_laboratorios_grupo_horarios1` FOREIGN KEY (`horarios_idhorarios`) REFERENCES `horarios` (`idhorarios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_laboratorios_grupo_semanas1` FOREIGN KEY (`semanas_idsemanas`) REFERENCES `semanas` (`idsemanas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_laboratorios_grupo_trimestre1` FOREIGN KEY (`trimestre_idtrim`) REFERENCES `trimestre` (`idtrim`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_laboratorios_grupo_trimestre1` FOREIGN KEY (`trimestre_idtrim`) REFERENCES `trimestre` (`idtrim`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_laboratorios_has_grupo_grupo1` FOREIGN KEY (`idgrupo`) REFERENCES `grupo` (`idgrupo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_laboratorios_has_grupo_laboratorios1` FOREIGN KEY (`idlaboratorios`) REFERENCES `laboratorios` (`idlaboratorios`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,7 +180,6 @@ CREATE TABLE `laboratorios_grupo` (
 
 LOCK TABLES `laboratorios_grupo` WRITE;
 /*!40000 ALTER TABLE `laboratorios_grupo` DISABLE KEYS */;
-INSERT INTO `laboratorios_grupo` VALUES (105,1,1,1,1,1),(105,1,1,1,2,1),(105,2,3,5,3,1),(106,2,2,2,22,1),(220,2,2,1,21,1),(105,3,1,3,2,1),(221,3,2,4,2,1),(105,4,1,1,5,1),(219,5,3,3,3,1),(219,5,1,1,27,1),(220,5,1,4,23,1);
 /*!40000 ALTER TABLE `laboratorios_grupo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +207,7 @@ CREATE TABLE `laboratorios_has_recursos` (
 
 LOCK TABLES `laboratorios_has_recursos` WRITE;
 /*!40000 ALTER TABLE `laboratorios_has_recursos` DISABLE KEYS */;
-INSERT INTO `laboratorios_has_recursos` VALUES (105,1),(106,1),(219,1),(105,2),(106,2),(220,2),(105,3),(106,3),(219,3);
+INSERT INTO `laboratorios_has_recursos` VALUES (105,1),(106,2),(219,4),(221,5);
 /*!40000 ALTER TABLE `laboratorios_has_recursos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,7 +224,7 @@ CREATE TABLE `profesores` (
   `numempleado` varchar(20) NOT NULL,
   `correo` varchar(40) NOT NULL,
   PRIMARY KEY (`idprofesores`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,7 +233,7 @@ CREATE TABLE `profesores` (
 
 LOCK TABLES `profesores` WRITE;
 /*!40000 ALTER TABLE `profesores` DISABLE KEYS */;
-INSERT INTO `profesores` VALUES (1,'juanito perez lopez','2929','juanito@xanum.com'),(2,'lorenzo cardenas ','2012','lorenzo@xanum.com'),(3,'jose cardenas','2011','jose@xanum.com'),(4,'marco díaz','1002','marco@xanum.com');
+INSERT INTO `profesores` VALUES (1,'Desconocido','','');
 /*!40000 ALTER TABLE `profesores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -292,10 +293,10 @@ DROP TABLE IF EXISTS `trimestre`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `trimestre` (
-  `idtrim` int(11) NOT NULL,
+  `idtrim` int(11) NOT NULL AUTO_INCREMENT,
   `trim` varchar(15) NOT NULL,
   PRIMARY KEY (`idtrim`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +324,7 @@ CREATE TABLE `uea` (
   PRIMARY KEY (`iduea`),
   KEY `fk_uea_divisiones1` (`divisiones_iddivisiones`),
   CONSTRAINT `fk_uea_divisiones1` FOREIGN KEY (`divisiones_iddivisiones`) REFERENCES `divisiones` (`iddivisiones`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +333,6 @@ CREATE TABLE `uea` (
 
 LOCK TABLES `uea` WRITE;
 /*!40000 ALTER TABLE `uea` DISABLE KEYS */;
-INSERT INTO `uea` VALUES (1,'programación avanzada','1234',1),(2,'programación aplicada a la química','1342',2),(3,'introducción a la programación','1467',1),(4,'sistemas operativos','1111',1),(5,'programación en administración','4642',3),(6,'programación avanzada','1300',1);
 /*!40000 ALTER TABLE `uea` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-22 22:20:05
+-- Dump completed on 2013-04-12 23:32:53

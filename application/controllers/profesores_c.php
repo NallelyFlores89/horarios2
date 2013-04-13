@@ -23,7 +23,7 @@
 		
 		function elimina($id){
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/6');
+				redirect('loguin_c/relogin');
 			}else{				
 				if($_POST != NULL){
 					$grupos=$this->administracion_m->obtenGruposxProf($id); 
@@ -46,7 +46,7 @@
 		
 		function edita($id){
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/6');
+				redirect('loguin_c/relogin');
 			}else{
 				$data['datosProf']=$this->profesores_m->obtenerInfoProfesorId($id);
 								

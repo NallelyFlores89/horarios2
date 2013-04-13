@@ -58,6 +58,7 @@
 			}//fin del else
 			
 		} //Fin obtenerIdUea
+		
 		function obtenerClaveUea($clave){
 			$this->db->select('clave');
 			$this->db->from('uea');
@@ -96,6 +97,24 @@
 			}			
 			
 		}
+		function obtenerIdGrupoTrim($grupo, $idtrim){
+			$this->db->select('idgrupo');
+			$this->db->where('grupo',$grupo);
+			$this->db->where('id_trim',$idtrim);
+			
+			$idGrupo=$this->db->get('grupo'); 
+			
+			if(($idGrupo->num_rows())>0){ 
+				foreach ($idGrupo->result_array() as $value) {
+					$idG[1] = $value['idgrupo']; 
+				 }
+			
+				return($idG[1]);
+			}else{
+				return(-1);
+			}
+		}
+		
 		function obtenerIdGrupo($grupo){
 			$this->db->select('idgrupo');
 			$this->db->where('grupo',$grupo);
@@ -158,12 +177,13 @@
 			$this->db->insert('uea', $datos); 
 			
 		}
-		function inserta_grupo($grupo, $siglas, $iduea, $idprof){
+		function inserta_grupo($grupo, $siglas, $iduea, $idprof, $trim){
 			$datos=Array(         //Insertando el grupo
 				'grupo' => $grupo,
 				'siglas' => $siglas,
 				'uea_iduea' => $iduea,
 				'profesores_idprofesores' => $idprof,
+				'id_trim' => $trim
 			);	
 			
 			$this->db->insert('grupo', $datos); //Inserta en la tabla grupo

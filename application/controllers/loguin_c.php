@@ -23,21 +23,21 @@
         $this->load->view('loguin_v', $data);
     }	
 
-	 function process($pag){
+	function process($pag){
         $result = $this->loguin_model->validate();// Validando al usuario         
 		
 		if(! $result){ 
            	$msg = '<font class="error">Nombre de usuario y/o contraseña incorrectos</font><br />';
 			$this->index($msg);
 			
-        }else{
+        }else{ //Redirecciona las páginas para cuando la sesión ha expirado
         	switch ($pag) {
 				case '1':
 					redirect('inicio_admin_c');
 					break;
 				
 				case '2':
-					redirect('administracion_c');
+					redirect('administracion_c/index/1');
 					break;
 					
 				case '3':
@@ -45,11 +45,11 @@
 					break;
 
 				case '4':
-					redirect('agHorarioEsp_c');
+					redirect('agHorarioEsp_c/index/1');
 					break;
 					
 				case '5':
-					redirect('agregar_horario_c');
+					redirect('agregar_horario_c/index/1');
 					break;
 					
 				case '6':
@@ -75,9 +75,19 @@
 				case '11':
 					redirect('vaciar_confirm_c');
 					break;
+				case '12':
+					redirect('ueas_c');
+					break;
+				case '13':
+					redirect('trimestres_c');
+					break;				
 			} //Fin del switch
-            // redirect('inicio_admin_c'); //Cargando página de administrador        
+			      
         }        
+    }
+
+	function relogin(){
+      $this->load->view('msj_login_v');
     }
 
 }

@@ -11,13 +11,14 @@
 			$this->load->model('Solicitar_laboratorio_m'); 
 			$this->load->model('Vaciar_confirm_m'); 
 			$this->load->model('administracion_m'); 
+			$this->load->model('trimestres_m');
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');			
 	   	}
 
 	    function index(){
 	    	if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/6');
+				redirect('loguin_c/index2/NULL/13');
 			}else{
 				$datos['trim'] = $this->inicio_m->ObtenTrim();
 		        $this->load->view('trimestres_v', $datos);
@@ -27,7 +28,7 @@
 		function limpiar($idtrim, $trim){           
 			
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/11');
+				redirect('loguin_c/relogin');
 			}else{
 				$datos['trim'] = $trim;
 				$this->form_validation->set_rules('checkboxes2[]', 'checkboxes2', 'required');
@@ -72,7 +73,7 @@
 
 		function eliminar($idtrim, $trim){
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/11');
+				redirect('loguin_c/relogin');
 			}else{
 				$datos['trim'] = $trim;
 				if($_POST != NULL){ //Se recibe la solicitud para eliminar el trimestre
@@ -94,7 +95,7 @@
 					
 					//Filtrados los grupos, se eliminan
 					foreach ($grupos_eliminar as $value) {
-						$this->administracion_m->eliminaGrupo($value);	
+						$this->administracion_m->trim_elimina_grupo($value);	
 					}
 					
 					//Por último, eliminamos el trimestre
@@ -107,6 +108,24 @@
 				}
 				
 			}
+		}
+
+		function agregar(){
+			if(! $this->session->userdata('validated')){
+				redirect('loguin_c/relogin');
+			}else{
+				if($_POST != NULL){
+					//Añadimos el trimestre a la BD
+					$this->trimestres_m->agrega($_POST['trimInput']);
+					echo "<script languaje='javascript' type='text/javascript'>
+	                        window.opener.location.reload();
+	                        alert('Trimestre agregado')
+	                   		window.close();</script>";					
+				}else{
+					$this->load->view('agregaTrim_v');
+				}
+				
+			}			
 		}
 
 	} //Fin de la clase

@@ -42,6 +42,13 @@
 			
 			</table> 
 		</div>
+	 	<div class="row">
+	 		<div class="four columns"></div>
+	 		<input type="button" id="agregar" onclick="agregar()" class="button normal four columns" value="Agregar"/>
+	 		<div class="four columns"></div>
+	 		
+	 	</div>
  	</div> <!--container-->
+ 	
 </body>
 </html>

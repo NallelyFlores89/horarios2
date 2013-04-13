@@ -13,7 +13,7 @@
 			$this->load->library('email');
 		}
 		
-		function index()	{
+		function index($trim)	{
 				           
 			$Datos['division']=$this->Solicitar_laboratorio_m->ObtenListaDivisiones(); //Obteniendo mis datos
 	
@@ -87,7 +87,7 @@
 				for ($j=$_POST['SemIDropdown']; $j <=$_POST['SemFDropdown']; $j++) { //Semanas 
 					for ($i=$idHoraI; $i <=$idHoraF; $i++) {  //horas
 						foreach ($_POST['checkboxes'] as $dias) { //días
-							$ocupado[$indice] = $this->Solicitar_laboratorio_m->horarioOcupado($_POST['laboratoriosDropdown'], $j, $dias, $i);
+							$ocupado[$indice] = $this->Solicitar_laboratorio_m->horarioOcupado($_POST['laboratoriosDropdown'], $j, $dias, $i, $trim);
 							$indice++;
 						}
 					}

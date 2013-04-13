@@ -136,19 +136,22 @@
 			}			
 		} //Fin obtenLaboratorios	
 		
-		function horarioOcupado($labo, $sem, $dia, $hora){ //Función que verifica si el horario a ocupar está disponible
-			$this->db->select('idgrupo');
+		function horarioOcupado($labo, $sem, $dia, $hora, $trim){ //Función que verifica si el horario a ocupar está disponible
+			$this->db->select('idgrupo, horarios.hora');
 			$this->db->from('laboratorios_grupo');
+			$this->db->join('horarios','laboratorios_grupo.horarios_idhorarios=horarios.idhorarios');
 			$this->db->where('idlaboratorios',$labo);
 			$this->db->where('semanas_idsemanas', $sem);			
 			$this->db->where('dias_iddias',$dia);			
 			$this->db->where('horarios_idhorarios',$hora);			
+			$this->db->where('trimestre_idtrim',$trim);
+			$this->db->distinct();
 			
 			$res=$this->db->get();
 			
 			if(($res->num_rows())>0){ //Si el horario ya está ocupado por otro grupo
 				foreach ($res->result_array() as $value) {
-					$ocupado[1]=$value['idgrupo'];
+					$ocupado[1]=$value;
 				}
 				return $ocupado[1];
 			}else{

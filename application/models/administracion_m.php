@@ -153,6 +153,7 @@
 				return(-1);
 			}			
 		} //Fin obtenLaboratorios
+		
 		function obtenDatosGrupo($idgrupo){
 			$this->db->select('grupo.siglas, profesores.idprofesores, profesores.nombre, profesores.numempleado, profesores.correo, uea.nombreuea, uea.iduea, uea.clave, grupo.grupo,idlaboratorios, uea.divisiones_iddivisiones');
 			$this->db->from('grupo'); 
@@ -216,11 +217,11 @@
 			}						
 		}
 		
-		function obtenDatosLaboratoriosGrupo($idgrupo){
+		function obtenDatosLaboratoriosGrupo($idgrupo, $idtrim){
 			$this->db->select('idlaboratorios, semanas_idsemanas, dias_iddias, horarios_idhorarios');
 			$this->db->from('laboratorios_grupo');
 			$this->db->where('idgrupo', $idgrupo);
-
+			$this->db->where('trimestre_idtrim', $idtrim);
 			$res=$this->db->get(); 
 			if(($res->num_rows())>0){ 
 				$indice=1;
@@ -237,11 +238,10 @@
 
 		function obtenDatosLaboratoriosGrupo2($idgrupo, $idlab){
 			$this->db->select('semanas_idsemanas, dias_iddias, horarios_idhorarios');
-			$this->db->from('laboratorios_grupo');
 			$this->db->where('idgrupo', $idgrupo);
 			$this->db->where('idlaboratorios', $idlab);
-
-			$res=$this->db->get(); 
+			
+			$res=$this->db->get('laboratorios_grupo'); 
 			if(($res->num_rows())>0){ 
 				$indice=1;
 				foreach ($res->result_array() as $value) {
@@ -255,19 +255,19 @@
 			}			
 			
 		}		
-		function editaGrupo($grupo, $nuevo_grupo, $nuevas_siglas, $iduea){ //Edita las columnas de la tabla grupo
+		function editaGrupo($idgrupo, $nuevo_grupo, $nuevas_siglas, $iduea){ //Edita las columnas de la tabla grupo
+			echo "entra editaGrupo con el id $idgrupo <br>";
 			$datos=Array(
 				'grupo' => $nuevo_grupo,
 				'siglas' => $nuevas_siglas,
 				'uea_iduea' => $iduea
 			);
 			
-			$this->db->where('grupo', $grupo);
+			$this->db->where('idgrupo', $idgrupo);
 			$this->db->update('grupo', $datos); 			
 		}
 		
 		function actualizaU($iduea, $iddiv){
-			echo "<br> debo actualizar la uea";
 			$datos=Array(
 				'divisiones_iddivisiones' => $iddiv,
 			);
@@ -276,26 +276,26 @@
 			$this->db->update('uea', $datos); 			
 		}
 
-		function borraGrupo($idgrupo, $idlab){ //Esta función se utiliza para cambiar de horario
+		function borraGrupo($idgrupo, $idlab, $idtrim){ //Esta función se utiliza para cambiar de horario
 			$datos=Array(
-				'idgrupo' => NULL
-			);
-			
-			$this->db->where('idlaboratorios', $idlab);
-			$this->db->where('idgrupo', $idgrupo);
-			$this->db->update('laboratorios_grupo', $datos); 				
+				'idgrupo' => $idgrupo,
+				'idlaboratorios' => $idlab,
+				'trimestre_idtrim' => $idtrim
+				);
+		
+			$this->db->delete('laboratorios_grupo', $datos); 	
 		}
 		
 		function eliminaGrupo($idgrupo){ //Esta función elimina el grupo definitivamente 
 			//Primero, eliminamos el grupo de la tabla laboratorios_grupo
 			$datos=Array(
-				'idgrupo' => $idgrupo);
+				'idgrupo' => $idgrupo,
+			);
 			$this->db->delete('laboratorios_grupo', $datos); 	
 
 			//Después eliminamos el grupo
 			$datos=Array( 'idgrupo' => $idgrupo	);
-			$this->db->delete('grupo', $datos); 	
-			echo "grupo eliminado <br>";			
+			$this->db->delete('grupo', $datos); 				
 		}
 
 
@@ -307,10 +307,12 @@
 			$grupos=$this->db->get(); //Obteniendo ids de los grupos a eliminar
 			 
 			$indice=1;
-			foreach ($grupos->result_array() as $value) {//Primero, eliminamos el grupo de la tabla laboratorios_grupo
-				$datos=Array('idgrupo' => NULL);
-				$this->db->where('idgrupo', $value['idgrupo']);
-				$this->db->update('laboratorios_grupo', $datos); 	
+			foreach ($grupos->result_array() as $value) {
+				//Primero, eliminamos el grupo de la tabla laboratorios_grupo					
+				$datos=Array(
+					'idgrupo' => $value['idgrupo'],
+				);
+				$this->db->delete('laboratorios_grupo', $datos); 					
 				
 				//Después eliminamos el grupo
 				$datos=Array('idgrupo' => $value['idgrupo']);

@@ -60,10 +60,10 @@
 							echo"<td>";print_r($valor['idlaboratorios']); echo"</td>";
 						?>
 							<td><a href="#" onclick="ventanaEdita(<?= $valor['idgrupo'] ?>)">Editar</a></td>
-							<td><a href="#" onclick="ventanaCambiaHora(<?= $valor['idgrupo']?>,'<?= $valor['siglas']?>', <?= $valor['idlaboratorios'] ?>)">Cambiar horario</a></td>
-							<td><a href="#" onclick="ventanaCambiaLabo('<?= $valor['idgrupo']?>',<?= $valor['idlaboratorios'] ?>)">Cambiar lab</a></td>
+							<td><a href="#" onclick="ventanaCambiaHora(<?= $valor['idgrupo']?>,'<?= $valor['siglas']?>', <?= $valor['idlaboratorios'] ?>, <?= $trimAct ?>)">Cambiar horario</a></td>
+							<td><a href="#" onclick="ventanaCambiaLabo('<?= $valor['idgrupo']?>',<?= $valor['idlaboratorios'] ?>, <?= $trimAct ?>)">Cambiar lab</a></td>
 							<td><a href="#" onclick="ventanaCambiaProfe('<?= $valor['idgrupo'] ?>','<?= $valor['idprofesores'] ?>')">Cambiar profesor</a></td>
-							<td><a href="#" onclick="ventanaEliminaGrupo('<?= $valor['idgrupo'] ?>')">Eliminar grupo</a></td>
+							<td><a href="#" onclick="ventanaEliminaGrupo(<?= $valor['idgrupo'] ?>)">Eliminar grupo</a></td>
 	
 							<?php echo "</tr>";
 						 }

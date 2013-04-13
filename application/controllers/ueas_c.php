@@ -15,7 +15,7 @@
 	    function index(){
 	    	
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/3');
+				redirect('loguin_c/index2/NULL/12');
 			}else{
 				$datos['DatosUEA']=$this->administracion_m->obtenListaUEAS();
 		    	$this->load->view('ueas_v',$datos);
@@ -24,7 +24,7 @@
 		
 		function edita($iduea){
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/3');
+				redirect('loguin_c/relogin');
 			}else{
 				$datos['DatosUEA']=$this->administracion_m->obtenDatosUEA($iduea);
 				$datos['div']=$this->administracion_m->obtenDiv();
@@ -37,11 +37,26 @@
 		    		$this->load->view('editaUea_v',$datos);
 		    	}
 			}
+		}
+		
+		function elimina_uea($iduea){
+			if(! $this->session->userdata('validated')){
+				redirect('loguin_c/relogin');
+			}else{
+				if($_POST != NULL){
+					$this->administracion_m->eliminaUEA($iduea);
+					echo "<script languaje='javascript' type='text/javascript'>
+							window.opener.location.reload();
+							window.close();</script>";				
+				}else{
+					$this->load->view('elimina_uea_v');
+				}
+			}	
 		} 
 		
 		function agrega(){
 			if(! $this->session->userdata('validated')){
-				redirect('loguin_c/index2/NULL/3');
+				redirect('loguin_c/relogin');
 			}else{
 				$datos['div']=$this->administracion_m->obtenDiv();
 
