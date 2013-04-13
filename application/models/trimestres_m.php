@@ -14,10 +14,6 @@
 			);
 			$this->db->insert('trimestre',$datos);
 		} 
-		
-			
-				
-				
 	} //Fin de la clase
 ?>
 

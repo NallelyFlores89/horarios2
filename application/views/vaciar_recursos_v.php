@@ -27,10 +27,12 @@
 							<div class="six columns">
 						      <label for="checkbox105"><input type="checkbox" id="checkbox105" name="checkboxes2[]" style='display: none;' value="105"><span class="custom checkbox"></span> 105</label>
 						      <label for="checkbox106"><input type="checkbox" id="checkbox106" name="checkboxes2[]" style='display: none;' value="106"><span class="custom checkbox"></span> 106</label>
+							  <label for="checkbox219"><input type="checkbox" id="checkbox219" name="checkboxes2[]" style='display: none;' value="219"><span class="custom checkbox"></span> 219</label>
 							</div>
 							<div class="six columns">
-								<label for="checkbox219"><input type="checkbox" id="checkbox219" name="checkboxes2[]" style='display: none;' value="219"><span class="custom checkbox"></span> 219</label>
+								
 						      	<label for="checkbox220"><input type="checkbox" id="checkbox220" name="checkboxes2[]" style='display: none;' value="220"><span class="custom checkbox"></span> 220</label>
+						      	<label for="checkbox221"><input type="checkbox" id="checkbox221" name="checkboxes2[]" style='display: none;' value="221"><span class="custom checkbox"></span> 220-B</label>
 							</div>
 					  		<?php echo form_error('checkboxes2[]'); ?>
 						</div><hr>

@@ -21,12 +21,14 @@
 				$DataRecursos106=$this->Recursos_m->obtenRecursos(106); //Obteniendo mis datos
 				$DataRecursos219=$this->Recursos_m->obtenRecursos(219); //Obteniendo mis datos
 				$DataRecursos220=$this->Recursos_m->obtenRecursos(220); //Obteniendo mis datos
-				
+				$DataRecursos221=$this->Recursos_m->obtenRecursos(221); //Obteniendo mis datos
+								
 				$RecursosLabos=Array(
 					'recursos105'=> $DataRecursos105,
 					'recursos106'=> $DataRecursos106,
 					'recursos219'=> $DataRecursos219,
-					'recursos220'=> $DataRecursos220
+					'recursos220'=> $DataRecursos220,
+					'recursos221'=> $DataRecursos221
 				);
 				$this->load->view('recursos_admin_v',$RecursosLabos);
 			}	

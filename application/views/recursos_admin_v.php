@@ -25,12 +25,13 @@
 			<br><br>
 			<div class="twelve columns">
 			<h2>Recursos</h2><br><br>			
-			<dl class="tabs four-up">
-					<dd class="active"><a href="#simple1">AT-105</a></dd>
-				  	<dd><a href="#simple2">AT-106</a></dd>
-				  	<dd><a href="#simple3">AT-219</a></dd>
-				  	<dd><a href="#simple4">AT-220</a></dd>
-				</dl>
+			<dl class="tabs five-up">
+				<dd class="active"><a href="#simple1">AT-105</a></dd>
+			  	<dd><a href="#simple2">AT-106</a></dd>
+			  	<dd><a href="#simple3">AT-219</a></dd>
+			  	<dd><a href="#simple4">AT-220</a></dd>
+			  	<dd><a href="#simple5">AT-220-B</a></dd>
+			</dl>
 
 				<ul class="tabs-content">
 	            	<li class="active" id="simple1Tab">
@@ -176,6 +177,40 @@
 	            			?> 	 	            			
 	            		</ul>
 	            	</li>				  	
+				  	<li id="simple5Tab">
+	            		<br>
+	            		<ul class="recursosAdmin">
+							<?php
+								if($recursos221 != -1){
+								
+									foreach ($recursos221 as $valor) {
+										$add="-recurso221";
+										$id=$valor['idrecursos'].$add;
+										$id_recurso=$valor['idrecursos'];
+										$id_lab = 221;
+										echo"<div class='row'>";
+												echo "<li id=$id>";
+													echo"<div class='six columns'>";
+												 		print_r($valor['recurso']); 
+													echo"</div>";
+														
+													echo"<div class='two columns'>";
+														echo "<a href='#' class='EliminarRecurso' onclick='ventanaElimina($id_recurso, $id_lab)'>Eliminar</a>";
+													echo"</div>";
+												
+													echo"<div class='two columns'>";
+														echo "<a class='EditarRecurso' href='#' onclick='ventanaEdita($id_recurso)'>Modificar</a>";
+													echo "</div>";
+												echo"</li>";
+										echo "</div>";
+										echo"<hr>";
+									}
+								}else{
+									echo "<label class='noDatos'> No se han agregado recursos </label>";
+								}	            			
+	            			?> 	 	            			
+	            		</ul>
+	            	</li>
 				</ul>
 				
 				<br><br>
@@ -186,10 +221,4 @@
 			</div><!--twelve columns-->
 		</div> <!--row-->
 </body>
-
-    <footer>
-		<hr style="margin-top:100px">
-		<label class="footer">Creado y administrado por <a href="#">@NallelyFlores5</a></label>
-    	
-    </footer>
 </html>
