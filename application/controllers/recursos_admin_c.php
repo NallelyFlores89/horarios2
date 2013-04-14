@@ -8,6 +8,7 @@
 			
 			$this->load->helper(array('html', 'url'));
 			$this->load->model('Recursos_m'); //Cargando mi modelo
+			$this->load->model('solicitar_laboratorio_m');
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>'); 
 		}
@@ -17,20 +18,14 @@
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/8');
 			}else{
-				$DataRecursos105=$this->Recursos_m->obtenRecursos(105); //Obteniendo mis datos
-				$DataRecursos106=$this->Recursos_m->obtenRecursos(106); //Obteniendo mis datos
-				$DataRecursos219=$this->Recursos_m->obtenRecursos(219); //Obteniendo mis datos
-				$DataRecursos220=$this->Recursos_m->obtenRecursos(220); //Obteniendo mis datos
-				$DataRecursos221=$this->Recursos_m->obtenRecursos(221); //Obteniendo mis datos
-								
-				$RecursosLabos=Array(
-					'recursos105'=> $DataRecursos105,
-					'recursos106'=> $DataRecursos106,
-					'recursos219'=> $DataRecursos219,
-					'recursos220'=> $DataRecursos220,
-					'recursos221'=> $DataRecursos221
-				);
-				$this->load->view('recursos_admin_v',$RecursosLabos);
+				$Data['labos'] = $this->solicitar_laboratorio_m->obtenLaboratorios();
+				$Data['re']['105']=$this->Recursos_m->obtenRecursos(105); //Obteniendo mis datos
+				$Data['re']['106']=$this->Recursos_m->obtenRecursos(106); //Obteniendo mis datos
+				$Data['re']['219']=$this->Recursos_m->obtenRecursos(219); //Obteniendo mis datos
+				$Data['re']['220']=$this->Recursos_m->obtenRecursos(220); //Obteniendo mis datos
+				$Data['re']['221']=$this->Recursos_m->obtenRecursos(221); //Obteniendo mis datos
+
+				$this->load->view('recursos_admin_v',$Data);
 			}	
 			
 		} //Fin de Recursos

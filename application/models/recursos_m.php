@@ -9,8 +9,7 @@
 		}
 			
 		function obtenRecursos($idlab){
-			$this->db->select('idrecursos');
-			$this->db->select('recurso');
+			$this->db->select('idrecursos, recurso');
 			$this->db->from('recursos');
 			$this->db->join('laboratorios_has_recursos', 'recursos_idrecursos=idrecursos','left');
 			$this->db->where('laboratorios_idlaboratorios',$idlab);

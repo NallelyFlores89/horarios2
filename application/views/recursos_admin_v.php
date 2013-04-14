@@ -26,15 +26,68 @@
 			<div class="twelve columns">
 			<h2>Recursos</h2><br><br>			
 			<dl class="tabs five-up">
-				<dd class="active"><a href="#simple1">AT-105</a></dd>
-			  	<dd><a href="#simple2">AT-106</a></dd>
-			  	<dd><a href="#simple3">AT-219</a></dd>
-			  	<dd><a href="#simple4">AT-220</a></dd>
-			  	<dd><a href="#simple5">AT-220-B</a></dd>
+				<?php
+					foreach ($labos as $i => $value) { 
+						if($i == 1){ ?>
+							<dd class="active"><a  href="#simple<?= $value['idlaboratorios']?>"><?= $value['nombrelaboratorios'] ?></a></dd>
+						<?php }else{ ?>	
+
+						<dd><a href="#simple<?= $value['idlaboratorios']?>"><?= $value['nombrelaboratorios'] ?></a></dd>
+				<?php }}
+				
+				?>
 			</dl>
 
-				<ul class="tabs-content">
-	            	<li class="active" id="simple1Tab">
+			<ul class="tabs-content">
+				<?php 
+					foreach ($labos as $i => $value) { 
+						if($i == 1){ ?>
+		            	<li class="active" id="simple<?= $value['idlaboratorios']?>Tab">
+		            		<br>
+		            		<ul>
+		            			<?php
+									if($re[$value['idlaboratorios']] != -1){
+										foreach ($re[$value['idlaboratorios']] as $valor) { ?>
+											<li class="six columns"><?= $valor['recurso'] ?></li>
+											<a href='#' class='EliminarRecurso three columns' onclick='ventanaElimina(<?= $valor['idrecursos']?>, <?= $value['idlaboratorios']?>)'>Eliminar</a>
+											<a class='EditarRecurso three columns' href='#' onclick='ventanaEdita(<?= $valor['idrecursos'] ?>)'>Modificar</a>
+										<?php } ?>	
+									<?php }else{ ?>
+										<label class='noDatos'> No se han agregado recursos </label>
+									<?php } ?>            			
+		            		</ul>
+		            	</li>							
+				<?php	}else{ ?>
+
+		            	<li class="" id="simple<?= $value['idlaboratorios']?>Tab">
+		            		<br>
+		            		<ul>
+		            			<?php
+									if($re[$value['idlaboratorios']] != -1){
+										foreach ($re[$value['idlaboratorios']] as $valor) { ?>
+											<li class="six columns"><?= $valor['recurso'] ?></li>
+											<a href='#' class='EliminarRecurso three columns' onclick='ventanaElimina(<?= $valor['idrecursos']?>, <?= $value['idlaboratorios']?>)'>Eliminar</a>
+											<a class='EditarRecurso three columns' href='#' onclick='ventanaEdita(<?= $valor['idrecursos'] ?>)'>Modificar</a>
+										<?php } ?>	
+									<?php }else{ ?>
+										<label class='noDatos'> No se han agregado recursos </label>
+									<?php } ?>            			
+		            		</ul>
+		            	</li>					
+				<?php }} ?>
+			</ul>
+				
+				<br><br>
+				<div class="two columns"></div>
+				<a href="<?= base_url(); ?>index.php/recursos_admin_c/agregar_recursos" class="button AgregarRecursosBtn four columns">Agregar recursos</a>
+				<a href="<?= base_url(); ?>index.php/recursos_admin_c/vaciar_recursos" class="button VaciarRecursosBtn four columns">Vaciar recursos</a><br/><br/>
+				<div class="two columns"></div>
+			</div><!--twelve columns-->
+		</div> <!--row-->
+</body>
+</html>
+
+<!-- 	            	<li class="active" id="simple1Tab">
 	            		<br>
 	            		<ul class="recursosAdmin">
 	            			<?php
@@ -51,14 +104,7 @@
 												 		print_r($valor['recurso']); 
 													echo"</div>";
 														
-													echo"<div class='two columns'>";
-															echo "<a href='#' class='EliminarRecurso' onclick='ventanaElimina($id_recurso, $id_lab)'>Eliminar</a>";
-													echo"</div>";
-											
-												
-													echo"<div class='two columns'>";
-														echo "<a class='EditarRecurso' href='#' onclick='ventanaEdita($id_recurso)'>Modificar</a>";
-													echo "</div>";
+													
 												echo"</li>";
 										echo "</div>";
 										echo"<hr>";
@@ -210,15 +256,4 @@
 								}	            			
 	            			?> 	 	            			
 	            		</ul>
-	            	</li>
-				</ul>
-				
-				<br><br>
-				<div class="two columns"></div>
-				<a href="<?= base_url(); ?>index.php/recursos_admin_c/agregar_recursos" class="button AgregarRecursosBtn four columns">Agregar recursos</a>
-				<a href="<?= base_url(); ?>index.php/recursos_admin_c/vaciar_recursos" class="button VaciarRecursosBtn four columns">Vaciar recursos</a><br/><br/>
-				<div class="two columns"></div>
-			</div><!--twelve columns-->
-		</div> <!--row-->
-</body>
-</html>
+	            	</li> -->

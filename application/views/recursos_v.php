@@ -40,7 +40,24 @@
 			
 			<ul class="tabs-content">
 			<?php 
-				foreach ($labos as $i => $value) { ?>
+				foreach ($labos as $i => $value) { 
+					if($i == 1){ ?>
+						<li class="active" id="simple<?= $value['idlaboratorios']?>Tab">
+		            		<br>
+		            		<ul>
+		            			<?php
+									if($re[$value['idlaboratorios']] != -1){
+										foreach ($re[$value['idlaboratorios']] as $valor) {
+											echo "<li>"; print_r($valor['recurso']); echo "</li>";
+										}	
+									}else{
+										echo "<label class='noDatos'> No se han agregado recursos </label>";
+									}            			
+		            			?>
+		            			
+		            		</ul>
+		            	</li>						
+			<?php	}else{ ?>		
 	            	<li class="" id="simple<?= $value['idlaboratorios']?>Tab">
 	            		<br>
 	            		<ul>
@@ -56,7 +73,7 @@
 	            			
 	            		</ul>
 	            	</li>					
-			<?php } ?>
+			<?php } } ?>
 
 			</ul>
 
