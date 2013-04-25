@@ -161,7 +161,10 @@
 			} //Login
 		} //Fin de index
 			
-		function aviso(){				
+		function aviso(){
+		if(! $this->session->userdata('validated')){
+				redirect('loguin_c/relogin');
+		}else{				
 			$trim= $this->uri->segment(3, 0);
 			$lab= $this->uri->segment(4, 0);
 			$grupo= $this->uri->segment(5, 0);
@@ -205,6 +208,7 @@
 			}else{
 				$this->load->view('aviso_v', $datos);
 			}
+		}
 			
 		}
 

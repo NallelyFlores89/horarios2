@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-    <title>Eliminar profesor</title>
+    <title>Sesión expirada</title>
    	<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/foundation.min.css">
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/app.css">

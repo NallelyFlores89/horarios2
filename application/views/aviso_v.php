@@ -33,7 +33,7 @@
 						<div>
 							<label class="pregunta">¿Desea sobreescribir el horario?</label>
 							<p>El/Los grupos que están actualmente ocupando el horario se borrarán de la tabla y será necesario agregarlos nuevamente</p>
-							<input type="submit" id="EliminarBtn" class="button normal twelve columns" name="Sobreescribir" value="Aceptar" />
+							<input type="submit" id="EliminarBtn" class="button normal twelve columns" name="sobre" value="Sobreescribir" />
 						</div>
 
 
