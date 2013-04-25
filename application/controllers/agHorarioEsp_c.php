@@ -134,9 +134,7 @@
 					}else{ //Horario ocupado
 						$grps_oc=array_unique($gr);
 						$dias = $_POST['checkboxes'];
-						$liga = 'agregar_horario_c/aviso/'.$idtrim.'/'.$id_lab.'/'.$idGrupo.'/'.$horaI.'/'.$horaF.'/'.implode("-", $dias).'/'.implode("-", $grps_oc);
-						echo "<br> liga: <br>";
-						print_r($liga);
+						$liga = 'agregar_horario_c/aviso/'.$idtrim.'/'.$id_lab.'/'.$idGrupo.'/'.$horaI.'/'.$horaF.'/'.implode("-", $dias).'/'.implode("-", $grps_oc).'/'.$idSemI.'/'.$idSemF;
 						redirect($liga);						
 					}
 					

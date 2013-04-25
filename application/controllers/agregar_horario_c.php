@@ -129,9 +129,7 @@
 					}else{ //Horario ocupado
 						$grps_oc=array_unique($gr);
 						$dias = $_POST['checkboxes'];
-						$liga = 'agregar_horario_c/aviso/'.$idtrim.'/'.$id_lab.'/'.$idGrupo.'/'.$horaI.'/'.$horaF.'/'.implode("-", $dias).'/'.implode("-", $grps_oc);
-						echo "<br> liga: <br>";
-						print_r($liga);
+						$liga = 'agregar_horario_c/aviso/'.$idtrim.'/'.$id_lab.'/'.$idGrupo.'/'.$horaI.'/'.$horaF.'/'.implode("-", $dias).'/'.implode("-", $grps_oc).'/1/12/';
 						redirect($liga);						
 					}
 					//Verifica si el usuario desea o no agregar otro horario
@@ -171,9 +169,11 @@
 			$horaf= $this->uri->segment(7, 0);
 			$datos['dias']= explode("-",$this->uri->segment(8, 0)); //Convertimos en array para facilitar su manejo
 			$datos['grp_oc']= explode("-", $this->uri->segment(9, 0));
+			$semi= $this->uri->segment(10, 0);
+			$semf= $this->uri->segment(11, 0);
 			$i=1;
 			foreach ($datos['grp_oc'] as $value) {
-				$datos['grupos'][$i] = $this->Agregar_horario_m->obtenGrupoyUea($value['idgrupo']);
+				$datos['grupos'][$i] = $this->Agregar_horario_m->obtenGrupoyUea($value);
 				$i++;				
 			}
 					
@@ -183,7 +183,7 @@
 					$this->administracion_m->borraGrupo($value['idgrupo'], $lab,$trim);	
 				}
 				//Agregamos el grupo nuevo
-					for ($j=1; $j <=12; $j++) { //Semanas
+					for ($j=$semi; $j <=$semf; $j++) { //Semanas
 						if($horaf==27){
 							for ($i=$horai; $i <=26; $i++) {  //horas
 								foreach ($datos['dias'] as $dias) { //días
@@ -200,7 +200,8 @@
 						}
 					}				
 					echo "<script languaje='javascript' type='text/javascript'>
-	                window.close();</script>";
+					window.opener.location.reload();
+					window.close();</script>";
 			}else{
 				$this->load->view('aviso_v', $datos);
 			}

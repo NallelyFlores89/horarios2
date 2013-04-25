@@ -26,7 +26,7 @@
 							<p>El horario que solicita, está siendo actualmente ocupado por el/los grupos: <br> 
 							<?php foreach ($grupos as  $value) { ?>
 								<ul>
-									<li><?=$value['grupo'] ?> -- <?= $value['nombreuea']?></li>
+									<li><?=$value['grupo'] ?> - <?= $value['nombreuea']?></li>
 								</ul>
 							<?php } ?> </p>
 						</div>
