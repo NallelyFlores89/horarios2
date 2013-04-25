@@ -115,6 +115,24 @@
 			}
 		}
 		
+		function obtenGrupoyUea($idgrupo){
+			$this->db->select('idgrupo,grupo, nombreuea');
+			$this->db->where('idgrupo',$idgrupo);
+			$this->db->join('uea','grupo.uea_iduea=iduea');
+						
+			$idGrupo=$this->db->get('grupo'); 
+			
+			if(($idGrupo->num_rows())>0){ 
+				foreach ($idGrupo->result_array() as $value) {
+					$idG[1] = $value; 
+				 }
+			
+				return($idG[1]);
+			}else{
+				return(-1);
+			}
+		}
+		
 		function obtenerIdGrupo($grupo){
 			$this->db->select('idgrupo');
 			$this->db->where('grupo',$grupo);

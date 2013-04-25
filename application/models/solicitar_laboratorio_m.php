@@ -151,9 +151,9 @@
 			
 			if(($res->num_rows())>0){ //Si el horario ya está ocupado por otro grupo
 				foreach ($res->result_array() as $value) {
-					$ocupado[1]=$value;
+					$ocupado=$value;
 				}
-				return $ocupado[1];
+				return $ocupado;
 			}else{
 				return -1;
 			}			

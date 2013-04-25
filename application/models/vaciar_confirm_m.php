@@ -45,7 +45,6 @@
 		function vaciarLaboratorio($idtrim, $idlab){
 			$datos = Array(	'trimestre_idtrim' => $idtrim, 'idlaboratorios' => $idlab);
 			$this->db->delete('laboratorios_grupo', $datos); 	
-
 		}
 
 		function obtenGruposxTrim($idtrim){

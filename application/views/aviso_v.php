@@ -23,10 +23,20 @@
 							<label class="pregunta">El horario que usted solicita, no está disponible</label>
 						</div>
 						<div class="row">
-							<center><p>Para proceder con la operación, debe eliminar el grupo que está actualmente ocupando este horario
-							</p></center>
+							<p>El horario que solicita, está siendo actualmente ocupado por el/los grupos: <br> 
+							<?php foreach ($grupos as  $value) { ?>
+								<ul>
+									<li><?=$value['grupo'] ?> -- <?= $value['nombreuea']?></li>
+								</ul>
+							<?php } ?> </p>
 						</div>
-						<input type="submit" id="EliminarBtn" class="button normal twelve columns" name="Aceptar" value="Sí" />
+						<div>
+							<label class="pregunta">¿Desea sobreescribir el horario?</label>
+							<p>El/Los grupos que están actualmente ocupando el horario se borrarán de la tabla y será necesario agregarlos nuevamente</p>
+							<input type="submit" id="EliminarBtn" class="button normal twelve columns" name="Sobreescribir" value="Aceptar" />
+						</div>
+
+
 					</form>
 				</fieldset>
 			</div> <!--twelve colums-->

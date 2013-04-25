@@ -96,14 +96,21 @@
 					//Revisando si el horario no está ocupado por otro grupo
 					$indice=1;
 					for ($j=$idSemI; $j <=$idSemF; $j++) { //Semanas 
-						for ($i=$horaI; $i <=$horaF; $i++) {  //horas
+						for ($i=$horaI; $i <$horaF; $i++) {  //horas
 							foreach ($_POST['checkboxes'] as $dias) { //días
 								$ocupado[$indice] = $this->Solicitar_laboratorio_m->horarioOcupado($_POST['laboratoriosDropdown'], $j, $dias, $i, $idtrim);
 								$indice++;
 							}
 						}
 					}
-					
+					//Obteniendo el/los grupos que están ocupando el horario
+					$i=1;
+					foreach ($ocupado as $value) {
+						 if($value['idgrupo'] != NULL){
+						 	$gr[$i]=$value['idgrupo']; 
+						 	$i++;
+						 }	
+					}					
 					$no_disponible = array_unique($ocupado);
 					
 					//Horario NO ocupado. Agrega horario a la tabla										
@@ -125,8 +132,12 @@
 							}
 						}						
 					}else{ //Horario ocupado
-						redirect('agregar_horario_c/aviso');						
-						
+						$grps_oc=array_unique($gr);
+						$dias = $_POST['checkboxes'];
+						$liga = 'agregar_horario_c/aviso/'.$idtrim.'/'.$id_lab.'/'.$idGrupo.'/'.$horaI.'/'.$horaF.'/'.implode("-", $dias).'/'.implode("-", $grps_oc);
+						echo "<br> liga: <br>";
+						print_r($liga);
+						redirect($liga);						
 					}
 					
 					//Verifica si el usuario desea o no agregar otro horario

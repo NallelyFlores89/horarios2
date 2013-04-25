@@ -25,12 +25,13 @@
 		<h3>Horarios por trimestre</h3><hr>
 			<table id="my-table" class="responsive contentHorario">
 				<tr>
-					<th>Trimestre</th><th colspan="3">Acciones</th>
+					<th>ID</th><th>Trimestre</th><th colspan="3">Acciones</th>
 				</tr>
 				
 				<?php 
 					foreach ($trim as $value) { ?>
 					<tr>
+						<td><?= $value['idtrim'] ?></td>
 						<td><?= $value['trim']?></td>
 						<td><a href="<?= base_url() ?>index.php/inicio_admin_c/horarioxTrimestre/<?= $value['idtrim']?>" target="_blank">Ver</a></td>
 						<td><a href="#" onclick="eliminar(<?=$value['idtrim']?>,'<?=$value["trim"] ?>')">Eliminar</a></td>
