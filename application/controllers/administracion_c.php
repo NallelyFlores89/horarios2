@@ -18,7 +18,7 @@
 	   	}
 		
 	    function index($trim){
-	    	if(! $this->session->userdata('validated')){
+	    	if(! $this->session->userdata('validated')){ //Login
 				redirect('loguin_c/index2/NULL/2');
 			}else{
 				$data['trim'] = $this->inicio_m->ObtenTrim();
@@ -28,7 +28,8 @@
 			}
 	    }
 		
-		function edita($idgrupo){ //Edita los datos de las UEAS como son sección, nombre de la uea, clave, etc.
+		//Edita los datos de las UEAS como son sección, nombre de la uea, clave, etc.
+		function edita($idgrupo){ //Login
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/relogin');
 			}else{
@@ -36,14 +37,14 @@
 				$datos['id_div'] =$datos['datos'][1]['divisiones_iddivisiones']; 
 				$datos['div'] = $this->administracion_m->obtenDiv();
 				
-				//Validaciones
+				//Validaciones del formulario
 				$this->form_validation->set_rules('ueaInput', 'ueaInput', 'required');
 				$this->form_validation->set_rules('siglasInput', 'siglasInput', 'required');
 				$this->form_validation->set_rules('grupoInput', 'grupoInput', 'required');
 				
 				$this->form_validation->set_rules('claveInput', 'claveInput', '');
 				
-				if($this->form_validation->run()){
+				if($this->form_validation->run()){ //Se ha recibido la solicitud
 					//En caso de que la uea sea modificada, debemos comprobar primero si existe en la BD o no
 					$ueaExiste=$this->administracion_m->obtenUEAxNombre($_POST['ueaInput']);					
 					
@@ -57,7 +58,7 @@
 						$this->administracion_m->actualizaU($ueaExiste['iduea'], $_POST['division']);												
 						$this->administracion_m->editaGrupo($idgrupo,$_POST['grupoInput'], $_POST['siglasInput'], $ueaExiste['iduea']);
 					}
-				
+					//Script que recarga la página madre y cierra la ventana hija
 					echo "<script languaje='javascript' type='text/javascript'>
 							window.opener.location.reload();
 			                window.close();</script>";
@@ -96,7 +97,7 @@
 					//Borra el grupo de su horario original					
 					
 					$this->administracion_m->borraGrupo($idgrupo, $idlab, $idtrim);
-					echo "el grupo fue borrado de laboratorios_grupo <br>";
+					// echo "el grupo fue borrado de laboratorios_grupo <br>";
 					//Inserta grupo en su horario nuevo
 					
 					for ($weeks=$semi; $weeks<=$semf; $weeks++) {

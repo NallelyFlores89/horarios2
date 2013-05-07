@@ -148,7 +148,7 @@
 						$this->load->view('header');
 						$this->load->view('script');
 						$this->load->view('agregarHorarioForm', $datos);
-						$this->load->view('agregar_horario_v', $datos);					
+						$this->load->view('agHorarioEsp_v', $datos);					
 					}else{
 						echo "<script languaje='javascript' type='text/javascript'>
 						    alert('Horario agregado');

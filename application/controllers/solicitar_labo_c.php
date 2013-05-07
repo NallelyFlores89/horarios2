@@ -107,7 +107,7 @@
 					$this->email->send();	
 					// echo $this->email->print_debugger();
 					echo "<script languaje='javascript' type='text/javascript'>
-				    alert('Solicitud enviada. Por favor, espere aprovación');
+				    alert('Solicitud enviada. Por favor, espere respuesta de la coordinación');
 	                window.close();</script>";
 				
 				}else{ //En otro caso, le indica al usuario que el horario no está disponible

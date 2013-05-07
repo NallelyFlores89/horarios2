@@ -12,7 +12,8 @@
 			$this->db->select('idprofesores, nombre, numempleado, correo');
 			$this->db->from('profesores');
 			$this->db->distinct(); //Para que no se repitan los datos
-
+			$this->db->order_by('profesores.nombre');
+			
 			$idProfesor=$this->db->get(); 
 			
 			if(($idProfesor->num_rows())>0){ //Verificando si tengo datos a cargar

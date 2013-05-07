@@ -6,12 +6,6 @@
 			$(document).ready(function(){
 				if(<?= $limpia?> == 1){
 					$('#nombreInput, #numInput, #grupoInput, #correoInput, #ueaInput, #siglasInput').val('')
-					// $('#numInput').val('')
-					// $('#grupoInput').val('')
-					// $('#correoInput').val('')
-					// $('#ueaInput').val('')
-					// $('#claveInput').val('')
-					// $('#siglasInput').val('')
 					$('#divisionesDropdown').val(9)
 					$('#laboratoriosDropdown').val(1)
 					$('#HoraIDropdown').val(1)

@@ -38,6 +38,7 @@
 			  <li><a id="ProfesoresBtn" href="<?=base_url()?>index.php/profesores_c">Profesores</a></li>			  
 			  <li><a id="Administracion2Btn" href="<?=base_url()?>index.php/administracion2_c">Administración</a></li>
 			  <li><a id="Administracion2Btn" href="<?=base_url()?>index.php/trimestres_c">Trimestres</a></li>
+			  <li><a id="Administracion2Btn" target="blank" href="<?=base_url()?>index.php/pdf_c">Exportar PDF</a></li>
 			  <li><a href="<?=base_url()?>index.php/inicio_admin_c/do_logout">Salir</a></li>
 			</ul><br>
 			<br>		

@@ -18,7 +18,7 @@
 			$this->db->join('laboratorios_grupo','grupo.idgrupo=laboratorios_grupo.idgrupo');
 			$this->db->where('trimestre_idtrim', $trim);
 			$this->db->distinct(); //Para que no se repitan los datos
-			$this->db->order_by('profesores.nombre');
+			$this->db->order_by('uea.nombreuea');
 			$listaUeaProfesorGrupo=$this->db->get();
 			
 			if(($listaUeaProfesorGrupo->num_rows())>0){
@@ -138,7 +138,7 @@
 		function obtenListaUEAS(){
 			$this->db->select('iduea, nombreuea, clave, divisiones_iddivisiones, divisiones.nombredivision');
 			$this->db->join('divisiones', 'uea.divisiones_iddivisiones=divisiones.iddivisiones');
-
+			$this->db->order_by('uea.nombreuea');
 			$this->db->from('uea');
 
 			$uea=$this->db->get(); 
