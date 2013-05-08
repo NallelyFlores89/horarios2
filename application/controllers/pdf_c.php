@@ -30,7 +30,7 @@ class Pdf_c extends CI_Controller {
 		$trimestres['trimActual'] = $trim;
 		$trimestres['trim'] = $this->Inicio_m->ObtenTrim();
 		
-		for ($dia=1; $dia <=5 ; $dia++) { 
+		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
 			$ocupados = $this->Inicio_m->ueas2(105, $dia, $trim);
 			if($ocupados == -1){
@@ -40,7 +40,7 @@ class Pdf_c extends CI_Controller {
 			}
 		}
 
-		for ($dia=1; $dia <=5 ; $dia++) { 
+		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
 			$ocupados = $this->Inicio_m->ueas2(106,$dia, $trim);
 			if($ocupados == -1){
@@ -50,7 +50,7 @@ class Pdf_c extends CI_Controller {
 			}
 		}
 		
-		for ($dia=1; $dia <=5 ; $dia++) { 
+		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
 			$ocupados = $this->Inicio_m->ueas2(219,$dia, $trim);
 			if($ocupados == -1){
@@ -61,7 +61,7 @@ class Pdf_c extends CI_Controller {
 		}
 	
 
-		for ($dia=1; $dia <=5 ; $dia++) { 
+		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
 			$ocupados = $this->Inicio_m->ueas2(220,$dia, $trim);
 			if($ocupados == -1){
@@ -231,26 +231,6 @@ class Pdf_c extends CI_Controller {
 				</table>
         
         ";
-        // $html .= "<tr>
-        			// <th>Día</th><th colspan='5'>Lunes</th><th colspan='5'>Martes</th><th colspan='5'>Miércoles</th><th colspan='5'>Jueves</th><th colspan='5'>Viernes</th>
-        		  // </tr>
-        		  // <tr>
-        		  	// <td>Labo</td>
-        		  	// <td>105</td><td>106</td><td>219</td><td>220</td><td>220B</td>
-        		  	// <td>105</td><td>106</td><td>219</td><td>220</td><td>220B</td>
-        		  // </tr>
-//         		  
-//         		  
-        		  // ";
- 
-        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
-        // foreach ($provincias as $fila)
-        // {
-            // $id = $fila['l.id'];
-            // $localidad = $fila['l.localidad'];
-//  
-            // $html .= "<tr><td class='id'>" . $id . "</td><td class='localidad'>" . $localidad . "</td></tr>";
-        // }
         $html .= "</table>";
  
 // Imprimimos el texto con writeHTMLCell()
