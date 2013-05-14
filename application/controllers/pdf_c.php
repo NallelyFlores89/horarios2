@@ -6,6 +6,7 @@ class Pdf_c extends CI_Controller {
         parent::__construct();
 		$this->load->helper(array('html', 'url'));
 		$this->load->model('Inicio_m'); //Cargando mi modelo
+		$this->load->model('pdf_m'); //Cargando mi modelo
 		$this->load->helper('form');
     }
  
@@ -29,10 +30,11 @@ class Pdf_c extends CI_Controller {
 		$DataHorarios['hora']=$this->Inicio_m->Obtenhorarios();
 		$trimestres['trimActual'] = $trim;
 		$trimestres['trim'] = $this->Inicio_m->ObtenTrim();
+		$lb = array('1'=>105, '2'=>106, '3'=>219, '4'=>220);
 		
 		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
-			$ocupados = $this->Inicio_m->ueas2(105, $dia, $trim);
+			$ocupados = $this->pdf_m->ueas2(105, $dia, $trim);
 			if($ocupados == -1){
 				 $Data['$DataU105_'.$dia]=$vacio;
 			}else{
@@ -42,7 +44,7 @@ class Pdf_c extends CI_Controller {
 
 		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
-			$ocupados = $this->Inicio_m->ueas2(106,$dia, $trim);
+			$ocupados = $this->pdf_m->ueas2(106,$dia, $trim);
 			if($ocupados == -1){
 				 $Data['$DataU106_'.$dia]=$vacio;
 			}else{
@@ -52,7 +54,7 @@ class Pdf_c extends CI_Controller {
 		
 		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
-			$ocupados = $this->Inicio_m->ueas2(219,$dia, $trim);
+			$ocupados = $this->pdf_m->ueas2(219,$dia, $trim);
 			if($ocupados == -1){
 				 $Data['$DataU219_'.$dia]=$vacio;
 			}else{
@@ -63,7 +65,7 @@ class Pdf_c extends CI_Controller {
 
 		for ($dia=1; $dia <=5 ; $dia++){ 
 			$vacio= array_fill(1,27, null);
-			$ocupados = $this->Inicio_m->ueas2(220,$dia, $trim);
+			$ocupados = $this->pdf_m->ueas2(220,$dia, $trim);
 			if($ocupados == -1){
 				 $Data['$DataU220_'.$dia]=$vacio;
 			}else{
@@ -73,7 +75,7 @@ class Pdf_c extends CI_Controller {
 		
 		for ($dia=1; $dia <=5 ; $dia++) { 
 			$vacio= array_fill(1,27, null);
-			$ocupados = $this->Inicio_m->ueas2(221,$dia, $trim);
+			$ocupados = $this->pdf_m->ueas2(221,$dia, $trim);
 			if($ocupados == -1){
 				 $Data['$DataU221_'.$dia]=$vacio;
 			}else{
@@ -81,9 +83,23 @@ class Pdf_c extends CI_Controller {
 			}
 		}
 		
+		$i=1;
+		foreach ($lb as $labo){
+			for($dia=1; $dia<=5; $dia++){
+				for($hora=1; $hora<=27; $hora++){
+					if($this->pdf_m->obtenGruposEsp($labo, $dia, $hora, $trim) != 0){
+						$esp[$i] = $this->pdf_m->obtenGruposEsp($labo, $dia, $hora, $trim);
+						$i++;
+					}					
+				}
+			}
+		}
+
 		$datos = Array(
 			'Data' => $Data,
 			'DataHorarios' =>  $DataHorarios['hora'],
+			'trimestres' => $trimestres,
+			'esp' => $esp
 		);
 		$this->load->view('prueba_v', $datos);
 	}
