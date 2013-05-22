@@ -83,18 +83,28 @@ class Pdf_c extends CI_Controller {
 			}
 		}
 		
-		$i=1;
+		$i=1; $j=1;
 		foreach ($lb as $labo){
 			for($dia=1; $dia<=5; $dia++){
 				for($hora=1; $hora<=27; $hora++){
 					if($this->pdf_m->obtenGruposEsp($labo, $dia, $hora, $trim) != 0){
 						$esp[$i] = $this->pdf_m->obtenGruposEsp($labo, $dia, $hora, $trim);
-						$i++;
-					}					
+						foreach ($esp[$i] as $valor) {
+							$aux[$i] = $valor;
+							$i++;
+						}
+					}
 				}
 			}
 		}
-
+		
+		$i=1;
+		foreach ($aux as $value) {
+			$esp_aux[$value['idlaboratorios']][$i]=$value; $i++;
+			
+		}
+			
+		echo "<pre>"; print_r($esp_aux); echo "</pre>";
 		$datos = Array(
 			'Data' => $Data,
 			'DataHorarios' =>  $DataHorarios['hora'],

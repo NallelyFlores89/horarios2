@@ -12,7 +12,7 @@ class Pdf_m extends CI_Model
 		$this->db->where('idlaboratorios',$labo);
 		$this->db->where('dias_iddias',$dia);			
 		$this->db->where('trimestre_idtrim',$trim);			
-		$this->db->order_by('horarios_idhorarios', "asc"); 
+		$this->db->order_by('semanas_idsemanas', "asc"); 
 		$this->db->from('laboratorios_grupo');
 		
 		$ueaL=$this->db->get();
@@ -51,26 +51,25 @@ class Pdf_m extends CI_Model
 	function obtenGruposEsp($labo, $dia, $hora, $trim){
 		// echo "recibi labo = $labo, dia=$dia, hora=$hora, trim = $trim, ";
 		// $this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, idlaboratorios,horarios_idhorarios, horarios.hora, uea.divisiones_iddivisiones, semanas_idsemanas');
-		$this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, horarios_idhorarios, horarios.hora, idlaboratorios, grupo.uea_iduea, grupo.siglas, semanas_idsemanas, dias_iddias');
+		$this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, horarios_idhorarios, horarios.hora, idlaboratorios, uea.nombreuea, grupo.siglas, semanas_idsemanas, dias_iddias, dias.nombredia');
 		$this->db->join('grupo','laboratorios_grupo.idgrupo=grupo.idgrupo');
 		$this->db->join('uea','grupo.uea_iduea=uea.iduea');
 		$this->db->join('horarios','horarios_idhorarios=horarios.idhorarios');
+		$this->db->join('semanas','semanas_idsemanas=laboratorios_grupo.semanas_idsemanas');
+		$this->db->join('dias','dias_iddias=dias.iddias');
 		$this->db->where('idlaboratorios',$labo);
 		$this->db->where('dias_iddias',$dia);
 		$this->db->where('horarios_idhorarios', $hora);
 		$this->db->where('trimestre_idtrim',$trim);	
+		$this->db->order_by('semanas_idsemanas');
 		$this->db->distinct();
 		$ueaL=$this->db->get('laboratorios_grupo');
-		// echo "<br>ueaL = "; print_r($ueaL->result_array()); echo "<br>";
+		
 		if(($ueaL->num_rows())<12 && $ueaL->num_rows()>1){
-			// echo "este grupo es especial <br>";
 			return $ueaL->result_array();
 		}else{
-			// echo "este grupo no es especial <br>";
 			return 0;
 		}
-		
-		
 	}
    
 }

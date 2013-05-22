@@ -164,8 +164,7 @@
 			
 		} //fin Obtenhorarios		
 								
-	} //Fin de la clase
-
+	}
 ?>
 
 

@@ -1,6 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-	
 	class Loguin_c extends CI_Controller{
     
 	    function __construct(){
@@ -89,6 +87,5 @@
 	function relogin(){
       $this->load->view('msj_login_v');
     }
-
 }
 ?>
