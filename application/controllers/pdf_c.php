@@ -15,6 +15,9 @@ class Pdf_c extends CI_Controller {
 		$this->load->view('exportar_v', $data);
     }
 	
+	public function reglamento(){
+		$this->load->view('reglamento_v');
+	}
 	public function prueba(){
 		$trim = 1;
 		$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);
@@ -93,15 +96,20 @@ class Pdf_c extends CI_Controller {
 							$aux[$i] = $valor;
 							$i++;
 						}
+					}else{
+						$esp = NULL;
+						$aux=NULL;
 					}
 				}
 			}
 		}
 		
-		$i=1;
-		foreach ($aux as $value) {
-			$esp_aux[$value['idlaboratorios']][$i]=$value; $i++;
-			
+		if($aux != NULL){
+			foreach ($aux as $value) {
+				$esp_aux[$value['idlaboratorios']][$i]=$value; $i++;
+			}
+		}else{
+			$esp_aux = "No hay nada ";
 		}
 			
 		echo "<pre>"; print_r($esp_aux); echo "</pre>";

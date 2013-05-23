@@ -288,33 +288,37 @@
 							</tr>
 						<?php
 						$iddias=0;
-						foreach ($esp as $value) {
-							foreach ($value as $value2) {
-								$idsem = $value2['semanas_idsemanas'];
-								if($value2['idlaboratorios']==105){
-									
-									if($iddias == $value2['dias_iddias']){ ?>
-										<tr>
-											<td class="td2"><?= $value2['nombreuea']?></td>
-											<td class="td2"><?= $value2['grupo']?></td>
-											<td class="td2"><?= $value2['siglas']?></td>
-											<td class="td2"><?= $value2['hora']?></td>
-											<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-										</tr>
-									<?php }else{
-										  $iddias=$value2['dias_iddias'];
-									 ?>
-										<td class="nombredia" colspan="5"><?= $value2['nombredia']?></td>				 
-										<tr>
-											<td class="td2"><?= $value2['nombreuea']?></td>
-											<td class="td2"><?= $value2['grupo']?></td>
-											<td class="td2"><?= $value2['siglas']?></td>
-											<td class="td2"><?= $value2['hora']?></td>
-											<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-										</tr>
-								<?php }
+						if($esp != NULL){
+							foreach ($esp as $value) {
+								foreach ($value as $value2) {
+									$idsem = $value2['semanas_idsemanas'];
+									if($value2['idlaboratorios']==105){
+										
+										if($iddias == $value2['dias_iddias']){ ?>
+											<tr>
+												<td class="td2"><?= $value2['nombreuea']?></td>
+												<td class="td2"><?= $value2['grupo']?></td>
+												<td class="td2"><?= $value2['siglas']?></td>
+												<td class="td2"><?= $value2['hora']?></td>
+												<td class="td2"><?= $value2['semanas_idsemanas']?></td>
+											</tr>
+										<?php }else{
+											  $iddias=$value2['dias_iddias'];
+										 ?>
+											<td class="nombredia" colspan="5"><?= $value2['nombredia']?></td>				 
+											<tr>
+												<td class="td2"><?= $value2['nombreuea']?></td>
+												<td class="td2"><?= $value2['grupo']?></td>
+												<td class="td2"><?= $value2['siglas']?></td>
+												<td class="td2"><?= $value2['hora']?></td>
+												<td class="td2"><?= $value2['semanas_idsemanas']?></td>
+											</tr>
+									<?php }
+									}
 								}
 							}
+						}else{
+							echo "lista vacía";
 						}
 					?>
 						</table>
@@ -335,32 +339,36 @@
 						</tr>
 					<?php
 					$iddias=0;
-					foreach ($esp as $value) {
-						foreach ($value as $value2) {
-							if($value2['idlaboratorios']==106){
-								if($iddias == $value2['dias_iddias']){ ?>
-									<tr>
-										<td class="td2"><?= $value2['nombreuea']?></td>
-										<td class="td2"><?= $value2['grupo']?></td>
-										<td class="td2"><?= $value2['siglas']?></td>
-										<td class="td2"><?= $value2['hora']?></td>
-										<td class="td2"><?= $value2['semanas_idsemanas']?></td>
+					if($esp != NULL){
+						foreach ($esp as $value) {
+							foreach ($value as $value2) {
+								if($value2['idlaboratorios']==106){
+									if($iddias == $value2['dias_iddias']){ ?>
+										<tr>
+											<td class="td2"><?= $value2['nombreuea']?></td>
+											<td class="td2"><?= $value2['grupo']?></td>
+											<td class="td2"><?= $value2['siglas']?></td>
+											<td class="td2"><?= $value2['hora']?></td>
+											<td class="td2"><?= $value2['semanas_idsemanas']?></td>
+											</tr>
+									<?php }else{
+										$iddias=$value2['dias_iddias'];
+									 ?>
+										<td class="nombredia" colspan="5"><?= $value2['nombredia']?></td>
+									 
+										<tr>
+											<td class="td2"><?= $value2['nombreuea']?></td>
+											<td class="td2"><?= $value2['grupo']?></td>
+											<td class="td2"><?= $value2['siglas']?></td>
+											<td class="td2"><?= $value2['hora']?></td>
+											<td class="td2"><?= $value2['semanas_idsemanas']?></td>
 										</tr>
-								<?php }else{
-									$iddias=$value2['dias_iddias'];
-								 ?>
-									<td class="nombredia" colspan="5"><?= $value2['nombredia']?></td>
-								 
-									<tr>
-										<td class="td2"><?= $value2['nombreuea']?></td>
-										<td class="td2"><?= $value2['grupo']?></td>
-										<td class="td2"><?= $value2['siglas']?></td>
-										<td class="td2"><?= $value2['hora']?></td>
-										<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-									</tr>
-							<?php }
-						}
-					}}
+								<?php }
+							}
+						}}
+					}else{
+						echo "lista vacía";
+					}
 				?>
 					</table>
 				</td>

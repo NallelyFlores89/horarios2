@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost'; 
 $db['default']['username'] = 'root'; //usuario de la base de datos
-$db['default']['password'] = 'root'; //contraseña de la base de datos
+$db['default']['password'] = 'admin'; //contraseña de la base de datos
 $db['default']['database'] = 'horariosT2'; //nombre de la base de datos
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
