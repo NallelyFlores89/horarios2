@@ -99,6 +99,7 @@ class Pdf_c extends CI_Controller {
 					}else{
 						$esp[$i] = NULL;
 						$aux[$i]=NULL;
+						$esp_aux[105] = $esp_aux[106] = $esp_aux[219] = $esp_aux[220] = $esp_aux[221] = NULL;
 					}
 				}
 			}
@@ -114,93 +115,96 @@ class Pdf_c extends CI_Controller {
 			
 		$igrupo =  0;
 		$isemf = $ihoraf = $isemi = 27; $ihorai = 27;
-		foreach ($esp_aux[105] as $value) {
-				//Actualización de los datos del grupo
-				if($value['idgrupo'] == $igrupo && (($value['semanas_idsemanas'] != $isemi)|| ($value['semanas_idsemanas'] != $isemf) || ($value['horarios_idhorarios']!=$ihorai) || ($value['horarios_idhorarios'] != $ihoraf)))
-				{
-					if($value['semanas_idsemanas'] > $isemi){
-						$isemf = $value['semanas_idsemanas'];
+		if($esp_aux[105] != NULL){
+			foreach ($esp_aux[105] as $value) {
+					//Actualización de los datos del grupo
+					if($value['idgrupo'] == $igrupo && (($value['semanas_idsemanas'] != $isemi)|| ($value['semanas_idsemanas'] != $isemf) || ($value['horarios_idhorarios']!=$ihorai) || ($value['horarios_idhorarios'] != $ihoraf)))
+					{
+						if($value['semanas_idsemanas'] > $isemi){
+							$isemf = $value['semanas_idsemanas'];
+						}else{
+							$isemi = $value['semanas_idsemanas'];
+						}
+						
+						if($value['horarios_idhorarios'] <= $ihorai){
+							$ihorai = $value['horarios_idhorarios'];
+						}else{
+							$ihoraf = $value['horarios_idhorarios'];
+						}
+						
+						$filtro[105][$igrupo]['horai'] = $ihorai;	
+						$filtro[105][$igrupo]['horaf'] = $ihoraf;
+						$filtro[105][$igrupo]['semanai'] = $isemi;
+						$filtro[105][$igrupo]['semanaf'] = $isemf; 
 					}else{
-						$isemi = $value['semanas_idsemanas'];
-					}
-					
-					if($value['horarios_idhorarios'] <= $ihorai){
-						$ihorai = $value['horarios_idhorarios'];
-					}else{
-						$ihoraf = $value['horarios_idhorarios'];
-					}
-					
-					$filtro[105][$igrupo]['horai'] = $ihorai;	
-					$filtro[105][$igrupo]['horaf'] = $ihoraf;
-					$filtro[105][$igrupo]['semanai'] = $isemi;
-					$filtro[105][$igrupo]['semanaf'] = $isemf; 
-				}else{
-					//Cambio de grupo
-					$igrupo = $value['idgrupo']; 						
-					$isemi = $isemf = $value['semanas_idsemanas'];
-					$ihorai = $ihoraf= $value['horarios_idhorarios'];
-					$filtro[105][$igrupo]['horai'] = $ihorai;	
-					$filtro[105][$igrupo]['horaf'] = $ihoraf;
-					$filtro[105][$igrupo]['semanai'] = $isemi;
-					$filtro[105][$igrupo]['semanaf'] = $isemf;
-					$filtro[105][$igrupo]['siglas'] = $value['siglas'];
-					$filtro[105][$igrupo]['hora'] = $value['hora'];					
-					$filtro[105][$igrupo]['dia'] = $value['nombredia'];					
-
-				}				
-		}
+						//Cambio de grupo
+						$igrupo = $value['idgrupo']; 						
+						$isemi = $isemf = $value['semanas_idsemanas'];
+						$ihorai = $ihoraf= $value['horarios_idhorarios'];
+						$filtro[105][$igrupo]['horai'] = $ihorai;	
+						$filtro[105][$igrupo]['horaf'] = $ihoraf;
+						$filtro[105][$igrupo]['semanai'] = $isemi;
+						$filtro[105][$igrupo]['semanaf'] = $isemf;
+						$filtro[105][$igrupo]['siglas'] = $value['siglas'];
+						$filtro[105][$igrupo]['hora'] = $value['hora'];					
+						$filtro[105][$igrupo]['dia'] = $value['nombredia'];					
+	
+					}				
+				}
+			}
 
 
 		$igrupo = $isemf = $ihoraf = $isemi = $ihorai = 0;
-		foreach ($esp_aux[106] as $value) {
-				// echo "aquí <pre>";
-				// print_r($value);
-				// echo "</pre>";
-				//Actualización de los datos del grupo
-				if($value['idgrupo'] == $igrupo && (($value['semanas_idsemanas'] != $isemi)|| ($value['semanas_idsemanas'] != $isemf) || ($value['horarios_idhorarios']!=$ihorai) || ($value['horarios_idhorarios'] != $ihoraf)))
-				{
-					// echo "actualización <br>";	
-					if($value['semanas_idsemanas'] > $isemi){
-						$isemf = $value['semanas_idsemanas'];
-					}else{
-						$isemi = $value['semanas_idsemanas'];
-					}
-					
-					if($value['horarios_idhorarios'] > $ihorai){
-						$ihoraf = $value['horarios_idhorarios'];
-						echo "horaf: ";print_r($ihoraf); echo "<br>";
-					}else{
-						$ihorai = $value['horarios_idhorarios'];
-						echo "horai: ";
-						print_r($ihorai); echo "<br>";
+		if($esp_aux[105] != NULL){
+	
+			foreach ($esp_aux[106] as $value) {
+					// echo "aquí <pre>";
+					// print_r($value);
+					// echo "</pre>";
+					//Actualización de los datos del grupo
+					if($value['idgrupo'] == $igrupo && (($value['semanas_idsemanas'] != $isemi)|| ($value['semanas_idsemanas'] != $isemf) || ($value['horarios_idhorarios']!=$ihorai) || ($value['horarios_idhorarios'] != $ihoraf)))
+					{
+						// echo "actualización <br>";	
+						if($value['semanas_idsemanas'] > $isemi){
+							$isemf = $value['semanas_idsemanas'];
+						}else{
+							$isemi = $value['semanas_idsemanas'];
+						}
 						
-					}
-					
-					$filtro[106][$igrupo]['horai'] = $ihorai;	
-					$filtro[106][$igrupo]['horaf'] = $ihoraf;
-					$filtro[106][$igrupo]['semanai'] = $isemi;
-					$filtro[106][$igrupo]['semanaf'] = $isemf; 
-				}else{
-					//Cambio de grupo
-					// echo "cambio grupo <br>";
-					$igrupo = $value['idgrupo']; 						
-					$isemi = $isemf = $value['semanas_idsemanas'];
-					$ihorai = $ihoraf= $value['horarios_idhorarios'];
-					$filtro[106][$igrupo]['horai'] = $ihorai;	
-					$filtro[106][$igrupo]['horaf'] = $ihoraf;
-					$filtro[106][$igrupo]['semanai'] = $isemi;
-					$filtro[106][$igrupo]['semanaf'] = $isemf;
-					$filtro[106][$igrupo]['siglas'] = $value['siglas'];
-					$filtro[106][$igrupo]['hora'] = $value['hora'];					
-					$filtro[106][$igrupo]['dia'] = $value['nombredia'];					
-
-				}				
+						if($value['horarios_idhorarios'] > $ihorai){
+							$ihoraf = $value['horarios_idhorarios'];
+							echo "horaf: ";print_r($ihoraf); echo "<br>";
+						}else{
+							$ihorai = $value['horarios_idhorarios'];
+							echo "horai: ";
+							print_r($ihorai); echo "<br>";
+							
+						}
+						
+						$filtro[106][$igrupo]['horai'] = $ihorai;	
+						$filtro[106][$igrupo]['horaf'] = $ihoraf;
+						$filtro[106][$igrupo]['semanai'] = $isemi;
+						$filtro[106][$igrupo]['semanaf'] = $isemf; 
+					}else{
+						//Cambio de grupo
+						// echo "cambio grupo <br>";
+						$igrupo = $value['idgrupo']; 						
+						$isemi = $isemf = $value['semanas_idsemanas'];
+						$ihorai = $ihoraf= $value['horarios_idhorarios'];
+						$filtro[106][$igrupo]['horai'] = $ihorai;	
+						$filtro[106][$igrupo]['horaf'] = $ihoraf;
+						$filtro[106][$igrupo]['semanai'] = $isemi;
+						$filtro[106][$igrupo]['semanaf'] = $isemf;
+						$filtro[106][$igrupo]['siglas'] = $value['siglas'];
+						$filtro[106][$igrupo]['hora'] = $value['hora'];					
+						$filtro[106][$igrupo]['dia'] = $value['nombredia'];					
+	
+					}				
+			}
 		}
-		
-
-		echo "<pre>";
-		print_r($filtro[106]);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($filtro[106]);
+		// echo "</pre>";
 		$datos = Array(
 			'Data' => $Data,
 			'DataHorarios' =>  $DataHorarios['hora'],

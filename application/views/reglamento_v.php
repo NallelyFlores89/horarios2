@@ -32,13 +32,16 @@
 						<li>El laboratorio, así como el material del mismo, queda bajo responsabilidad del profesor asignado, el cual deberá responder 
 							ante cualquier daño o pérdida que se haya reconocido dentro de su horario de actividades.
 						</li>
+						<li>Los alumnos no tendrán acceso a los laboratorios hasta que el profesor responsable esté presente.</li>
+						<li>Los usuarios deberán dejar el equipo de cómputo tal y como lo encontraron.</li>
+						<li>Mantener limpia el área del trabajo.</li>
 						<li>La puerta de los laboratorios deberá permanecer cerrada.</li>
 						<li>El profesor queda como responsable tanto del mantenimiento del equipo, así como del comportamiento de los alumnos.</li>
 						<li>El profesor debe concluir con su clase 5 minutos antes para que los alumnos tengan tiempo de apagar el equipo y
-							el grupo abandone el laboratorio a la hora exacta que indica el horario.  </li>
+							el grupo abandone el laboratorio a la hora que indica el horario.  </li>
 						<li>Bajo ningún motivo el profesor abandonará el laboratorio sin que todos sus alumnos lo hayan hecho primero.</li>
 						<li>En caso de que el profesor necesite ausentarse por un momento, deberá preguntar al personal encargado si se puede atender el grupo.</li>
-						<li>El profesor debe respetar el horario que se le ha sido asignado.Bajo ningún motivo se debe exeder de la hora a finalizar.</li>
+						<li>El profesor debe respetar el horario que se le ha sido asignado.Bajo ningún motivo se debe exceder de la hora a finalizar.</li>
 					</ul>
 				</div>
 			</div> <!--twelve-->

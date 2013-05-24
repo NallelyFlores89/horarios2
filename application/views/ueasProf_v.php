@@ -16,7 +16,6 @@
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
 	<script src="<?=base_url(); ?>statics/responsiveTable/responsive-tables.js"></script>
    	<script src="<?=base_url(); ?>statics/foundation/javascripts/marketing_docs.js"></script>
-	<!-- 	<script src="<?=base_url(); ?>statics/js/jquery.popupWindow.js"></script> -->
 	<script src="<?=base_url(); ?>statics/collapsed/src/jquery.collapse.js"></script>
 	<script src="<?=base_url(); ?>statics/js/horarios.js"></script>
 </head>
@@ -32,7 +31,11 @@
  				<hr>
  				<!--UEAS-PROFESORES-->
 				<h3 id="ueas-profesores-h3">UEA's-Profesores</h3>
-				<table class="responsive contentHorario">
+				<div class="six columns>">
+					<label for="kwd_search">Búsqueda:</label>
+					<input type="text" id="kwd_search" value=""/>
+				</div>
+				<table id="my-table" class="responsive contentHorario">
 					<tr>
 						<th>UEA</th>
 						<th>Siglas</th>
