@@ -170,7 +170,6 @@
 								
 							</div>
 					  		<?php echo form_error('checkboxes[]'); ?>
-
 						</div><hr>
 						
 						<label style="margin-top:20px;">Recursos </label>
