@@ -51,7 +51,7 @@ class Pdf_m extends CI_Model
 	function obtenGruposEsp($labo, $dia, $hora, $trim){
 		// echo "recibi labo = $labo, dia=$dia, hora=$hora, trim = $trim, ";
 		// $this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, idlaboratorios,horarios_idhorarios, horarios.hora, uea.divisiones_iddivisiones, semanas_idsemanas');
-		$this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, horarios_idhorarios, horarios.hora, idlaboratorios, uea.nombreuea, grupo.siglas, semanas_idsemanas, dias_iddias, dias.nombredia');
+		$this->db->select('idlaboratorios, laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, horarios_idhorarios, horarios.hora, idlaboratorios, uea.nombreuea, grupo.siglas, semanas_idsemanas, dias_iddias, dias.nombredia');
 		$this->db->join('grupo','laboratorios_grupo.idgrupo=grupo.idgrupo');
 		$this->db->join('uea','grupo.uea_iduea=uea.iduea');
 		$this->db->join('horarios','horarios_idhorarios=horarios.idhorarios');

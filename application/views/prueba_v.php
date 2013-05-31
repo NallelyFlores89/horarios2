@@ -14,11 +14,13 @@
 	<style>
 		body{background:#fff} header{background:#9ABD6D; padding: 2px; width:40%;}
 		h1, h2{color:#fff} h1{font-size:15px; margin-left: 20px;} h2{font-size:13px; margin-left:20px;}
-		table{width:100%} .nombredia{font-size:10px; font-weight:bold;}
+		table{width:100%} 
 		table.horario {width: 100%; text-align:center; font-size:10px;}
+		td{font-size:10px;}
 		th{font-size:12px; padding:5px;} td,tr{padding:3px;}
 		ul{font-size:10px;}
 		.th2{font-size:11px;} .td2{font-size:10px; text-align:center}
+		.labo{font-size:10px; font-weight:bold; background:#000;}
 		.div-1, ul.listacbi{color:#46433A;} .div-2, ul.listacbs{color:#64B6B1;} .div-3,ul.listacsh{color:#CE534D;} .div-4,ul.listacompu{color:#0080FF;}
 		.div-5, ul.listabio{color:#04B45F;} .div-6,ul.listaele{color:#8A2908;} .div-7, ul.listapos{color:#D358F7;} .div-8,ul.listacomple{color:#086A87;}
 		.div-9, ul.listaotro{color:#F78181;} .div-esp{background:#BD9D92;} .lista1{width:100%; height:auto; background:red; margin-top:-300px;}
@@ -276,110 +278,34 @@
 		  	</div>	  	
 		</div> <!--termina tercer bloque de ueas -->
 		
-		<div id="ueasEspeciales105">
+		<div id="ueasEspeciales">
 			<h5>Especiales</h5>
 				<table  border='1'>
-				<tr><th>105</th></tr>
-				<tr>
-					<td>
-						<table>
-							<tr>
-								<th class="th2">UEA</th><th class="th2">Grupo</th><th class="th2">Siglas</th><th class="th2">Hora</th><th class="th2">Semana</th>
+					<?php
+						foreach ($filtro as $i => $labo) { ?>
+						
+						<table border="1">
+							<tr>								
+								<th colspan="5" class="labo"><?= $i ?></th>
 							</tr>
-						<?php
-						$iddias=0;
-						if($esp != NULL){
-							foreach ($esp as $value) {
-								if($value != NULL){
-									foreach ($value as $value2) {
-										$idsem = $value2['semanas_idsemanas'];
-										if($value2['idlaboratorios']==105){
-											
-											if($iddias == $value2['dias_iddias']){ ?>
-												<tr>
-													<td class="td2"><?= $value2['nombreuea']?></td>
-													<td class="td2"><?= $value2['grupo']?></td>
-													<td class="td2"><?= $value2['siglas']?></td>
-													<td class="td2"><?= $value2['hora']?></td>
-													<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-												</tr>
-											<?php }else{
-												  $iddias=$value2['dias_iddias'];
-											 ?>
-												<td class="nombredia" colspan="5"><?= $value2['nombredia']?></td>				 
-												<tr>
-													<td class="td2"><?= $value2['nombreuea']?></td>
-													<td class="td2"><?= $value2['grupo']?></td>
-													<td class="td2"><?= $value2['siglas']?></td>
-													<td class="td2"><?= $value2['hora']?></td>
-													<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-												</tr>
-										<?php }
-										}
-									}
-								}
-							}
-						}else{
-							echo "lista vacía";
-						}
-					?>
-						</table>
-					</td>
-				</tr>
+							<tr>
+								<th class="th2">UEA</th><th class="th2">Grupo</th><th class="th2">Siglas</th><th class="th2">Hora</th><th class="th2">Semanas</th>
+							</tr>
+							<?php 
+								foreach ($labo as $grupo) { ?>
+									<tr>
+										<td><?= $grupo['uea'] ?></td>
+										<td><?= $grupo['grupo'] ?></td>
+										<td><?= $grupo['siglas'] ?></td>
+										<td><?= $grupo['hora_inicial'] ?> - <?= $grupo['hora_final'] ?></td>
+										<td><?= $grupo['semanai'] ?> - <?= $grupo['semanaf'] ?>	</td>
+									</tr>
+								<?php } ?>
+							</table>
+						<?php }?>
 				</table>
 		</div>
-		<div id="ueasEspeciales106">
-			<table border='1'>
-			<tr>
-				<th>106</th>
-			</tr>
-			<tr>
-				<td>
-					<table >
-						<tr>
-							<th class="th2">UEA</th><th class="th2">Grupo</th><th class="th2">Siglas</th><th class="th2">Hora</th><th class="th2">Semana</th>
-						</tr>
-					<?php
-					$iddias=0;
-					if($esp != NULL){
-						foreach ($esp as $value) {
-							if($value != NULL){
-								foreach ($value as $value2) {
-									if($value2['idlaboratorios']==106){
-										if($iddias == $value2['dias_iddias']){ ?>
-											<tr>
-												<td class="td2"><?= $value2['nombreuea']?></td>
-												<td class="td2"><?= $value2['grupo']?></td>
-												<td class="td2"><?= $value2['siglas']?></td>
-												<td class="td2"><?= $value2['hora']?></td>
-												<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-												</tr>
-										<?php }else{
-											$iddias=$value2['dias_iddias'];
-										 ?>
-											<td class="nombredia" colspan="5"><?= $value2['nombredia']?></td>
-										 
-											<tr>
-												<td class="td2"><?= $value2['nombreuea']?></td>
-												<td class="td2"><?= $value2['grupo']?></td>
-												<td class="td2"><?= $value2['siglas']?></td>
-												<td class="td2"><?= $value2['hora']?></td>
-												<td class="td2"><?= $value2['semanas_idsemanas']?></td>
-											</tr>
-									<?php }
-								}
-							}}
-						}
-					}else{
-						echo "lista vacía";
-					}
-				?>
-					</table>
-				</td>
-			</tr>
-			</table>
-		</div> <!-- ueasEspeciales106-->
-		</div>
+
 	</div><!--lista uea-->
 </body>
 </html>
