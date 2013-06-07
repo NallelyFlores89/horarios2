@@ -12,33 +12,32 @@
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
 
 	<style>
-		body{background:#fff} header{background:#9ABD6D; padding: 2px; width:40%;}
+		body{background:#fff; font-family: 'Gafata',sans-serif; } header{background:#9ABD6D; padding: 2px; width:40%;}
 		h1, h2{color:#fff} h1{font-size:15px; margin-left: 20px;} h2{font-size:13px; margin-left:20px;}
 		table{width:100%} 
 		table.horario {width: 100%; text-align:center; font-size:10px;}
 		td{font-size:10px;}
-		th{font-size:12px; padding:5px;} td,tr{padding:3px;}
+		th{font-size:12px; padding:5px; background:#4DB788} td,tr{padding:3px;}
 		ul{font-size:10px;}
-		.th2{font-size:11px;} .td2{font-size:10px; text-align:center}
-		.labo{font-size:10px; font-weight:bold; background:#000;}
+		.labo{font-size:10px; font-weight:bold; background:#4DB788;}
 		.div-1, ul.listacbi{color:#46433A;} .div-2, ul.listacbs{color:#64B6B1;} .div-3,ul.listacsh{color:#CE534D;} .div-4,ul.listacompu{color:#0080FF;}
 		.div-5, ul.listabio{color:#04B45F;} .div-6,ul.listaele{color:#8A2908;} .div-7, ul.listapos{color:#D358F7;} .div-8,ul.listacomple{color:#086A87;}
-		.div-9, ul.listaotro{color:#F78181;} .div-esp{background:#BD9D92;} .lista1{width:100%; height:auto; background:red; margin-top:-300px;}
+		.div-9, ul.listaotro{color:#F78181;} .div-esp{background:#4DB788;} .lista1{width:100%; height:auto; background:red; margin-top:-300px;}
 		.lista2, .lista3{width:100%; margin-top:300px; height:auto;}
 		.cbi{width:33.3%; float:right;} #ueasEspeciales105, #ueasEspeciales106{width:100%}
+		.labo-row{background:#E6E6E6}
+		.th2{font-size:11px; background:#E6E6E6 !important;} .td2{font-size:10px; text-align:center}
+
 	</style>
 </head>
 
 <body>
-	<!-- <header>
-		<h1>Laboratorios de Docencia CBI</h1>
-		<h2>Horarios <?= $trimestres['trimActual']?></h2>
-	</header> -->
+	
 	<table class="horario" border='1' class='responsive'>
 		<tr>
 			<th>Día</th><th colspan='5'>Lunes</th><th colspan='5'>Martes</th><th colspan='5'>Miércoles</th><th colspan='5'>Jueves</th><th colspan='5'>Viernes</th>
 		</tr>
-		<tr>
+		<tr class="labo-row">
 			<td>Labo</td>
 			<td>105</td><td>106</td><td>219</td><td>220</td><td>220B</td>
 			<td>105</td><td>106</td><td>219</td><td>220</td><td>220B</td>
@@ -50,7 +49,7 @@
         	$i=1;
         	foreach ($DataHorarios as $value) { ?>
 			<tr>
-				<td><?= $value ?></td> 
+				<td class="labo-row"><?= $value ?></td> 
 				<td class="div-<?= $Data['$DataU105_1'][$i]['divisiones_iddivisiones']; ?>"><?php print_r($Data['$DataU105_1'][$i]['siglas']) ?></td>
 				<td class="div-<?= $Data['$DataU106_1'][$i]['divisiones_iddivisiones']; ?>"><?php print_r($Data['$DataU106_1'][$i]['siglas']) ?></td>
 				<td class="div-<?= $Data['$DataU219_1'][$i]['divisiones_iddivisiones']; ?>"><?php print_r($Data['$DataU219_1'][$i]['siglas']) ?></td>
