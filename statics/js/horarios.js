@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
  	$('.solicitarLabosBtn').click(function() {
 		 $(this).target = "_blank";
 			 window.open($(this).prop('href'));
@@ -16,13 +15,11 @@ $(document).ready(function(){
 //Función que sirve para la barra de búsqueda
 $(document).ready(function(){
 	$("#kwd_search").keyup(function(){
-		if( $(this).val() != "")
-		{
+		if( $(this).val() != ""){
 			$("#my-table tbody>tr").hide();
 			$("#my-table td:contains-ci('" + $(this).val() + "')").parent("tr").show();
 		}
-		else
-		{
+		else{
 			$("#my-table tbody>tr").show();
 		}
 	});

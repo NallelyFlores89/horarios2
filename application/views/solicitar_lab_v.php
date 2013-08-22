@@ -9,10 +9,165 @@
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/foundation.min.css">
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/zurb.mega-drop.css">
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/app.css">
+  	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+   	
    	<script src="<?=base_url(); ?>statics/js/jquery-1.8.2.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/foundation.min.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
 	<script src="<?=base_url(); ?>statics/js/solicitarLab.js"></script>
+  	<script src="<?=base_url(); ?>statics/ui/jquery-ui-1.10.0.custom.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#nombreInput").autocomplete({
+				source: function(request, response) {
+					$.ajax({ 
+						url: "<?php echo site_url('agregar_horario_c/propon_profesor'); ?>",
+						data: { term: $("#nombreInput").val()},
+						dataType: "json",
+						type: "POST",
+						success: function(data){	
+							response(data);
+							$("#nombreInput").change(function(){
+								$("#numInput").removeAttr('disabled')
+								$("#correoInput").removeAttr('disabled')
+								$.ajax({
+									url: "<?php echo site_url('agregar_horario_c/busca_id_prof'); ?>",
+									data: { term2:$("#nombreInput").val() },
+									dataType: "json",
+									type: "POST",
+									success:function(data2){
+										$("#id_prof").val(data2);
+											$.ajax({
+												url: "<?php echo site_url('agregar_horario_c/busca_num_empleado'); ?>",
+												data: { term3: $("#id_prof").val() },
+												dataType: "json",
+												type: "POST",
+												success:function(data3){
+													if(data3==0000){
+														$("#numInput").val('No número')
+														$("#numInput").attr('disabled','')
+													}else{
+														if(data3=='No número'){
+															$("#numInput").val('')
+														}else{
+															$("#numInput").val(data3)
+															$("#numInput").attr('disabled','')															
+															
+														}
+													
+													}
+												}										
+											})
+											
+											$.ajax({
+												url:"<?php echo site_url('agregar_horario_c/busca_correo_empleado'); ?>",
+												data: { term4: $("#id_prof").val()},
+												dataType: "json",
+												type: "POST",
+												success: function(data4){
+													if(data4==""){
+														$("#correoInput").val('No correo')
+														$("#correoInput").attr('disabled','')
+													}else{
+														if(data4=='No correo'){
+															$("#correoInput").val('')
+														}else{
+															$("#correoInput").val(data4)
+															$("#correoInput").attr('disabled','')
+														}
+													}
+												}
+											}) 
+										} //Fin del success data2
+									}) //Fin del ajax
+								}) //Fin del change
+							} //Fin del success data
+						}); //Fin del ajax
+					}, //Fin del source
+				minLength: 1
+			});
+
+			$("#ueaInput").autocomplete({
+				source: function(request, response) {
+					$.ajax({ 
+						url: "<?php echo site_url('agregar_horario_c/propon_uea'); ?>",
+						data: { term: $("#ueaInput").val()},
+						dataType: "json",
+						type: "POST",
+						success: function(data){
+							response(data);
+							$("#ueaInput").change(function(){
+								$("#claveInput").removeAttr('disabled')
+								$.ajax({
+									url: "<?php echo site_url('agregar_horario_c/busca_id_uea'); ?>",
+									data: { termUea: $("#ueaInput").val() },
+									dataType: "json",
+									type: "POST",
+									success:function(data){								
+										$("#ueaId").val(data)
+										$.ajax({
+											url: "<?php echo site_url('agregar_horario_c/busca_clave'); ?>",
+											data: { idUea: $("#ueaId").val() },
+											dataType: "json",
+											type: "POST",
+											success:function(data){	
+												if(data == -1){
+													$("#claveInput").val('')
+												}else{
+													if(data==''){
+														$("#claveInput").val('No clave')
+														$("#claveInput").attr('disabled','')	
+													}else{
+														$("#claveInput").val(data)
+														$("#claveInput").attr('disabled','')
+													}
+												}				
+											}
+										})
+										
+										$.ajax({
+											url: "<?php echo site_url('agregar_horario_c/busca_division'); ?>",
+											data: { idUea: $("#ueaId").val() },
+											dataType: "json",
+											type: "POST",
+											success:function(data){
+												if(data == -1){
+ 													$('#divisionesDropdown').val(9)
+ 												}else{
+ 													$('#divisionesDropdown').val(data)
+												}				
+											}
+										})
+		
+									} //Fin del success		
+								}) //Fin del ajax
+							}) //Fin del change
+						} //Fin del success
+					}); //Fin del ajax
+				}, //Fin del source
+				minLength: 1
+			});	 //Fin de auto complete	
+    
+			// setTimeout("alert('Tu sesión ha expirado. Recarga la página y vuelve a loguearte para seguir trabajando')",7199);	
+		}); //Fin del ready function
+		
+		$(document).ready(function(){
+			// $('#HoraFDropdown').val(2)
+	        $('#HoraIDropdown').change(function(){ 
+				$.ajax({
+					url: "<?php echo site_url('agregar_horario_c/envia_hora_dsps'); ?>",
+					data: { horaI: $('#HoraIDropdown').val() },
+					dataType: "json",
+					type: "POST",
+					success:function(hora){
+						$('#HoraFDropdown').val(hora).attr('selected')
+					}
+				})
+        	});
+   		 });
+
+	</script>
 </head>
 
 <body>
@@ -46,19 +201,14 @@
 							<div class="eight columns">
 						  		<label for="ueaInput">* Nombre de la UEA</label>
 						  		<input type="text" id="ueaInput" name="ueaInput" value="<?php echo set_value('ueaInput'); ?>" required title="Necesito el nombre de la uea"/>
-
 						  	</div>
-						  	
 							<div class="two columns">
 						  		<label for="claveInput"> Clave</label>
 						  		<input type="text" id="claveInput" name="claveInput" value="<?php echo set_value('claveInput'); ?>"/>
-
 						  	</div>
-						  	
 							<div class="two columns">
 						  		<label for="ueaInput">Grupo</label>
 						  		<input type="text" id="grupoInput" name="grupoInput" value="<?php echo set_value('grupoInput'); ?>"/>
-
 	                 		</div><hr>
 						</div>
 		
@@ -188,7 +338,8 @@
 				</fieldset>
 
 			</div> <!--twelve colums-->
-		</div> <!--row-->
+		</div> <!--row--><hr>
 
+			
 </body>
 </html>

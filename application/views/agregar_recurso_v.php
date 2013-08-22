@@ -13,6 +13,7 @@
   	<script src="<?=base_url(); ?>statics/js/jquery-1.8.2.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/foundation.min.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
+  	<script src="<?=base_url(); ?>statics/js/recursos_admin.js"></script>
 </head>
 
 <body>
@@ -22,30 +23,43 @@
 
 				<fieldset >
 					<form class="custom" action="" method="post">
-						<div class="row">
-							<label for="recursoInput">Recurso</label>
-				  			<input type="text" id="recursoInput" name="recursoInput"/>
+						<div id="recNombre" class="six columns">
+							<label class="" for="recursoInput1">Recurso1</label>
+				  			<input type="text" id="recursoInput1" name="recursos[]"/>
 					  		<?php echo form_error('recursoInput'); ?>
-
-				  		</div><hr>
+				  		</div>
+				  		<div id="links" class="five columns">
+							<label class="" for="rLink1">Link de descarga</label>
+				  			<input type="text" id="rLink1" name="rLink1"/>
+					  		<?php echo form_error('recursoInput'); ?>				  			
+				  		</div>
+				  		<input class="one columns" id="agMas" type="button" value="+"><hr>
 						<div class="row">
 							<label>Laboratorios</label>
-							<div class="six columns">
+							<div class="two columns">
 						      <label for="checkbox105"><input type="checkbox" id="checkbox105" name="checkboxes[]" style='display: none;' value="105"><span class="custom checkbox"></span> 105</label>
-						      <label for="checkbox106"><input type="checkbox" id="checkbox106" name="checkboxes[]" style='display: none;' value="106"><span class="custom checkbox"></span> 106</label>
 							</div>
-							<div class="six columns">
+							<div class="two columns">
+
+						      <label for="checkbox106"><input type="checkbox" id="checkbox106" name="checkboxes[]" style='display: none;' value="106"><span class="custom checkbox"></span> 106</label>
+						     </div>
+							<div class="two columns">
 								<label for="checkbox219"><input type="checkbox" id="checkbox219" name="checkboxes[]" style='display: none;' value="219"><span class="custom checkbox"></span> 219</label>
+							</div>
+							<div class="two columns">
 						      	<label for="checkbox220"><input type="checkbox" id="checkbox220" name="checkboxes[]" style='display: none;' value="220"><span class="custom checkbox"></span> 220</label>
 							</div>
+							<div class="two columns">
+						      	<label for="checkbox221"><input type="checkbox" id="checkbox220" name="checkboxes[]" style='display: none;' value="221"><span class="custom checkbox"></span> 220-B</label>
+							</div>
+							<div class="two columns"></div>
 					  		<?php echo form_error('checkboxes[]'); ?>
 
 						</div><hr>
 
-						<input type="submit" id="AgregarRecursoBtn" class="button offset-by-two" value="Agregar" />
+						<input type="submit" id="AgregarRecursoBtn" class="button offset-by-three six columns" value="Agregar" />
 					</form>
 				</fieldset>
-
 			</div> <!--twelve colums-->
 		</div> <!--row-->
 

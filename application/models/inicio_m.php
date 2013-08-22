@@ -4,8 +4,7 @@
 	
 		function __construct(){
 			parent::__construct();
-			$this->load->database();
-		
+			$this->load->database();		
 		}
 			
 		function obtenListaUeasDiv($idDivision, $trim){
@@ -16,6 +15,7 @@
 			$this->db->join('laboratorios_grupo', 'grupo.idgrupo=laboratorios_grupo.idgrupo');
 			$this->db->where('uea.divisiones_iddivisiones',$idDivision);
 			$this->db->where('laboratorios_grupo.trimestre_idtrim',$trim);
+			$this->db->order_by('uea.nombreuea');
 			$this->db->distinct();
 			$listaUeasCBS=$this->db->get(); 
 			if(($listaUeasCBS->num_rows())>0){
@@ -26,7 +26,7 @@
 				}
 				return ($arregloUeasCBS);
 			}else{
-				$mensaje_error="No hay datos que cargar";
+				// $mensaje_error="No hay datos que cargar";
 				return (-1);
 			}//fin del else
 		}//Fin de obtenListaUeasCBS
@@ -64,7 +64,7 @@
 			$this->db->join('laboratorios_grupo','grupo.idgrupo=laboratorios_grupo.idgrupo');
 			$this->db->where('laboratorios_grupo.trimestre_idtrim', $trim);
 			$this->db->distinct(); //Para que no se repitan los datos
-			
+			$this->db->order_by('uea.nombreuea');
 
 			$listaUeaProfesorGrupo=$this->db->get(); //Vacía el contenido de la consulta en la variable
 			

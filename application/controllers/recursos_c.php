@@ -12,8 +12,9 @@
 		
 		}
 	
-		function index()	{           //Cargamos vista
+		function index($trim){           //Cargamos vista
 			$Data['labos'] = $this->solicitar_laboratorio_m->obtenLaboratorios();
+			$Data['trimAct'] = $trim;
 			$Data['re']['105']=$this->Recursos_m->obtenRecursos(105); 
 			$Data['re']['106']=$this->Recursos_m->obtenRecursos(106);
 			$Data['re']['219']=$this->Recursos_m->obtenRecursos(219); 

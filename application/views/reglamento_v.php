@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-    <title>Aviso</title>
+    <title>Reglamento</title>
    	<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/foundation.min.css">
-  	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/app.css">
+  	<link rel="stylesheet" href="<?=base_url(); ?>statics/responsiveTable/stylesheets/app.css">
   	<script src="<?=base_url(); ?>statics/js/jquery-1.8.2.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/foundation.min.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
@@ -22,9 +22,10 @@
 		<div class="row">
 			<div class="twelve columns"><br><br>
 				<div class="row cabecera">
-					<h1 class="twelve columns columns">Laboratorios de Docencia CBI</h1>
-					<h3 class="twelve columns columns regla">Reglamento</h3>
-				</div>
+					<h1 class="nine columns">Laboratorios de Docencia CBI</h1>
+					<a class="three columns" id="adminBtn" href="<?=base_url();?>index.php/loguin_c/">Entrar como administrador</a>
+				</div><hr>
+				<h3>Reglamento</h3><br><br>	
 				<div class="row reglamento">
 					<ul class="lista-re">
 						<li>No se permite el acceso a personal ajeno fuera del horario de clases.</li>

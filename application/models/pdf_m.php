@@ -49,8 +49,6 @@ class Pdf_m extends CI_Model
 	}		
 
 	function obtenGruposEsp($labo, $dia, $hora, $trim){
-		// echo "recibi labo = $labo, dia=$dia, hora=$hora, trim = $trim, ";
-		// $this->db->select('laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, idlaboratorios,horarios_idhorarios, horarios.hora, uea.divisiones_iddivisiones, semanas_idsemanas');
 		$this->db->select('idlaboratorios, laboratorios_grupo.idgrupo, grupo.grupo, grupo.siglas, horarios_idhorarios, horarios.hora, idlaboratorios, uea.nombreuea, grupo.siglas, semanas_idsemanas, dias_iddias, dias.nombredia');
 		$this->db->join('grupo','laboratorios_grupo.idgrupo=grupo.idgrupo');
 		$this->db->join('uea','grupo.uea_iduea=uea.iduea');
@@ -69,6 +67,21 @@ class Pdf_m extends CI_Model
 			return $ueaL->result_array();
 		}else{
 			return 0;
+		}
+	}
+
+	function obtenHorasxDia($trim, $dia, $labo){
+		$this->db->select('horarios_idhorarios');
+		$this->db->where('idlaboratorios',$labo);
+		$this->db->where('dias_iddias',$dia);			
+		$this->db->where('trimestre_idtrim',$trim);			
+		$this->db->from('laboratorios_grupo');
+		$this->db->distinct();
+		$ueaL=$this->db->get();
+		if(($ueaL->num_rows())>0){
+			return(count($ueaL->result_array()));
+		}else{
+			return -1;
 		}
 	}
    

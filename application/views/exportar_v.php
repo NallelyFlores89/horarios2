@@ -13,7 +13,13 @@
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/foundation.min.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
    	<script src="<?=base_url(); ?>statics/foundation/javascripts/marketing_docs.js"></script>
-    <script type="text/javascript">var base='<?= base_url(); ?>' </script> 
+   	<script>
+	$(document).ready(function(){
+		$("#generaPdf").click(function(){
+			location.href="<?=base_url()?>"+"index.php/pdf_c/vistaWeb/"+$("#trimestre").val()
+		})
+	})
+   	</script>
     <title>Exportar horario</title>
 </head>
 
@@ -23,7 +29,7 @@
 		<div class="row">
 			<div class="three columns"></div>
 			<div class="six columns">
-				<form action="<?=base_url()?>index.php/pdf_c/generar" method="post">
+				<form>
 					<?php 
 						$i=1;
 						foreach ($trim as $value) {
@@ -33,7 +39,7 @@
 					?>
 					<label>Seleccion un trimestre</label><br>
 					<?php  echo form_dropdown('trim', $tr, 1,'id="trimestre"'); ?> <br><br>
-					<input type="submit" id="agregar" class="button normal twelve columns" value="Exportar"/>
+					<input type="button" id="generaPdf" class="button normal twelve columns" value="Exportar"/>
 				</form>
 			</div>
 			<div class="three columns"></div>

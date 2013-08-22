@@ -140,6 +140,7 @@
 			$this->db->join('divisiones', 'uea.divisiones_iddivisiones=divisiones.iddivisiones');
 			$this->db->order_by('uea.nombreuea');
 			$this->db->from('uea');
+			$this->db->order_by('uea.nombreuea');
 
 			$uea=$this->db->get(); 
 			if(($uea->num_rows())>0){

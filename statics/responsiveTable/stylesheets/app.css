@@ -27,7 +27,7 @@ table th { background:#E6E6E6;}
 
 #adminBtn{	margin-top:10px; float:right; font-family:'Gafata', sans-serif; color:#fff; font-size:13px;}
 #adminBtn:hover{text-decoration:underline}
-.footer{text-align:center;}
+.footer{text-align:center; float:right; font-size:9px;}
 a { color: #4DB788;}
 a:hover{color:#4DB788}
 ul.breadcrumbs li a, ul.breadcrumbs li span {  font-size: 1.4rem; font-weight:bold}

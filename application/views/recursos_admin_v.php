@@ -24,17 +24,15 @@
 		<div class="row">
 			<br><br>
 			<div class="twelve columns">
-			<h2>Recursos</h2><br><br>			
+			<h2>Administrar recursos</h2><hr><br><br>			
 			<dl class="tabs five-up">
 				<?php
 					foreach ($labos as $i => $value) { 
 						if($i == 1){ ?>
 							<dd class="active"><a  href="#simple<?= $value['idlaboratorios']?>"><?= $value['nombrelaboratorios'] ?></a></dd>
 						<?php }else{ ?>	
-
 						<dd><a href="#simple<?= $value['idlaboratorios']?>"><?= $value['nombrelaboratorios'] ?></a></dd>
 				<?php }}
-				
 				?>
 			</dl>
 
@@ -44,35 +42,39 @@
 						if($i == 1){ ?>
 		            	<li class="active" id="simple<?= $value['idlaboratorios']?>Tab">
 		            		<br>
-		            		<ul>
+		            		<table width="100%">
 		            			<?php
 									if($re[$value['idlaboratorios']] != -1){
 										foreach ($re[$value['idlaboratorios']] as $valor) { ?>
-											<li class="six columns"><?= $valor['recurso'] ?></li>
-											<a href='#' class='EliminarRecurso three columns' onclick='ventanaElimina(<?= $valor['idrecursos']?>, <?= $value['idlaboratorios']?>)'>Eliminar</a>
-											<a class='EditarRecurso three columns' href='#' onclick='ventanaEdita(<?= $valor['idrecursos'] ?>)'>Modificar</a>
+											<tr>
+												<td><?= $valor['recurso'] ?></td>
+												<td><a href='#' class='EliminarRecurso three columns' onclick='ventanaElimina(<?= $valor['idrecursos']?>, <?= $value['idlaboratorios']?>)'>Eliminar</a></td>
+												<td><a class='EditarRecurso three columns' href='#' onclick='ventanaEdita(<?= $valor['idrecursos'] ?>)'>Modificar</a></td>
+											</tr>
 										<?php } ?>	
 									<?php }else{ ?>
 										<label class='noDatos'> No se han agregado recursos </label>
 									<?php } ?>            			
-		            		</ul>
+		            		</table>
 		            	</li>							
 				<?php	}else{ ?>
 
 		            	<li class="" id="simple<?= $value['idlaboratorios']?>Tab">
 		            		<br>
-		            		<ul>
+		            		<table width="100%">
 		            			<?php
 									if($re[$value['idlaboratorios']] != -1){
 										foreach ($re[$value['idlaboratorios']] as $valor) { ?>
-											<li class="six columns"><?= $valor['recurso'] ?></li>
-											<a href='#' class='EliminarRecurso three columns' onclick='ventanaElimina(<?= $valor['idrecursos']?>, <?= $value['idlaboratorios']?>)'>Eliminar</a>
-											<a class='EditarRecurso three columns' href='#' onclick='ventanaEdita(<?= $valor['idrecursos'] ?>)'>Modificar</a>
+											<tr>
+												<td><?= $valor['recurso'] ?></td>
+												<td><a href='#' class='EliminarRecurso three columns' onclick='ventanaElimina(<?= $valor['idrecursos']?>, <?= $value['idlaboratorios']?>)'>Eliminar</a></td>
+												<td><a class='EditarRecurso three columns' href='#' onclick='ventanaEdita(<?= $valor['idrecursos'] ?>)'>Modificar</a></td>
+											</tr>
 										<?php } ?>	
 									<?php }else{ ?>
 										<label class='noDatos'> No se han agregado recursos </label>
-									<?php } ?>            			
-		            		</ul>
+									<?php } ?>
+							</table>            			
 		            	</li>					
 				<?php }} ?>
 			</ul>
@@ -86,174 +88,3 @@
 		</div> <!--row-->
 </body>
 </html>
-
-<!-- 	            	<li class="active" id="simple1Tab">
-	            		<br>
-	            		<ul class="recursosAdmin">
-	            			<?php
-								
-								if($recursos105 != -1){
-		            				foreach ($recursos105 as $valor) {
-										$add="-recurso105";
-										$id=$valor['idrecursos'].$add;
-										$id_recurso=$valor['idrecursos'];
-										$id_lab = 105;
-										echo"<div class='row'>";
-												echo "<li id=$id>";
-													echo"<div class='six columns'>";
-												 		print_r($valor['recurso']); 
-													echo"</div>";
-														
-													
-												echo"</li>";
-										echo "</div>";
-										echo"<hr>";
-									}
-								}else{
-		  				    		echo "<label class='noDatos'> No se han agregado recursos </label>";
-								}	            			
-	            			?>
-	            		</ul>
-	                        		
-	            	</li>
-				  	<li id="simple2Tab">
-	            		<br>
-	            		<ul class="recursosAdmin">
-							<?php
-								
-								if($recursos106 != -1){
-									
-									foreach ($recursos106 as $valor) {
-										$add="-recurso106";
-										$id=$valor['idrecursos'].$add;
-										$id_recurso=$valor['idrecursos'];
-										$id_lab = 106;
-										echo"<div class='row'>";
-												echo "<li id=$id>";
-													echo"<div class='six columns'>";
-												 		print_r($valor['recurso']); 
-													echo"</div>";
-														
-													echo"<div class='two columns'>";
-															echo "<a href='#' class='EliminarRecurso' onclick='ventanaElimina($id_recurso, $id_lab)'>Eliminar</a>";
-													echo"</div>";
-												
-													echo"<div class='two columns'>";
-														echo "<a class='EditarRecurso' href='#' onclick='ventanaEdita($id_recurso)'>Modificar</a>";
-													echo "</div>";
-												echo"</li>";
-										echo "</div>";
-										echo"<hr>";
-									}
-								}else{
-									echo "<label class='noDatos'> No se han agregado recursos </label>";
-								}	            			
-	            			?>            			
-	            		</ul>
-				  	</li>
-				  	
-				  	<li id="simple3Tab">
-	            		<br>
-	            		<ul class="recursosAdmin">
-							<?php
-								
-								if($recursos219 != -1){
-								
-									foreach ($recursos219 as $valor) {
-										$add="-recurso219";
-										$id=$valor['idrecursos'].$add;
-										$id_recurso=$valor['idrecursos'];
-										$id_lab = 219;
-										echo"<div class='row'>";
-												echo "<li id=$id>";
-													echo"<div class='six columns'>";
-												 		print_r($valor['recurso']); 
-													echo"</div>";
-														
-													echo"<div class='two columns'>";
-														echo "<a href='#' class='EliminarRecurso' onclick='ventanaElimina($id_recurso, $id_lab)'>Eliminar</a>";
-													echo"</div>";
-												
-													echo"<div class='two columns'>";
-														echo "<a class='EditarRecurso' href='#' onclick='ventanaEdita($id_recurso)'>Modificar</a>";
-													echo "</div>";
-												echo"</li>";
-										echo "</div>";
-										echo"<hr>";
-									}
-								}else{
-									echo "<label class='noDatos'> No se han agregado recursos </label>";
-									
-								}	            			
-	            			?> 	            			
-	            		</ul>
-	             	</li>
-				  	
-				  	<li id="simple4Tab">
-	            		<br>
-	            		<ul class="recursosAdmin">
-							<?php
-								if($recursos220 != -1){
-								
-									foreach ($recursos220 as $valor) {
-										$add="-recurso220";
-										$id=$valor['idrecursos'].$add;
-										$id_recurso=$valor['idrecursos'];
-										$id_lab = 220;
-										echo"<div class='row'>";
-												echo "<li id=$id>";
-													echo"<div class='six columns'>";
-												 		print_r($valor['recurso']); 
-													echo"</div>";
-														
-													echo"<div class='two columns'>";
-														echo "<a href='#' class='EliminarRecurso' onclick='ventanaElimina($id_recurso, $id_lab)'>Eliminar</a>";
-													echo"</div>";
-												
-													echo"<div class='two columns'>";
-														echo "<a class='EditarRecurso' href='#' onclick='ventanaEdita($id_recurso)'>Modificar</a>";
-													echo "</div>";
-												echo"</li>";
-										echo "</div>";
-										echo"<hr>";
-									}
-								}else{
-									echo "<label class='noDatos'> No se han agregado recursos </label>";
-								}	            			
-	            			?> 	 	            			
-	            		</ul>
-	            	</li>				  	
-				  	<li id="simple5Tab">
-	            		<br>
-	            		<ul class="recursosAdmin">
-							<?php
-								if($recursos221 != -1){
-								
-									foreach ($recursos221 as $valor) {
-										$add="-recurso221";
-										$id=$valor['idrecursos'].$add;
-										$id_recurso=$valor['idrecursos'];
-										$id_lab = 221;
-										echo"<div class='row'>";
-												echo "<li id=$id>";
-													echo"<div class='six columns'>";
-												 		print_r($valor['recurso']); 
-													echo"</div>";
-														
-													echo"<div class='two columns'>";
-														echo "<a href='#' class='EliminarRecurso' onclick='ventanaElimina($id_recurso, $id_lab)'>Eliminar</a>";
-													echo"</div>";
-												
-													echo"<div class='two columns'>";
-														echo "<a class='EditarRecurso' href='#' onclick='ventanaEdita($id_recurso)'>Modificar</a>";
-													echo "</div>";
-												echo"</li>";
-										echo "</div>";
-										echo"<hr>";
-									}
-								}else{
-									echo "<label class='noDatos'> No se han agregado recursos </label>";
-								}	            			
-	            			?> 	 	            			
-	            		</ul>
-	            	</li> -->

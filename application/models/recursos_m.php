@@ -46,14 +46,10 @@
 			
 			$idRecurso=$this->db->get();
 			if(($idRecurso->num_rows())>0){ //Verificando si tengo datos a cargar
-				$indice=1;
-
 				foreach ($idRecurso->result_array() as $value) {
-					$idRecursos[$indice] = $value['idrecursos']; //Guardando mis datos en un arreglo
-					$indice=$indice+1;
-				 }
-			
-				return($idRecursos);
+					$idRecursos[1] = $value['idrecursos']; //Guardando mis datos en un arreglo
+				}
+				return($idRecursos[1]);
 			}else{
 				return -1;
 			}//fin del else	

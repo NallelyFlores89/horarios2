@@ -1,11 +1,8 @@
 <?php if( ! defined('BASEPATH')) exit('No direct script access allowed');
 	
-	class Recursos_admin_c extends CI_Controller {
-		
+	class Recursos_admin_c extends CI_Controller{
 		public function __construct(){
-				
 			parent::__construct();
-			
 			$this->load->helper(array('html', 'url'));
 			$this->load->model('Recursos_m'); //Cargando mi modelo
 			$this->load->model('solicitar_laboratorio_m');
@@ -13,8 +10,7 @@
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>'); 
 		}
 	
-		function index()	{           //Cargamos vista
-			
+		function index(){//Cargamos vista			
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/8');
 			}else{
@@ -30,47 +26,41 @@
 			
 		} //Fin de Recursos
 		
-		function agregar_Recursos()	{           //Cargamos vista
-		
+		function agregar_Recursos(){           //Cargamos vista		
 		if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/9');
 		}else{
-
-			$this->form_validation->set_rules('recursoInput', 'recursoInput', 'required');
+			$this->form_validation->set_rules('recursos[]', 'recursos[]', 'required');
 			$this->form_validation->set_rules('checkboxes[]', 'checkboxes', 'required');
 			$this->form_validation->set_message('required','Campo obligatorio');
-			
-			
-			if($this->form_validation->run()){
-
-				$recurso = $_POST['recursoInput'];	
-				$labos=$_POST['checkboxes'];
-				
-				$idrecurso=$this->Recursos_m->obtenIdRecurso($_POST['recursoInput']);
-				
-				if($idrecurso==-1){ //Si el recurso no existe en la BD
-					$this->Recursos_m->insertaRecurso($recurso);
-					$idrecurso=$this->Recursos_m->obtenIdRecurso($_POST['recursoInput']); //id definitivo del recurso
-					
-				}
-				
-				foreach ($labos as $value) {
-					foreach ($idrecurso as $idr) {
-							
-						$laboratorio_recursoExiste = $this->Recursos_m->obtenLaboratorios_recursos($value, $idr);
 						
+			if($this->form_validation->run()){
+				$recurso = $_POST['recursos'];
+				$labos=$_POST['checkboxes'];
+				$i=1;
+				
+				//Verificamos la existencia o no existencia del recurso en la base de datos
+				foreach ($recurso as $value) {
+					$idrecurso[$i]=$this->Recursos_m->obtenIdRecurso($value); //¿Existe el recurso en la BD?
+					if($idrecurso[$i]==-1){ //Si el recurso no existe en la BD
+						$this->Recursos_m->insertaRecurso($value); //Se inserta en la BD
+						$idrecurso[$i]=$this->Recursos_m->obtenIdRecurso($value); //id definitivo del recurso
+					}
+					$i++;	
+				}
+								
+				foreach($labos as $value){
+					foreach ($idrecurso as $idr){							
+						$laboratorio_recursoExiste = $this->Recursos_m->obtenLaboratorios_recursos($value, $idr);
 						if($laboratorio_recursoExiste==-1){
-							 echo "<br>No existe, así que lo insertaré en la table laboratorios_has_recursos";
 							$this->Recursos_m->insertaLaboratorios_recursos($value, $idr); //Insertando en la tabla laboratorios_has_recursos
-						}else{
-							//echo "<h2>El recurso se encuentra ya en algunos laboratorios. Sólo se ha insertando en los laboratorios que no lo tenían </h2>";			
 						}
 					}
 				}
 				
 				echo "<script languaje='javascript' type='text/javascript'>
-				    window.opener.location.reload();
-		            window.close();</script>";
+				window.opener.location.reload();
+		        window.close();</script>";
 			}else{
 				$this->load->view('agregar_recurso_v');
 			}
@@ -78,7 +68,7 @@
 		
 		} //Fin de agregarRecursos
 		
-		function eliminar_Recurso($idrecurso, $idlab)	{           //Cargamos vista
+		function eliminar_Recurso($idrecurso, $idlab){           //Cargamos vista
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/8');
 			}else{
@@ -93,7 +83,7 @@
 
 		} //Fin función Eliminar_Recurso
 
-		function editar_Recurso($idrecurso)	{           //Cargamos vista
+		function editar_Recurso($idrecurso){           //Cargamos vista
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/8');
 			}else{
@@ -107,7 +97,7 @@
 			}
 		} //Fin función Eliminar_Recurso
 		
-		function vaciar_Recursos()	{           //Cargamos vista
+		function vaciar_Recursos(){           //Cargamos vista
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/10');
 			}else{		

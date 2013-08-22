@@ -134,7 +134,7 @@
 		}); //Fin del ready function
 		
 		$(document).ready(function(){
-			$('#HoraFDropdown').val(2)
+			// $('#HoraFDropdown').val(2)
 	        $('#HoraIDropdown').change(function(){ 
 				$.ajax({
 					url: "<?php echo site_url('agregar_horario_c/envia_hora_dsps'); ?>",
@@ -142,7 +142,7 @@
 					dataType: "json",
 					type: "POST",
 					success:function(hora){
-						$('#HoraFDropdown').val(hora)
+						$('#HoraFDropdown').val(hora).attr('selected')
 					}
 				})
         	});
