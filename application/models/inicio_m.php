@@ -162,12 +162,19 @@
 				return 0;
 			}//fin del else
 			
-		} //fin Obtenhorarios		
+		} //fin Obtenhorarios	
+		
+		function obtenFechaInicioTrim($idtrim){
+			$this->db->select('fechaInicio');
+			$this->db->where('idtrim',$idtrim);
+			
+			$fecha = $this->db->get('trimestre');
+			$fechaI = $fecha->result_array();
+			// echo "<pre>";
+			// print_r($fechaI);
+			// echo "</pre>";
+			return $fechaI[0]['fechaInicio'];
+		}	
 								
 	}
 ?>
-
-
-		
-
- 

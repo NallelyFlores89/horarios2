@@ -13,14 +13,13 @@
 			</dl>
 			
 <ul class="tabs-content">
-            	
             	<li class="active" id="simple1Tab"> <!--TAB1-->
             		<label class="indica">Semanas</label>
 					<div class="row">
 						<dl class="tabs pill">
 							<?php
 								for ($i=1; $i <=12 ; $i++) {?> 
-									  <?php if($i==1){ ?>
+									  <?php if($i==$Data['semanaActiva']){ ?>
 									  	<dd class="active"><a href="#pill<?= $i ?>"><?= $i ?></a></dd>
 									  <?php }else{ ?>
 									  	<dd><a href="#pill<?= $i ?>"><?= $i ?></a></dd>
@@ -99,7 +98,7 @@
 						<dl class="tabs pill">
 							<?php
 								for ($i=1; $i <=12 ; $i++) {?> 
-									  <?php if($i==1){ ?>
+									  <?php if($i==$Data['semanaActiva']){ ?>
 									  	<dd class="active"><a href="#pill106<?= $i ?>"><?= $i ?></a></dd>
 									  <?php }else{ ?>
 									  	<dd><a href="#pill106<?= $i ?>"><?= $i ?></a></dd>
@@ -179,7 +178,7 @@
 						<dl class="tabs pill">
 							<?php
 								for ($i=1; $i <=12 ; $i++) {?> 
-									  <?php if($i==1){ ?>
+									  <?php if($i==$Data['semanaActiva']){ ?>
 									  	<dd class="active"><a href="#pill219<?= $i ?>"><?= $i ?></a></dd>
 									  <?php }else{ ?>
 									  	<dd><a href="#pill219<?= $i ?>"><?= $i ?></a></dd>
@@ -258,7 +257,7 @@
 						<dl class="tabs pill">
 							<?php
 								for ($i=1; $i <=12 ; $i++) {?> 
-									  <?php if($i==1){ ?>
+									  <?php if($i==$Data['semanaActiva']){ ?>
 									  	<dd class="active"><a href="#pill220<?= $i ?>"><?= $i ?></a></dd>
 									  <?php }else{ ?>
 									  	<dd><a href="#pill220<?= $i ?>"><?= $i ?></a></dd>
@@ -336,7 +335,7 @@
 						<dl class="tabs pill">
 							<?php
 								for ($i=1; $i <=12 ; $i++) {?> 
-									  <?php if($i==1){ ?>
+									  <?php if($i==$Data['semanaActiva']){ ?>
 									  	<dd class="active"><a href="#pill221<?= $i ?>"><?= $i ?></a></dd>
 									  <?php }else{ ?>
 									  	<dd><a href="#pill221<?= $i ?>"><?= $i ?></a></dd>

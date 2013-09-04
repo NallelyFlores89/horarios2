@@ -3,16 +3,42 @@
 	class Inicio extends CI_Controller {
 		
 		public function __construct(){
-
-			parent::__construct();
-			
-			$this->load->helper(array('html', 'url'));
+			parent::__construct();			
+			$this->load->helper(array('html', 'url', 'date'));
 			$this->load->model('Inicio_m'); //Cargando mi modelo
-		}
+ 			$this->load->library('dateOperations');
+ 		}
 		//Esta función carga la vista que todos los usuarios verán
 		//Recibe como parametro el id del trimestre a mostrar. Se debe modificar manualmente
-		function index($trim=1){
-			           
+		function index($trim=1){			
+
+			//Obtenemos fecha actual del sistema. Esto para activar la semana correspondiente
+			$fechaAct = time();
+			//Convirtiendo en array para manejar datos
+			$fechaActArray = Array(
+				"year" => mdate("%Y", mysql_to_unix($fechaAct)),
+				"mes" => mdate("%m", mysql_to_unix($fechaAct)),
+				"dia" => mdate("%d", mysql_to_unix($fechaAct)),
+			);
+			
+			//Obtenemos fecha actual en formato AAAA-MM-DD
+			$fechaAct = $fechaActArray["year"]."-".$fechaActArray["mes"]."-".$fechaActArray["dia"];
+			
+			//Obtenemos fecha inicio de trimestre desde base de datos
+			$InicioTrim = $this->Inicio_m->obtenFechaInicioTrim($trim);
+			//Convirtiendo en array para manejar datos
+			$fechaInicioTrim = Array(
+				"year" => mdate("%Y", mysql_to_unix($InicioTrim)),
+				"mes" => mdate("%m", mysql_to_unix($InicioTrim)),
+				"dia" => mdate("%d", mysql_to_unix($InicioTrim)),
+			);
+			
+			//Obtenemos fecha inicio trimestre en formato AAAA-MM-DD
+			$InicioTrim = $fechaInicioTrim["year"]."-".$fechaInicioTrim["mes"]."-".$fechaInicioTrim["dia"];
+			// $InicioTrim = "2013-08-20";
+			//Llamamos función para calcular en qué semana estamos
+			$Data['semanaActiva']= $this->calculaSemana($fechaAct,$InicioTrim);
+
 			$trimestres['trimAct'] = $trim;
 			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);
 			$Data['datosCBS']=$this->Inicio_m->obtenListaUeasDiv(2, $trim); 
@@ -24,6 +50,7 @@
 			$Data['datosCC']=$this->Inicio_m->obtenListaUeasDiv(8, $trim);
 			$Data['datosOtros']=$this->Inicio_m->obtenListaUeasDiv(9, $trim);
 			$Data['laboratorios']=$this->Inicio_m->ObtenLabos();
+			
 
 			for ($sem=1; $sem <= 12 ; $sem++) { //Obteniendo datos para cargar las tablas del 105
 				for ($dia=1; $dia <=5 ; $dia++) { 
@@ -84,15 +111,15 @@
 					}
 				}
 			}
-			
-			
+			//Obteniendo horarios de la base de datos				
 			$DataHorarios['hora']=$this->Inicio_m->Obtenhorarios();
 
 			$datos=Array(
 					'DataHorarios' => $DataHorarios['hora'],
 					'Data' => $Data
 			);
-
+			
+			//Cargando vista
 			$this->load->view('inicio');
 			$this->load->view('opciones_v', $trimestres);
 			$this->load->view('tablaHorario_v', $datos);
@@ -107,6 +134,25 @@
 			$this->load->view('footer');			
 		}
 		
-	
+		//Recibe la fecha actual y fecha de inicio del trimestre en formato AAAA-MM-DD
+		//Esta función calcula la fecha límite de cada semana 
+		//Y calcula la semana activa acorde a la fecha actual, regresando como dato el número de semana
+		//correspondiente
+		function calculaSemana($fechaAct, $fechaInicio){
+			$fechaAux = $fechaInicio;
+			$fechaSemanas[1] = $fechaInicio;
+			//Realizando cálculos de fechas límites para cada semana
+			for ($i=2; $i<=12; $i++){
+				$fechaSemanas[$i] = $this->dateoperations->sum($fechaAux,'day',7);
+				$fechaAux = $this->dateoperations->sum($fechaAux,'day',7);
+			}
+			
+			foreach ($fechaSemanas as $i => $fecha) {
+				if($fechaAct < $fecha){
+					return $i-1; //Regresa el número de semana correspondiente a la fecha actual
+				}
+			}
+			
+		}	
 	}//Fin de la clase
 ?>
