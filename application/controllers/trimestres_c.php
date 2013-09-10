@@ -7,11 +7,7 @@
 	        parent::__construct();
 			
 			$this->load->helper(array('html', 'url'));
-			$this->load->model('inicio_m');
-			$this->load->model('Solicitar_laboratorio_m'); 
-			$this->load->model('Vaciar_confirm_m'); 
-			$this->load->model('administracion_m'); 
-			$this->load->model('trimestres_m');
+			$this->load->model(array('inicio_m','Solicitar_laboratorio_m','Vaciar_confirm_m','administracion_m','trimestres_m'));
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');			
 	   	}
@@ -25,8 +21,7 @@
 			}
 	    }
 		
-		function limpiar($idtrim, $trim){           
-			
+		function limpiar($idtrim, $trim){		
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/relogin');
 			}else{
@@ -77,32 +72,43 @@
 			}else{
 				$datos['trim'] = $trim;
 				if($_POST != NULL){ //Se recibe la solicitud para eliminar el trimestre
-					//Enlistamos los grupos candidatos a ser eliminados
-					$grupos = $this->Vaciar_confirm_m->ObtenGruposxTrim($idtrim);
-					//Filtrará a los grupos que están en otros trimestres
-					$i=1;
-					foreach ($grupos as $valor) {
-						if($this->Vaciar_confirm_m->GrupoIsAnotherTrim($valor)==-1){ //Si el grupo no está en otros trimestres
-							$grupos_eliminar[$i] = $valor;
-						}else{ //Si el grupo está en otros trimestres
-							//Eliminamos su horario del trimestre 
-							$this->Vaciar_confirm_m->elimina_lab_gr($valor,$idtrim);
-							$grupos_eliminar[$i] = -1;
-							
+				
+					//Primero se revisirá si el trimestre está o no activo.
+					//Si el trimestre está activo, no podrá eliminarse hasta que lo desactive
+					if($this->trimestres_m->estadoTrimestre($idtrim) == 1){
+						echo "<script>alert('No se puede eliminar un trimestre que esté activo')
+							window.close();</script>";						
+					}else{					
+						//En otro caso, lo eliminará sin problemas:
+						//Enlistamos los grupos candidatos a ser eliminados
+						$grupos = $this->Vaciar_confirm_m->ObtenGruposxTrim($idtrim);
+						
+						if($grupos != -1){
+							//Filtrará a los grupos que están en otros trimestres
+							$i=1;
+							foreach ($grupos as $valor) {
+								if($this->Vaciar_confirm_m->GrupoIsAnotherTrim($valor)==-1){ //Si el grupo no está en otros trimestres
+									$grupos_eliminar[$i] = $valor;
+								}else{ //Si el grupo está en otros trimestres
+									//Eliminamos su horario del trimestre 
+									$this->Vaciar_confirm_m->elimina_lab_gr($valor,$idtrim);
+									$grupos_eliminar[$i] = -1;						
+								}
+								$i++;
+							}
+						
+							//Filtrados los grupos, se eliminan
+							foreach ($grupos_eliminar as $value) {
+								// echo "eliminando grupos";
+								$this->administracion_m->eliminaGrupo($value);	
+							}
 						}
-						$i++;
-					}
-					
-					//Filtrados los grupos, se eliminan
-					foreach ($grupos_eliminar as $value) {
-						$this->administracion_m->trim_elimina_grupo($value);	
-					}
-					
-					//Por último, eliminamos el trimestre
-					$this->Vaciar_confirm_m->eliminaTrim($idtrim);
-					echo "<script languaje='javascript' type='text/javascript'>
-	                        window.opener.location.reload();
-	                   		window.close();</script>";							
+						//Por último, eliminamos el trimestre
+						$this->Vaciar_confirm_m->eliminaTrim($idtrim);
+						echo "<script languaje='javascript' type='text/javascript'>
+		                        window.opener.location.reload();
+		                   		window.close();</script>";
+	                }							
 				}else{
 					$this->load->view('eliminar_trim_v', $datos);	
 				}
@@ -115,16 +121,68 @@
 				redirect('loguin_c/relogin');
 			}else{
 				if($_POST != NULL){
-					//Añadimos el trimestre a la BD
-					$this->trimestres_m->agrega($_POST['trimInput']);
-					echo "<script languaje='javascript' type='text/javascript'>
-	                        window.opener.location.reload();
-	                        alert('Trimestre agregado')
-	                   		window.close();</script>";					
+					$this->form_validation->set_rules('trimInput', 'trimInput', 'required');
+					$this->form_validation->set_rules('fechaInicio', 'fechaInicio', 'required');
+					$this->form_validation->set_rules('estado[]', 'estado[]', 'required');
+				
+					if($this->form_validation->run()){						
+						//Verificamos si se activará el trimestre o no
+						//Si el trimestre será el trimestre activo, nos aseguraremos que el trimestre activo se desactive
+						//Sólo puede existir un trimestre activo
+						if($_POST['estado'] == 1){
+							$this->trimestres_m->desactivaTrimestre();
+						}
+						//Añadimos el trimestre a la BD
+						$this->trimestres_m->agrega($_POST);
+						
+						echo "<script languaje='javascript' type='text/javascript'>
+		                        window.opener.location.reload();
+		                        alert('Trimestre agregado')
+		                   		window.close();</script>";
+					}else{
+						echo "<script>alert('faltan campos por llenar')</script>";
+						$this->load->view('agregaTrim_v');
+					}					
 				}else{
 					$this->load->view('agregaTrim_v');
 				}
 				
+			}			
+		}
+		
+		function editar($idtrim){	
+			if(! $this->session->userdata('validated')){
+				redirect('loguin_c/relogin');
+			}else{
+				$datos['trim'] = $this->trimestres_m->ObtenTrimId($idtrim);
+				if($_POST != NULL){
+					$this->form_validation->set_rules('trimestre', 'trimestre', 'required');
+					$this->form_validation->set_rules('fecha', 'fecha', 'required');			
+					if($this->form_validation->run()){
+						$this->trimestres_m->edita($idtrim,$_POST);	
+						echo "<script languaje='javascript' type='text/javascript'>
+	                        window.opener.location.reload();
+	                   		window.close();</script>";			
+					}else{
+						echo "<script>alert('faltan campos por llenar')</script>";
+						$this->load->view('editaTrim_v', $datos);
+					}			
+										
+				}else{
+					$this->load->view('editaTrim_v', $datos);
+				}
+				
+			}
+		}
+		
+		function cambiaEdoTrim($idtrim, $edo){
+			if($edo == 1){
+				$this->trimestres_m->desactivaTrimestre();
+				echo json_encode(1);
+			}else{
+				$this->trimestres_m->desactivaTrimestre();
+				$this->trimestres_m->activaTrimestre($idtrim);
+				echo json_encode(2);			
 			}			
 		}
 

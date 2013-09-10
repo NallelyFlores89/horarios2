@@ -100,8 +100,7 @@
 				foreach ($ueaL->result_array() as $value) {
 					$datos[$value['horarios_idhorarios']]=$value;
 					$indice++;
-				}
-				
+				}				
 				return ($datos);
 			 }else{
 			 	return -1;
@@ -148,7 +147,8 @@
 		} //fin Obtenhorarios
 
 		function ObtenTrim(){
-			$this->db->select('idtrim, trim');
+			$this->db->select('idtrim, trim,fechaInicio, estado');
+			$this->db->order_by('estado','DESC');
 			$lHorarios=$this->db->get('trimestre');
 
 			if(($lHorarios->num_rows())>0){
@@ -163,18 +163,34 @@
 			}//fin del else
 			
 		} //fin Obtenhorarios	
+
+		function ObtenTrimActivo(){
+			$this->db->select('idtrim');
+			$this->db->where('estado',1);
+			$res=$this->db->get('trimestre');
+			
+			if(($res->num_rows())>0){
+				$res=$res->result_array();
+				$res = $res[0]['idtrim'];
+				return ($res);
+			}else{
+				return -1;
+			}//fin del else
+			
+		}
 		
 		function obtenFechaInicioTrim($idtrim){
+			// echo "$idtrim <br>";
 			$this->db->select('fechaInicio');
 			$this->db->where('idtrim',$idtrim);
 			
 			$fecha = $this->db->get('trimestre');
-			$fechaI = $fecha->result_array();
-			// echo "<pre>";
-			// print_r($fechaI);
-			// echo "</pre>";
-			return $fechaI[0]['fechaInicio'];
-		}	
-								
+			if($fecha->num_rows()>0){
+				$fechaI = $fecha->result_array();
+				return $fechaI[0]['fechaInicio'];
+			}else{
+				return -1;
+			}
+		}
 	}
 ?>

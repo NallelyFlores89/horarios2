@@ -32,8 +32,7 @@ $(document).ready(function(){
 
 $.extend($.expr[":"], 
 {
-    "contains-ci": function(elem, i, match, array) 
-	{
+    "contains-ci": function(elem, i, match, array){
 		return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
 	}
 });

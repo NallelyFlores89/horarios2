@@ -45,13 +45,11 @@ function ventanaAgregaU(){
 //Función que sirve para la barra de búsqueda
 $(document).ready(function(){
 	$("#kwd_search").keyup(function(){
-		if( $(this).val() != "")
-		{
+		if( $(this).val() != ""){
 			$("#my-table tbody>tr").hide();
 			$("#my-table td:contains-ci('" + $(this).val() + "')").parent("tr").show();
 		}
-		else
-		{
+		else{
 			$("#my-table tbody>tr").show();
 		}
 	});

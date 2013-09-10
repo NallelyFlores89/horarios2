@@ -14,8 +14,8 @@
 		
 		//Esta función carga la vista principal	
 		//Recibe como parametro el id del trimestre a cargar por 'default' desde el inicio. Se debe modificar manualmente
-		function index($trim=1){
-			
+		function index(){
+			$trim = $this->Inicio_m->ObtenTrimActivo(); //Definimos el id del trimestre a mostrar.
 			//Obtenemos fecha actual del sistema. Esto para activar la semana correspondiente
 			$fechaAct = time();
 			//Convirtiendo en array para manejar datos
@@ -42,7 +42,6 @@
 			// $InicioTrim = "2013-08-20";
 			//Llamamos función para calcular en qué semana estamos
 			$Data['semanaActiva']= $this->calculaSemana($fechaAct,$InicioTrim);
-			
 			
 			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);
 			$Data['datosCBS']=$this->Inicio_m->obtenListaUeasDiv(2, $trim); 
@@ -133,7 +132,7 @@
 		
 		
 		public function horarioxTrimestre($trim){ //Este controlador carga los horarios dependiendo del trimestre elegido en la vista
-		
+			
 		//Obtenemos fecha actual del sistema. Esto para activar la semana correspondiente
 			$fechaAct = time();
 			//Convirtiendo en array para manejar datos
@@ -253,20 +252,26 @@
 		//Y calcula la semana activa acorde a la fecha actual, regresando como dato el número de semana
 		//correspondiente
 		function calculaSemana($fechaAct, $fechaInicio){
-			$fechaAux = $fechaInicio;
+			$fechaAux = $fechaInicio; //Guarda fecha inicio al princpio
+			// echo "fecha aux:";
+			// print_r ($fechaAux);
+			// echo "<br>fecha act:";
+			// print_r ($fechaAct);
 			$fechaSemanas[1] = $fechaInicio;
 			//Realizando cálculos de fechas límites para cada semana
 			for ($i=2; $i<=12; $i++){
 				$fechaSemanas[$i] = $this->dateoperations->sum($fechaAux,'day',7);
 				$fechaAux = $this->dateoperations->sum($fechaAux,'day',7);
 			}
+			// echo "<pre>";
+			// print_r($fechaSemanas);
+			// echo "</pre>";
 			
 			foreach ($fechaSemanas as $i => $fecha) {
 				if($fechaAct < $fecha){
 					return $i-1; //Regresa el número de semana correspondiente a la fecha actual
 				}
 			}
-			
 		}
 		private function check_isvalidated(){
 			if(! $this->session->userdata('validated')){

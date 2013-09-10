@@ -9,9 +9,9 @@
  			$this->load->library('dateOperations');
  		}
 		//Esta función carga la vista que todos los usuarios verán
-		//Recibe como parametro el id del trimestre a mostrar. Se debe modificar manualmente
-		function index($trim=1){			
-
+		
+		function index(){			
+			$trim = $this->Inicio_m->ObtenTrimActivo(); //Definimos el id del trimestre a mostrar.
 			//Obtenemos fecha actual del sistema. Esto para activar la semana correspondiente
 			$fechaAct = time();
 			//Convirtiendo en array para manejar datos
@@ -19,11 +19,9 @@
 				"year" => mdate("%Y", mysql_to_unix($fechaAct)),
 				"mes" => mdate("%m", mysql_to_unix($fechaAct)),
 				"dia" => mdate("%d", mysql_to_unix($fechaAct)),
-			);
-			
+			);			
 			//Obtenemos fecha actual en formato AAAA-MM-DD
 			$fechaAct = $fechaActArray["year"]."-".$fechaActArray["mes"]."-".$fechaActArray["dia"];
-			
 			//Obtenemos fecha inicio de trimestre desde base de datos
 			$InicioTrim = $this->Inicio_m->obtenFechaInicioTrim($trim);
 			//Convirtiendo en array para manejar datos
@@ -51,7 +49,6 @@
 			$Data['datosOtros']=$this->Inicio_m->obtenListaUeasDiv(9, $trim);
 			$Data['laboratorios']=$this->Inicio_m->ObtenLabos();
 			
-
 			for ($sem=1; $sem <= 12 ; $sem++) { //Obteniendo datos para cargar las tablas del 105
 				for ($dia=1; $dia <=5 ; $dia++) { 
 					$vacio= array_fill(1,27, null);
@@ -114,10 +111,7 @@
 			//Obteniendo horarios de la base de datos				
 			$DataHorarios['hora']=$this->Inicio_m->Obtenhorarios();
 
-			$datos=Array(
-					'DataHorarios' => $DataHorarios['hora'],
-					'Data' => $Data
-			);
+			$datos=Array('DataHorarios' => $DataHorarios['hora'],'Data' => $Data);
 			
 			//Cargando vista
 			$this->load->view('inicio');
