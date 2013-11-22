@@ -85,6 +85,7 @@
 				<a href="<?= base_url(); ?>index.php/recursos_admin_c/vaciar_recursos" class="button VaciarRecursosBtn four columns">Vaciar recursos</a><br/><br/>
 				<div class="two columns"></div>
 			</div><!--twelve columns-->
-		</div> <!--row-->
+		</div> <hr> <!--row-->
 </body>
+<?= $footer ?>
 </html>

@@ -7,8 +7,21 @@
 	<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/foundation.min.css">
   	<link rel="stylesheet" href="<?=base_url(); ?>statics/foundation/stylesheets/app.css">
+  	<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet">
   	<script src="<?=base_url(); ?>statics/js/jquery-1.8.2.js"></script>
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/foundation.min.js"></script>
+  	<script src="http://localhost/horarios2/statics/ui/jquery-ui-1.10.0.custom.min.js">></script>
+  	 <script>
+		$(function() {
+			$( "#fechaInicio" ).datepicker({
+				showAnim:"fold",
+				monthNames:[ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+				dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ],
+			}
+				
+			);
+		});
+	</script>  	
 </head>
 <body>
 		<div class="row">
@@ -23,7 +36,7 @@
 					  		<label for="trimInput">Trimestre</label>
 					  		<input type="text" id="trimInput" name="trimInput" value="" required />
 					  		<label for="fechaInicio">Fecha de inicio</label>
-					  		<input type="date" id="fechaInicio" name="fechaInicio" placeholder="AAAA-MM-DD" value="" required/>
+					  		<input type="date" id="fechaInicio" name="fechaInicio" placeholder="AAAA-MM-DD" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="AAAA-MM-DD" required/>
 					  		<label>Estado</label>
 							<input type="radio" name="estado[]" value="1" checked="checked">Activo
 							<input type="radio" name="estado[]" value="0">Inactivo					  		

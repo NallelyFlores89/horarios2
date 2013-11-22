@@ -1,3 +1,4 @@
+body .container{min-height:500px;}
 body { background: #fff; }
 .container { max-width: 1400px; box-shadow: 0px 2px 5px rgba(0,0,0,0.25); background: #fff; margin: 0 auto; padding:1% 0%;}
 .contentHorario{ width:100%;}
@@ -24,18 +25,17 @@ table th { background:#E6E6E6;}
 .listapos{color:#D358F7;}
 .listacomple{color:#086A87;}
 .listaotro{color:#F78181;}
-
+select{cursor:pointer;}
 #adminBtn{	margin-top:10px; float:right; font-family:'Gafata', sans-serif; color:#fff; font-size:13px;}
 #adminBtn:hover{text-decoration:underline}
 .footer{text-align:center; float:right; font-size:9px;}
 a { color: #4DB788;}
 a:hover{color:#4DB788}
-ul.breadcrumbs li a, ul.breadcrumbs li span {  font-size: 1.4rem; font-weight:bold}
+ul.breadcrumbs li a, ul.breadcrumbs li span {  font-size: 1.4rem; font-weight:bold; cursor: pointer;}
 .button { background: none repeat scroll 0 0 #4DB788; border: 1px solid #666666; color: #fff; font-family:'Gafata', sans-serif;  font-size: 14px;}
 .button:hover{background-color:#DDDDDD; color:#000;}
 .indica{font-weight: bold; font-size:16px;}
 .derecha{text-align:left;}
-
 .div-1{color:#46433A;}
 .div-2{color:#64B6B1;}
 .div-3{color:#CE534D;}
@@ -45,7 +45,34 @@ ul.breadcrumbs li a, ul.breadcrumbs li span {  font-size: 1.4rem; font-weight:bo
 .div-7{color:#D358F7;}
 .div-8{color:#086A87;}
 .div-9{color:#F78181;}
-
-dl.sub-nav dd a{
-	font-size:20px;
+dl.sub-nav dd a{font-size:20px;}
+#datosGrupo{
+	background-color:#bdbdbd;
+	border: 2px solid #bdbdbd;
+	/*position: absolute;*/
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	/*-moz-box-shadow: 0 0 300px rgba(0, 0, 0, 1);*/
+	/*-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);*/
+	/*box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);*/
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+	padding:40px;
+	width:30%;
+	height:auto;
+	left:35%;
+	top:30%;
+	position: fixed;
+	z-index:4;
+}
+.close{
+	background: url(../../img/close.png) no-repeat left top;
+	height: 32px;
+	width: 32px;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	cursor:pointer;
 }

@@ -9,5 +9,4 @@
 		<label class="">Se recomienda el uso de este sistema en navegadores firefox/chrome</label>
 		<label class="">Dudas y sugerencias a <a href="#">--</a></label>
 	</div>
-
 </footer>

@@ -56,7 +56,7 @@
 			$DataHorarios['hora']=$this->Inicio_m->Obtenhorarios();
 			$trimestres['trimActual'] = $trim;
 			$trimestres['trim'] = $this->Inicio_m->ObtenTrim();
-			
+			$trimestres['menuAdmin'] = $this->load->view('v_menuAdmin',$trimestres, TRUE);
 			
 			for ($sem=1; $sem <= 12 ; $sem++) { //Obteniendo datos para cargar las tablas del 105
 				for ($dia=1; $dia <=5 ; $dia++) { 
@@ -69,7 +69,6 @@
 					}
 				}
 			}
-
 			for ($sem=1; $sem <= 12 ; $sem++) { //Obteniendo datos para cargar las tablas del 106
 				for ($dia=1; $dia <=5 ; $dia++) { 
 					$vacio= array_fill(1,27, null);
@@ -122,11 +121,11 @@
 				'DataHorarios' => $DataHorarios['hora'],
 				'Data' => $Data
 			);
-			
+
+			$trimestres['tablaHorario'] = $this->load->view('tablaHorario_v', $datos, TRUE);
+			$trimestres['listaUeas'] =$this->load->view('listaUeas_v', $datos, TRUE);
+			$trimestres['footer'] = $this->load->view('footer',null, true);
 			$this->load->view('inicio_admin_v', $trimestres);
-			$this->load->view('tablaHorario_v', $datos);
-			$this->load->view('listaUeas_v', $datos);
-			$this->load->view('footer');
 			
 		}//Fin función index
 		

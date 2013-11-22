@@ -23,11 +23,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="twelve columns">
-				<div class="row cabecera">
-					<h1 class="nine columns">Laboratorios de Docencia CBI</h1>
-					<a class="three columns" id="adminBtn" href="<?=base_url();?>index.php/loguin_c/">Entrar como administrador</a>
-				</div>
- 				<hr>
+				<?= $menuAdmin?>
  				<!--UEAS-PROFESORES-->
 				<h3 id="ueas-profesores-h3">UEA's</h3>
 				<table class="responsive contentHorario">

@@ -67,7 +67,8 @@
 	<div class="container">
 	<div class="row">
 	<div class="twelve columns">
-	<h3>Profesores-UEA</h3><br><br>
+		<?= $menuAdmin ?>
+		<h3>Profesores-UEA</h3><br><br>
 		<label for="kwd_search">Búsqueda:</label> <input type="text" id="kwd_search" value=""/>
 		<table id="my-table" class="responsive contentHorario">
 			<tr>

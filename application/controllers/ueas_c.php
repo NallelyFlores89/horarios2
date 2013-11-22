@@ -6,8 +6,8 @@
 	        parent::__construct();
 			
 			$this->load->helper(array('html', 'url'));
-	        $this->load->model('administracion_m'); // modelo
-	        $this->load->model('agregar_horario_m'); // modelo
+	        $this->load->model(array('administracion_m','agregar_horario_m','Inicio_m')); // modelo
+	        // $this->load->model('agregar_horario_m'); // modelo
 	        $this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');				
 	   	}
@@ -17,6 +17,10 @@
 			if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/12');
 			}else{
+				$trim = $this->Inicio_m->ObtenTrimActivo(); //Definimos el id del trimestre a mostrar.
+				$trimestres['trimActual'] = $trim;
+				$trimestres['trim'] = $this->Inicio_m->ObtenTrim();				
+				$datos['menuAdmin'] = $this->load->view('v_menuAdmin',$trimestres, TRUE);
 				$datos['DatosUEA']=$this->administracion_m->obtenListaUEAS();
 		    	$this->load->view('ueas_v',$datos);
 			}

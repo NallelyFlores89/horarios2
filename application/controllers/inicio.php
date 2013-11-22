@@ -33,10 +33,9 @@
 			
 			//Obtenemos fecha inicio trimestre en formato AAAA-MM-DD
 			$InicioTrim = $fechaInicioTrim["year"]."-".$fechaInicioTrim["mes"]."-".$fechaInicioTrim["dia"];
-			// $InicioTrim = "2013-08-20";
+			$InicioTrim = "2013-08-20";
 			//Llamamos función para calcular en qué semana estamos
 			$Data['semanaActiva']= $this->calculaSemana($fechaAct,$InicioTrim);
-
 			$trimestres['trimAct'] = $trim;
 			$Data['datosCBI']=$this->Inicio_m->obtenListaUeasDiv(1, $trim);
 			$Data['datosCBS']=$this->Inicio_m->obtenListaUeasDiv(2, $trim); 
@@ -114,12 +113,11 @@
 			$datos=Array('DataHorarios' => $DataHorarios['hora'],'Data' => $Data);
 			
 			//Cargando vista
-			$this->load->view('inicio');
-			$this->load->view('opciones_v', $trimestres);
-			$this->load->view('tablaHorario_v', $datos);
-			$this->load->view('opciones_v');
-			$this->load->view('listaUeas_v', $datos);
-			$this->load->view('footer');
+			$trimestres['opciones'] = $this->load->view('opciones_v', $trimestres, TRUE);
+			$trimestres['tablaHorario'] = $this->load->view('tablaHorario_v', $datos, TRUE);
+			$trimestres['listaUeas'] =$this->load->view('listaUeas_v', $datos, TRUE);
+			$trimestres['footer'] = $this->load->view('footer',null, true);
+			$this->load->view('inicio', $trimestres);
 		}//Fin función
 		
 		function ueasProf($trim){

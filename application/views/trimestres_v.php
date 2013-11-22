@@ -19,7 +19,8 @@
     <title>Horarios por trimestre</title>
 	<div class="container">
 		<div class="row" >
-		<h3>Horarios por trimestre</h3><hr>
+			<?= $menuAdmin ?>
+			<h3>Horarios por trimestre</h3><hr>
 			<table id="my-table" class="responsive contentHorario">
 				<tr>
 					<th>ID</th><th>Trimestre</th><th>Fecha de inicio</th><th>Estado</th><th colspan="4">Acciones</th>
@@ -50,6 +51,6 @@
 	 		
 	 	</div>
  	</div> <!--container-->
- 	
 </body>
+<?= $footer ?>
 </html>

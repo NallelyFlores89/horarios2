@@ -20,6 +20,7 @@
 			$Data['re']['219']=$this->Recursos_m->obtenRecursos(219); 
 			$Data['re']['220']=$this->Recursos_m->obtenRecursos(220);
 			$Data['re']['221']=$this->Recursos_m->obtenRecursos(221);
+			$Data['footer'] = $this->load->view('footer',NULL,TRUE);
 			
 			$this->load->view('recursos_v',$Data);
 		

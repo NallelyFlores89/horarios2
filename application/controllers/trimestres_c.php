@@ -16,6 +16,11 @@
 	    	if(! $this->session->userdata('validated')){
 				redirect('loguin_c/index2/NULL/13');
 			}else{
+				$trim = $this->inicio_m->ObtenTrimActivo(); //Definimos el id del trimestre a mostrar.
+				$trimestres['trimActual'] = $trim;
+				$trimestres['trim'] = $this->inicio_m->ObtenTrim();				
+				$datos['menuAdmin'] = $this->load->view('v_menuAdmin',$trimestres, TRUE);
+				$datos['footer'] = $this->load->view('footer',NULL,TRUE);
 				$datos['trim'] = $this->inicio_m->ObtenTrim();
 		        $this->load->view('trimestres_v', $datos);
 			}

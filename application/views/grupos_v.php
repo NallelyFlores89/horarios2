@@ -28,6 +28,7 @@
     <title>Grupos</title>
 	<div class="container">
 	<div class="row">
+		<?= $menuAdmin ?>
 		<h3>Grupos</h3><hr>
 		<div class="twelve columns">
 			<div class="row">

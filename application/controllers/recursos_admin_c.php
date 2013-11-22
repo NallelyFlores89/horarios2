@@ -16,10 +16,11 @@
 			}else{
 				$Data['labos'] = $this->solicitar_laboratorio_m->obtenLaboratorios();
 				$Data['re']['105']=$this->Recursos_m->obtenRecursos(105); //Obteniendo mis datos
-				$Data['re']['106']=$this->Recursos_m->obtenRecursos(106); //Obteniendo mis datos
-				$Data['re']['219']=$this->Recursos_m->obtenRecursos(219); //Obteniendo mis datos
-				$Data['re']['220']=$this->Recursos_m->obtenRecursos(220); //Obteniendo mis datos
-				$Data['re']['221']=$this->Recursos_m->obtenRecursos(221); //Obteniendo mis datos
+				$Data['re']['106']=$this->Recursos_m->obtenRecursos(106); 
+				$Data['re']['219']=$this->Recursos_m->obtenRecursos(219); 
+				$Data['re']['220']=$this->Recursos_m->obtenRecursos(220); 
+				$Data['re']['221']=$this->Recursos_m->obtenRecursos(221); 
+				$Data['footer'] = $this->load->view('footer',NULL,TRUE);
 
 				$this->load->view('recursos_admin_v',$Data);
 			}	

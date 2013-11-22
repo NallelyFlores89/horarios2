@@ -1,4 +1,5 @@
 	<label class="indica">Laboratorios</label><br>
+			<!-- TABS PARA RECORRER LOS HORARIOS POR LABORATORIO -->
 			<dl class="tabs five-up">
 				<?php foreach ($Data['laboratorios'] as $i=>$value) {
 						if($i==1){?>
@@ -13,7 +14,7 @@
 			</dl>
 			
 <ul class="tabs-content">
-            	<li class="active" id="simple1Tab"> <!--TAB1-->
+            	<li class="active" id="simple1Tab"> <!--TAB1. LABORATORIO 106-->
             		<label class="indica">Semanas</label>
 					<div class="row">
 						<dl class="tabs pill">
@@ -27,8 +28,7 @@
 						</dl>
 					</div>
 		
-					<ul class="tabs-content">
-						
+					<ul class="tabs-content">						
 						<?php 
 							for($i=1; $i<=12; $i++){ 
 							if($i==1){	
@@ -50,15 +50,13 @@
 												foreach ($DataHorarios as $indice=>$value) { ?>
 													<tr id='<?= $value ?>' class=<?= $indice ?>>
 														<td class='hora'><?=$value ?></td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_1'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_2'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_3'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_4'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_5'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_1'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_2'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_3'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_4'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_5'][$indice]['siglas']); ?> </td>
 													</tr>
-											<? }?>
-						
-							
+											<? }?>							
 										</table> <!--TERMINA LA TABLA DE HORARIOS -->
 									</li> <!--pill1-->	
 							<?php }else{?>
@@ -79,11 +77,11 @@
 												foreach ($DataHorarios as $indice=>$value) { ?>
 													<tr id='<?= $value ?>' class=<?= $indice ?>>
 														<td class='hora'><?=$value ?></td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_1'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_2'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_3'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_4'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU105_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU105_'.$i.'_5'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU105_'.$i.'_1'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU105_'.$i.'_2'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU105_'.$i.'_3'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU105_'.$i.'_4'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU105_'.$i.'_5'][$indice]['siglas']); ?> </td>
 													</tr>											<? }?>
 						
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -129,11 +127,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 													<tr id='<?= $value ?>' class=<?= $indice ?>>
 														<td class='hora'><?=$value ?></td>
-														<td class="div-<?= $Data['$DataU106_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU106_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU106_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU106_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
-														<td class="div-<?= $Data['$DataU106_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
+														<td> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
 													</tr>										
 										<? }?>
 						
@@ -157,11 +155,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU106_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU106_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU106_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU106_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU106_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>										
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -210,11 +208,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>										
 										<? }?>
 																		
@@ -238,11 +236,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU219_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -287,11 +285,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 						
@@ -315,11 +313,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU220_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -365,11 +363,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 						
@@ -393,11 +391,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_1'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_2'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_3'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_4'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td class="div-<?= $Data['$DataU221_'.$i.'_5'][$indice]['divisiones_iddivisiones']; ?>"> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->

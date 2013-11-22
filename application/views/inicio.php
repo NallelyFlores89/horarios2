@@ -26,7 +26,11 @@
 					<h1 class="nine columns">Laboratorios de Docencia CBI</h1>
 					<a class="three columns" id="adminBtn" href="<?=base_url();?>index.php/loguin_c/">Entrar como administrador</a>
 				</div>
-			<!--EL RESTO DE LA PÁGINA LO CARGA EL CONTROLADOR -->
-				
+				<?= $opciones ?>
+				<?= $tablaHorario ?>
+				<?= $opciones ?>
+				<?= $listaUeas ?>
+				<?= $footer ?>
+</body>				
 </html>
 

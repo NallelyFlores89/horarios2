@@ -8,19 +8,17 @@
 			
 			$this->load->helper(array('html', 'url'));
 			$this->load->library('form_validation');
-	        $this->load->model('administracion_m'); // modelos
-			$this->load->model('profesores_m');
-			$this->load->model('solicitar_laboratorio_m');
-			$this->load->model('agregar_horario_m');
-			$this->load->model('inicio_m');
-			$this->load->model('Vaciar_confirm_m');
-			
+	        $this->load->model(array('administracion_m','profesores_m', 'solicitar_laboratorio_m','agregar_horario_m','inicio_m','Vaciar_confirm_m')); // modelos			
 	   	}
 		
 	    function index($trim){
 	    	if(! $this->session->userdata('validated')){ //Login
 				redirect('loguin_c/index2/NULL/2');
 			}else{
+				$trim = $this->inicio_m->ObtenTrimActivo(); //Definimos el id del trimestre a mostrar.
+				$trimestres['trimActual'] = $trim;
+				$trimestres['trim'] = $this->inicio_m->ObtenTrim();				
+				$data['menuAdmin'] = $this->load->view('v_menuAdmin',$trimestres, TRUE);
 				$data['trim'] = $this->inicio_m->ObtenTrim();
 				$data['trimAct'] = $trim;
 				$data['datosUPG']=$this->administracion_m->obtenListaUeaProfesorGrupo($trim);
@@ -28,6 +26,9 @@
 			}
 	    }
 		
+		function traeDatosGrupoAJAX($idgrupo){
+			echo json_encode($this->administracion_m->obtenDatosGrupo($idgrupo));			
+		}
 		//Edita los datos de las UEAS como son sección, nombre de la uea, clave, etc.
 		function edita($idgrupo){ //Login
 			if(! $this->session->userdata('validated')){

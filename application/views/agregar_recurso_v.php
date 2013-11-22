@@ -24,7 +24,7 @@
 				<fieldset >
 					<form class="custom" action="" method="post">
 						<div id="recNombre" class="six columns">
-							<label class="" for="recursoInput1">Recurso1</label>
+							<label>Recurso1</label>
 				  			<input type="text" id="recursoInput1" name="recursos[]"/>
 					  		<?php echo form_error('recursoInput'); ?>
 				  		</div>

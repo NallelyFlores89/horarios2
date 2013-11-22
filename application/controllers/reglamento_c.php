@@ -8,8 +8,8 @@ class Reglamento_c extends CI_Controller {
     }
  
     public function index(){
-		$this->load->view('reglamento_v');
-
+    	$datos['footer'] = $this->load->view('footer',NULL,TRUE);
+		$this->load->view('reglamento_v', $datos);
     }
 
 }

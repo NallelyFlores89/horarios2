@@ -29,7 +29,7 @@
 						 							  	
 							<div class="twelve columns">
 						  		<label for="fecha">Fecha inicio</label>
-						  		<input type="text" id="fecha" name="fecha" value="<?= $trim['fechaInicio'] ?>"  />
+						  		<input type="text" id="fecha" name="fecha" value="<?= $trim['fechaInicio'] ?>" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="AAAA-MM-DD" required />
 						  	</div>
 						</div>
 						<br><br>
