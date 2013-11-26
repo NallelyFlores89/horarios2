@@ -18,10 +18,11 @@
 </head>
 
 <body>
+	<!-- caja tipo tooltip para dar más información de los horarios -->
 	<span id="datosGrupo">
-		<p>UEA:<label id="ueaNombreG"></label></p>
-		<p>Sección:<label id="seccionG"></label></p>
-		<p>Profesor<label id="profesorG"></label></p>
+		<p>UEA:<span id="ueaNombreG"></span></p>
+		<p>Sección:<span id="seccionG"></span></p>
+		<p>Profesor:<span id="profesorG"></span></p>
 		<label class="close"></label>
 	</span>
 	<div class="container">

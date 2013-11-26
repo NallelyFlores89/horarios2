@@ -45,9 +45,13 @@
 | the active record class
 */
 
+
+// nueva actualización a la base de datos del servidor :
+// 
+// -- alter table trimestre add fechaInicio DATE NOT NULL;
+// --  alter table trimestre add estado INT(2) NOT NULL;
 $active_group = 'default';
 $active_record = TRUE;
-
 $db['default']['hostname'] = 'localhost'; 
 $db['default']['username'] = 'root'; //usuario de la base de datos
 $db['default']['password'] = 'root'; //contraseña de la base de datos

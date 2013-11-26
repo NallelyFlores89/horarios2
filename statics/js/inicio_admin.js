@@ -31,7 +31,7 @@ $(document).ready(function(){
    	
    	$(".close").click(function(){
    		$(".close > p").html("");
-   		$("#datosGrupo").hide();
+   		$("#datosGrupo").fadeOut('slow');
    	})
 	 
 })
@@ -45,7 +45,7 @@ function muestraInfo(idgrupo){
 			$("#ueaNombreG").html(datos[1].nombreuea);
 			$("#seccionG").html(datos[1].divisiones_iddivisiones);
 			$("#profesorG").html(datos[1].nombre);
-			$("#datosGrupo").show();
+			$("#datosGrupo").fadeIn('slow');
 
 		}
 	})	

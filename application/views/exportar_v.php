@@ -16,7 +16,7 @@
    	<script>
 	$(document).ready(function(){
 		$("#generaPdf").click(function(){
-			location.href="<?=base_url()?>"+"index.php/pdf_c/vistaWeb/"+$("#trimestre").val()
+			location.href="<?=base_url()?>"+"index.php/pdf2_c/vistaWeb/"+$("#trimestre").val()
 		})
 	})
    	</script>

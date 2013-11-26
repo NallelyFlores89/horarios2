@@ -1,8 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-	
 	class Trimestres_c extends CI_Controller{
-    
 	    function __construct(){
 	        parent::__construct();
 			
@@ -134,7 +131,8 @@
 						//Verificamos si se activará el trimestre o no
 						//Si el trimestre será el trimestre activo, nos aseguraremos que el trimestre activo se desactive
 						//Sólo puede existir un trimestre activo
-						if($_POST['estado'] == 1){
+						if($_POST['estado'][0] == 1){
+							echo "entra if";
 							$this->trimestres_m->desactivaTrimestre();
 						}
 						//Añadimos el trimestre a la BD

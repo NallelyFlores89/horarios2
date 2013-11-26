@@ -36,7 +36,7 @@
 					<li>Los alumnos no tendrán acceso a los laboratorios hasta que el profesor responsable esté presente.</li>
 					<li>Los usuarios deberán dejar el equipo de cómputo tal y como lo encontraron.</li>
 					<li>Mantener limpia el área del trabajo.</li>
-					<li>La puerta de los laboratorios deberá permanecer cerrada.</li>
+					<li>Las puertas de los laboratorios deberán permanecer cerradas.</li>
 					<li>El profesor queda como responsable tanto del mantenimiento del equipo, así como del comportamiento de los alumnos.</li>
 					<li>El profesor debe concluir con su clase 5 minutos antes para que los alumnos tengan tiempo de apagar el equipo y
 						el grupo abandone el laboratorio a la hora que indica el horario.  </li>

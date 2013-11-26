@@ -4,14 +4,10 @@
 	
 		function __construct(){
 			parent::__construct();
-			$this->load->database();
-	
+			$this->load->database();	
 		}
 		
 		function agrega($datosTrim){
-			echo "<pre>";
-			print_r($datosTrim);
-			echo "</pre>";
 			$datos=Array(
 				'trim'=>$datosTrim['trimInput'],
 				'fechaInicio' => $datosTrim['fechaInicio'],

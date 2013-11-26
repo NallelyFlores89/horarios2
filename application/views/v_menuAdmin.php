@@ -2,7 +2,7 @@
 podía hacerse de manera más sencilla, pero para cuando lo supe era demasiado tarde. -->
 
 <script src="<?=base_url(); ?>statics/js/jquery.popupWindow.js"></script>
-<script type="text/javascript">var base='<?= base_url(); ?>' </script> 
+<script> var base='<?= base_url(); ?>' </script> 
 <script src="<?=base_url(); ?>statics/js/inicio_admin.js"></script>
 <script> var trim = <?= $trimActual ?></script>
 

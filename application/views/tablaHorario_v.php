@@ -77,13 +77,13 @@
 												foreach ($DataHorarios as $indice=>$value) { ?>
 													<tr id='<?= $value ?>' class=<?= $indice ?>>
 														<td class='hora'><?=$value ?></td>
-														<td> <?= strtoupper($Data['$DataU105_'.$i.'_1'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU105_'.$i.'_2'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU105_'.$i.'_3'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU105_'.$i.'_4'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU105_'.$i.'_5'][$indice]['siglas']); ?> </td>
-													</tr>											<? }?>
-						
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_1'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_2'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_3'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_4'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU105_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU105_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													</tr>	
+												<? }?>						
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
 								</li> <!--pill1-->	
 							<?php }} ?>
@@ -127,11 +127,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 													<tr id='<?= $value ?>' class=<?= $indice ?>>
 														<td class='hora'><?=$value ?></td>
-														<td> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
-														<td> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
+														<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
 													</tr>										
 										<? }?>
 						
@@ -155,11 +155,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU106_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU106_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>										
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -208,11 +208,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>										
 										<? }?>
 																		
@@ -236,11 +236,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU219_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU219_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -285,11 +285,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 						
@@ -313,11 +313,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU220_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU220_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->
@@ -363,11 +363,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 						
@@ -391,11 +391,11 @@
 											foreach ($DataHorarios as $indice=>$value) { ?>
 												<tr id='<?= $value ?>' class=<?= $indice ?>>
 													<td class='hora'><?=$value ?></td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
-													<td> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_1'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_1'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_2'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_2'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_3'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_3'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_4'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_4'][$indice]['siglas']); ?> </td>
+													<td onclick="muestraInfo(<?= $Data['$DataU221_'.$i.'_5'][$indice]['idgrupo']?>)"> <?= strtoupper($Data['$DataU221_'.$i.'_5'][$indice]['siglas']); ?> </td>
 												</tr>
 										<? }?>
 									</table> <!--TERMINA LA TABLA DE HORARIOS -->

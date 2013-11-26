@@ -15,10 +15,17 @@
   	<script src="<?=base_url(); ?>statics/foundation/javascripts/modernizr.foundation.js"></script>
 	<script src="<?=base_url(); ?>statics/responsiveTable/responsive-tables.js"></script>
    	<script src="<?=base_url(); ?>statics/foundation/javascripts/marketing_docs.js"></script>
+   	<script>var base='<?= base_url(); ?>' </script> 
 	<script src="<?=base_url(); ?>statics/js/horarios.js"></script>
 </head>
 
 <body>
+	<span id="datosGrupo">
+		<p>UEA:<span id="ueaNombreG"></span></p>
+		<p>Sección:<span id="seccionG"></span></p>
+		<p>Profesor:<span id="profesorG"></span></p>
+		<label class="close"></label>
+	</span>
 	<div class="container">
 		<div class="row">
 			<div class="twelve columns">

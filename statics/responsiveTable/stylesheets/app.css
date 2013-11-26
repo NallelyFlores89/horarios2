@@ -15,6 +15,7 @@ body,p,h1,h2,h3,h4,label,a{	font-family:'Gafata', sans-serif;}
 dl.tabs dd.active{	border-top:3px solid #4DB788;}
 dl.tabs.pill dd.active a{	background-color:#4DB788;}
 table th { background:#E6E6E6;}
+.contentHorario>tbody>tr>td{cursor: pointer;}
 .izq{text-align:left;}
 .listacbi{color:#46433A;}
 .listacbs{color:#64B6B1;}
@@ -47,7 +48,7 @@ ul.breadcrumbs li a, ul.breadcrumbs li span {  font-size: 1.4rem; font-weight:bo
 .div-9{color:#F78181;}
 dl.sub-nav dd a{font-size:20px;}
 #datosGrupo{
-	background-color:#bdbdbd;
+	background-color:#4DB788;
 	border: 2px solid #bdbdbd;
 	/*position: absolute;*/
 	-moz-border-radius: 10px;
@@ -59,13 +60,23 @@ dl.sub-nav dd a{font-size:20px;}
 	-moz-transition: all 0.3s ease-out;
 	-o-transition: all 0.3s ease-out;
 	-webkit-transition: all 0.3s ease-out;
-	padding:40px;
+	padding:25px;
 	width:30%;
 	height:auto;
 	left:35%;
 	top:30%;
 	position: fixed;
 	z-index:4;
+}
+#datosGrupo p{
+	font-weight:bold;
+	color: #fff;
+	font-size:18px;
+}
+#datosGrupo span{
+	color:#000;
+	font-size:16px;
+	margin-left:2px;
 }
 .close{
 	background: url(../../img/close.png) no-repeat left top;

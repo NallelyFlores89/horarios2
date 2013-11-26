@@ -13,10 +13,13 @@
   	<script src="http://localhost/horarios2/statics/ui/jquery-ui-1.10.0.custom.min.js">></script>
   	 <script>
 		$(function() {
+			//Plugin calendario y configuraciones del mismo
 			$( "#fechaInicio" ).datepicker({
 				showAnim:"fold",
 				monthNames:[ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-				dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ],
+				dayNamesShort: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+				dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+				dateFormat: "yy-mm-dd", 
 			}
 				
 			);

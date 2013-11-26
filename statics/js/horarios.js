@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	$("#datosGrupo").hide();
+
  	$('.solicitarLabosBtn').click(function() {
 		 $(this).target = "_blank";
 			 window.open($(this).prop('href'));
@@ -10,6 +12,11 @@ $(document).ready(function(){
 			 window.open($(this).prop('href'));
 		     return false;
 	 });
+	 
+	 $(".close").click(function(){
+   		$(".close > p").html("");
+   		$("#datosGrupo").hide();
+   	})
 	 
 })
 //Función que sirve para la barra de búsqueda
@@ -36,3 +43,18 @@ $.extend($.expr[":"],
 		return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
 	}
 });
+
+function muestraInfo(idgrupo){
+	$.ajax({
+		url: base+'index.php/administracion_c/traeDatosGrupoAJAX/'+idgrupo,
+		dataType: "json",
+		type: "POST",
+		success:function(datos){ //Si el dominio no es correcto, mostrará la clase incorrecto y el mensaje de alerta
+			$("#ueaNombreG").html(datos[1].nombreuea);
+			$("#seccionG").html(datos[1].divisiones_iddivisiones);
+			$("#profesorG").html(datos[1].nombre);
+			$("#datosGrupo").show();
+
+		}
+	})	
+}
