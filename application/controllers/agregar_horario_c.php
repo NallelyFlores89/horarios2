@@ -78,15 +78,18 @@
 					$iduea=$this->Agregar_horario_m->obtenerIdUea($_POST['ueaInput']); //id definitivo de UEA a manejar
 
 					//Revisamos si el grupo existe o no en el trimestre
-					$idGrupo=$this->Agregar_horario_m->obtenerIdGrupoTrim($_POST['grupoInput'], $idtrim);
+					$idGrupo=$this->Agregar_horario_m->obtenerIdGrupoTrim($_POST['grupoInput'], $idtrim, $iduea);
 					
-					//Si el grupo no existe, lo agregará a la tabla de laboratorios_grupo
-					if($idGrupo==-1){
+					//Revisamos si el grupo es de la misma UEA 
+					$grupoUea = $this->Agregar_horario_m->grupoUea($_POST['grupoInput'], $iduea);
+					
+					//Si el grupo no existe y si es de una UEA distinta, lo agregará a la tabla de laboratorios_grupo
+					if($idGrupo==-1 && $grupoUea==-1){
 						$this->Agregar_horario_m->inserta_grupo($_POST['grupoInput'], $_POST['siglasInput'], $iduea, $idProf, $idtrim);
 					}
 
 					$horaI = $_POST['HoraIDropdown']; $horaF = $_POST['HoraFDropdown'];						
-					$idGrupo=$this->Agregar_horario_m->obtenerIdGrupoTrim($_POST['grupoInput'], $idtrim); //Id definitivo del grupo a manejar
+					$idGrupo=$this->Agregar_horario_m->obtenerIdGrupoTrim($_POST['grupoInput'], $idtrim, $iduea); //Id definitivo del grupo a manejar
 
 					
 					//Revisando si el horario no está ocupado por otro grupo

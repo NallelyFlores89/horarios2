@@ -97,10 +97,11 @@
 			}			
 			
 		}
-		function obtenerIdGrupoTrim($grupo, $idtrim){
+		function obtenerIdGrupoTrim($grupo, $idtrim, $iduea){
 			$this->db->select('idgrupo');
 			$this->db->where('grupo',$grupo);
 			$this->db->where('id_trim',$idtrim);
+			$this->db->where('uea_iduea',$iduea);
 			
 			$idGrupo=$this->db->get('grupo'); 
 			
@@ -287,7 +288,20 @@
 			else{
 				return -1;	
 			}
-	    }						
+	    }
+		
+		function grupoUea($grupo, $iduea){
+		    $this->db->select('idgrupo');
+			$this->db->where('uea_iduea', $iduea);
+			$this->db->where('grupo', $grupo);
+	   		$query = $this->db->get('grupo');
+			if($query->num_rows()>0){
+				return $query->result();
+			}
+			else{
+				return -1;	
+			}
+		}						
 	} //Fin de la clase
 ?>
 
